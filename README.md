@@ -1,6 +1,9 @@
 # AngularJS(1.5) TypeScript Client of BizBook365 ERP
 The client repository of bizbook client. Used AngularJS 1.5 with TypeScript
 
+## Professional help and support
+Email: foyzulkarim@gmail.com
+
 ## Community
 
 Please visit our facebook page [Code Coopers Academy](https://www.facebook.com/codecoopersacademy) and join in our [group](https://www.facebook.com/groups/codecoopersacademy/) for active participation.
@@ -18,6 +21,10 @@ A step by step series of examples that tell you how to get a development env run
 6. Visit [http://localhost:8080/index.dev.html](http://localhost:8080/index.dev.html)
 7. Visit [http://localhost:8080](http://localhost:8080) for production level site
 8. [Check video instruction](https://youtu.be/FfDRARwgg_4)
+
+### Demo images
+
+![Sales list page](resources/images/bizbook-sales-cover.PNG)
 
 ### Deployment
 
