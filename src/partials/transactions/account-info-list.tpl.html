@@ -1,0 +1,63 @@
+﻿
+<div class="box-typical box-typical-padding">
+
+    <h5 class="m-t-lg with-border">Account Info List</h5>
+
+    <div class="form-horizontal">
+        <form ng-submit="vm.search()">
+            <div class="form-group row">
+                <div class="col col-sm-6">
+                    <div ng-include="'partials/common/search-box.html'"></div>
+                </div>
+                <div class="col col-sm-2">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" id="list-history-head">
+        <div class="bootstrap-table">
+            <div class="fixed-table-container">
+                <div class="fixed-table-body">
+                    <table id="table-edit" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th width="1">
+                                    #
+                                </th>
+                                <th ng-click="vm.toggleSort('accountTitle')">Account Title<span class="glyphicon glyphicon-sort"></span></th>
+                                <th>Account Number</th>
+                                <th>Bank Name</th>
+                                <th>Account Info Type</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.models track by $index"
+                                style="cursor: pointer">
+                                <td><span class="tabledit-span tabledit-identifier">{{$index + 1}}</span></td>
+                                <td class="tabledit-view-mode"><span class="tabledit-span">{{p.accountTitle}}</span></td>
+                                <td class="tabledit-view-mode"><span class="tabledit-span">{{p.accountNumber}}</span></td>
+                                <td class="tabledit-view-mode"><span class="tabledit-span">{{p.bankName}}</span></td>
+                                <td class="tabledit-view-mode"><span class="tabledit-span">{{p.accountInfoType}}</span></td>
+                                <td style="white-space: nowrap; width: 1%; cursor: pointer">
+                                    <div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
+                                        <div class="btn-group btn-group-sm" style="float: none;">
+                                            <button type="button" class="tabledit-edit-button btn btn-sm btn-default" style="float: none; cursor: pointer;" ui-sref="root.accountinfohistory({id: p.id})">
+                                                <span class="glyphicon glyphicon-time"></span>
+                                            </button>
+                                            <button type="button" class="tabledit-edit-button btn btn-sm btn-default" style="float: none; cursor: pointer;" ui-sref="root.accountinfo({id: p.id})">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-include="'partials/common/pagination.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

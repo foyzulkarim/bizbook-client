@@ -1,0 +1,118 @@
+﻿<div class="box-typical box-typical-padding">
+
+    <h5 class="m-t-lg with-border">Customer</h5>
+    <form name="customerForm" class="form-horizontal" ng-submit="customerForm.$valid && vm.save()">
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Membership Card No:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="MembershipCardNo" ng-model="vm.model.membershipCardNo" required="required" />
+            </div>
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-default pull-left" ng-click="vm.getBarcode()"><span class="glyphicon glyphicon-asterisk"></span></button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Name :</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Name" ng-model="vm.model.name" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Phone :</label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control" name="Phone" ng-model="vm.model.phone" required="required" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Email :</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control " name="Email" ng-model="vm.model.email" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">National Id :</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control " name="NationalId" ng-model="vm.model.nationalId" />
+            </div>
+        </div>
+        <!--<div class="form-group row">
+            <label class="col-sm-2 form-control-label">Image :</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control " name="Image" ng-model="vm.model.imageUrl" />
+            </div>
+        </div>-->
+        <div class="form-group row" ng-if="vm.isUpdateMode">
+            <label class="col-sm-2 form-control-label">Select Image :</label>
+            <div class="col-sm-8">
+                <input type="file" class="form-control " name="Image" ng-model="vm.customerImage" custom-on-change/>             
+            </div>
+            <div class="col-sm-2">
+                <input type="button" class="btn btn-default" ng-click="vm.uploadImage('customerImage','profile')" value="Upload"/>
+            </div>
+        </div>
+        <div class="form-group row" ng-if="vm.isUpdateMode">
+            <img class="col-sm-12" ng-src="{{vm.customerProfileImageUrl}}"/>           
+        </div>
+        
+        <div class="form-group row" ng-if="vm.isUpdateMode">
+            <label class="col-sm-2 form-control-label">Select NID Image 1:</label>
+            <div class="col-sm-8">
+                <input type="file" class="form-control " name="Image" ng-model="vm.customerNid1Image" custom-on-change/>             
+            </div>
+            <div class="col-sm-2">
+                <input type="button" class="btn btn-default" ng-click="vm.uploadImage('customerNid1Image','nid1')" value="Upload"/>
+            </div>
+        </div>
+        <div class="form-group row" ng-if="vm.isUpdateMode">
+            <img class="col-sm-12" ng-src="{{vm.customerNid1ImageUrl}}"/>           
+        </div>
+        
+        <div class="form-group row" ng-if="vm.isUpdateMode">
+            <label class="col-sm-2 form-control-label">Select NID Image 2:</label>
+            <div class="col-sm-8">
+                <input type="file" class="form-control " name="Image" ng-model="vm.customerNid2Image" custom-on-change/>             
+            </div>
+            <div class="col-sm-2">
+                <input type="button" class="btn btn-default" ng-click="vm.uploadImage('customerNid2Image','nid2')" value="Upload"/>
+            </div>
+        </div>
+        <div class="form-group row" ng-if="vm.isUpdateMode">
+            <img class="col-sm-12" ng-src="{{vm.customerNid2ImageUrl}}"/>           
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Occupation :</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="Occupation" ng-model="vm.model.occupation"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Company :</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control " name="Company" ng-model="vm.model.company" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Remarks :</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control " name="Remarks" ng-model="vm.model.remarks" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">IsActive</label>
+            <div class="col-sm-10">
+                <input type="checkbox" id="isActive" name="isActive" ng-model="vm.model.isActive">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">&nbsp;</label>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-inline btn-success" ng-if="!vm.isUpdateMode">Save</button>
+                <button type="submit" class="btn btn-inline btn-success" ng-if="vm.isUpdateMode">Update</button>
+                <a class="btn btn-inline btn-info" ui-sref="root.customers">Back</a>
+            </div>
+        </div>
+    </form>    
+</div>

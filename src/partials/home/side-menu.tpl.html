@@ -1,0 +1,845 @@
+<ul class="side-menu-list" access-control>
+
+    <li class="magenta opened" ng-show="canShow('side-menu-dashboard')">
+        <a ui-sref="root.home">
+            <i class="font-icon font-icon-dashboard"></i>
+            <span class="lbl">Dashboard</span>
+        </a>
+    </li>
+
+    <li class="brown with-sub" ng-show="canShow('side-menu-shop')">
+        <span>
+            <i class="font-icon glyphicon glyphicon-list-alt"></i>
+            <span class="lbl">Shop</span>
+        </span>
+        <ul>
+            <li>
+                <a ui-sref="root.shop" ng-show="canShow('side-menu-sref-shop-new')">
+                    <span class="lbl">New</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.shops" ng-show="canShow('side-menu-sref-shop-list')">
+                    <span class="lbl">List</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="brown with-sub" ng-show="canShow('side-menu-role')">
+        <span>
+            <i class="font-icon glyphicon glyphicon-tint"></i>
+            <span class="lbl">Role</span>
+        </span>
+        <ul>
+            <li>
+                <a ui-sref="root.role" ng-show="canShow('side-menu-sref-role-new')">
+                    <span class="lbl">New</span>
+                </a>
+            </li>
+            <li ng-show="canShow('side-menu-role-list')">
+                <a ui-sref="root.roles" ng-show="canShow('side-menu-sref-role-list')">
+                    <span class="lbl">List</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="brown with-sub" ng-show="canShow('side-menu-user')">
+        <span>
+            <i class="font-icon glyphicon glyphicon-tint"></i>
+            <span class="lbl">User</span>
+        </span>
+        <ul>
+            <li>
+                <a ui-sref="root.user" ng-show="canShow('side-menu-sref-user-new')">
+                    <span class="lbl">New</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.users" ng-show="canShow('side-menu-sref-user-list')">
+                    <span class="lbl">List</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="brown with-sub" ng-show="canShow('side-menu-resource')">
+        <span>
+            <i class="font-icon glyphicon glyphicon-tint"></i>
+            <span class="lbl">Resources</span>
+        </span>
+        <ul>
+            <li>
+                <a ui-sref="root.resource" ng-show="canShow('side-menu-sref-resource-new')">
+                    <span class="lbl">New</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.resources" ng-show="canShow('side-menu-sref-resource-list')">
+                    <span class="lbl">List</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="brown with-sub" ng-show="canShow('side-menu-permission')">
+        <span>
+            <i class="font-icon glyphicon glyphicon-tint"></i>
+            <span class="lbl">Premissions</span>
+        </span>
+        <ul>
+            <li>
+                <a ui-sref="root.permission" ng-show="canShow('side-menu-sref-permission-new')">
+                    <span class="lbl">New</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.updateResourcePermission" ng-show="canShow('side-menu-sref-permission-list')">
+                    <span class="lbl">List</span>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+
+    <li class="brown with-sub" ng-show="canShow('side-menu-setup')">
+        <span>
+            <i class="font-icon glyphicon glyphicon-book"></i>
+            <span class="lbl">Setup</span>
+        </span>
+        <ul>
+            <li class="brown with-sub" ng-show="canShow('side-menu-myshop')">
+                <span>
+                    <!--<i class="font-icon glyphicon glyphicon-book"></i>-->
+                    <span class="lbl">Settings</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.myshop" ng-show="canShow('side-menu-sref-myshop')">
+                            <span class="lbl">My Shop</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.config" ng-show="canShow('side-menu-sref-config')">
+                            <!--ng-show="canShow('side-menu-config')"-->
+                            <span class="lbl">Config</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="brown with-sub" ng-show="canShow('side-menu-employee')">
+                <span>
+                    <!--<i class="font-icon glyphicon glyphicon-user"></i>-->
+                    <span class="lbl">System User</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.employee" ng-show="canShow('side-menu-sref-employee-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.employees" ng-show="canShow('side-menu-sref-employee-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="brown with-sub" ng-show="canShow('side-menu-employeeInfo')">
+                <span>
+                    <span class="lbl">Employee Info</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.employeeInfo" ng-show="canShow('side-menu-sref-employeeInfo-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.employeeInfos" ng-show="canShow('side-menu-sref-employeeInfo-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="brown with-sub" ng-show="canShow('side-menu-brand')">
+                <span>
+
+                    <span class="lbl">Brand</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.brand" ng-show="canShow('side-menu-sref-brand-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.brands" ng-show="canShow('side-menu-sref-brand-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="brown with-sub" ng-show="canShow('side-menu-customer')">
+                <span>
+                    <!--<i class="font-icon glyphicon glyphicon-tint"></i>-->
+                    <span class="lbl">Customer</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.customer" ng-show="canShow('side-menu-sref-customer-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.customers" ng-show="canShow('side-menu-sref-customer-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>                  
+                </ul>
+
+               
+            </li>
+            <li class="gold with-sub" ng-show="canShow('side-menu-product')">
+                <span>
+                    <!--<i class="font-icon glyphicon glyphicon-tint"></i>-->
+                    <span class="lbl">Product</span>
+                </span>
+                <ul>
+
+                    <li class="gold with-sub" ng-show="canShow('side-menu-group')">
+                        <span>
+                            <span class="lbl">Group</span>
+                        </span>
+                        <ul>
+                            <li>
+                                <a ui-sref="root.productgroup" ng-show="canShow('side-menu-sref-group-new')">
+                                    <span class="lbl">New</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a ui-sref="root.productgroups" ng-show="canShow('side-menu-sref-group-list')">
+                                    <span class="lbl">List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="gold with-sub" ng-show="canShow('side-menu-category')">
+                        <span>
+                            <span class="lbl">Category</span>
+                        </span>
+                        <ul>
+                            <li>
+                                <a ui-sref="root.productcategory" ng-show="canShow('side-menu-sref-category-new')">
+                                    <span class="lbl">New</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a ui-sref="root.productcategories" ng-show="canShow('side-menu-sref-category-list')">
+                                    <span class="lbl">List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="gold with-sub" ng-show="canShow('side-menu-product')">
+                        <span>
+                            <span class="lbl">Detail</span>
+                        </span>
+                        <ul>
+                            <li>
+                                <a ui-sref="root.productdetail" ng-show="canShow('side-menu-sref-product-new')">
+                                    <span class="lbl">New</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a ui-sref="root.productdetails" ng-show="canShow('side-menu-sref-product-list')">
+                                    <span class="lbl">List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="brown with-sub" ng-show="canShow('side-menu-warehouse')">
+                <span>
+                    <span class="lbl">Warehouse</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.warehouse" ng-show="canShow('side-menu-sref-warehouse-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.warehouses" ng-show="canShow('side-menu-sref-warehouse-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a ui-sref="root.mywarehouse({myId:123})" ng-show="canShow('side-menu-sref-mywarehouse')">
+                            <span class="lbl">My Warehouse</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="brown with-sub">
+                <span>
+                    <span class="lbl">Damage</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.damage">
+                            <span class="lbl">new</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.damages">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="pink-red with-sub" ng-show="canShow('side-menu-account-head')">
+                <span>
+                    <!--<i class="font-icon font-icon-widget"></i>-->
+                    <span class="lbl">Account Head</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.accounthead" ng-show="canShow('side-menu-sref-account-head-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.accountheads" ng-show="canShow('side-menu-sref-account-head-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="green with-sub" ng-show="canShow('side-menu-account-info')">
+                <span>
+
+                    <span class="lbl">Account Info</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.accountinfo" ng-show="canShow('side-menu-sref-account-info-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.accountinfos" ng-show="canShow('side-menu-sref-account-info-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="brown with-sub" ng-show="canShow('side-menu-supplier')">
+                <span>
+                    <span class="lbl">Supplier</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.supplier" ng-show="canShow('side-menu-sref-supplier-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.suppliers" ng-show="canShow('side-menu-sref-supplier-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="brown with-sub" ng-show="canShow('side-menu-dealer')">
+                <span>
+
+                    <span class="lbl">Dealer</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.dealer" ng-show="canShow('side-menu-sref-dealer-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.dealers" ng-show="canShow('side-menu-sref-dealer-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="brown with-sub" ng-show="canShow('side-menu-courier')">
+                <span>
+                    <span class="lbl">Courier</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.courier" ng-show="canShow('side-menu-sref-courier-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.couriers" ng-show="canShow('side-menu-sref-couriers-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="gold with-sub" ng-show="canShow('side-menu-sms')">
+                <span>
+                    <span class="lbl">Sms</span>
+                </span>
+                <ul>
+
+                    <li>
+                        <a ui-sref="root.smses" ng-show="canShow('side-menu-sref-sms-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.smshistory">
+                            <span class="lbl">Sms History</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="gold with-sub" ng-show="canShow('side-menu-hook')">
+                <span>
+                    <span class="lbl">Hook</span>
+                </span>
+                <ul>
+                    <li class="gold with-sub" ng-show="canShow('side-menu-smshook')">
+                        <span>
+                            <span class="lbl">SmsHook</span>
+                        </span>
+                        <ul>
+                            <li>
+                                <a ui-sref="root.smsHook" ng-show="canShow('side-menu-sref-smshook-new')">
+                                    <span class="lbl">New</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a ui-sref="root.smsHooks" ng-show="canShow('side-menu-sref-smshook-list')">
+                                    <span class="lbl">List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="gold with-sub" ng-show="canShow('side-menu-hookdetail')">
+                        <span>
+                            <span class="lbl">HookDetail</span>
+                        </span>
+                        <ul>
+                            <li>
+                                <a ui-sref="root.hookDetail" ng-show="canShow('side-menu-sref-hookdetail-new')">
+                                    <span class="lbl">New</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a ui-sref="root.hookDetails" ng-show="canShow('side-menu-sref-hookdetail-list')">
+                                    <span class="lbl">List</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <!--<li class="gold with-sub"  ng-show="canShow('side-menu-smshistory')">
+                <span>
+                    <span class="lbl">Sms History</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.smspayment"  ng-show="canShow('side-menu-sref-smspayment-new')" >
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.smspayments" ng-show="canShow('side-menu-sref-smspayment-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>-->
+        </ul>
+    </li>
+    <li class="magenta with-sub" ng-show="canShow('side-menu-operation')">
+        <span>
+            <span class="glyphicon glyphicon-list-alt"></span>
+            <span class="lbl">Operation</span>
+        </span>
+        <ul>
+            <li class="magenta with-sub" ng-show="canShow('side-menu-purchase')">
+                <span>
+                    <!--<span class="glyphicon glyphicon-list-alt"></span>-->
+                    <span class="lbl">Purchase</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.purchase" ng-show="canShow('side-menu-sref-purchase-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.purchases" ng-show="canShow('side-menu-sref-purchase-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="green with-sub" ng-show="canShow('side-menu-sale')">
+                <span>
+                    <!--<i class="font-icon font-icon-widget"></i>-->
+                    <span class="lbl">Sale</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.dealer-sale" ng-show="canShow('side-menu-sref-dealer-sale-new')">
+                            <span class="lbl">New (Dealer Sale)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.dealer-sales" ng-show="canShow('side-menu-sref-dealer-sale-list')">
+                            <span class="lbl">List(Dealer Sale)</span>
+                        </a>
+                    </li>
+                    <!--<li ng-show="canShow('side-menu-sale-new')">
+                        <a ui-sref="root.sale">
+                            <span class="lbl">New (Inhouse)</span>
+                        </a>
+                    </li>-->
+                    <li>
+                        <a ui-sref="root.pos-sale" ng-show="canShow('side-menu-sref-pos-sale-new')">
+                            <span class="lbl">New (Pos Sale)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.onlinesale" ng-show="canShow('side-menu-sref-online-sale-new')">
+                            <span class="lbl">New (Customer Sale)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.product-pending-list" ng-show="canShow('side-menu-sref-product-pending-list')">
+                            <span class="lbl">Product Pending List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.warehouse-wise-product-pending-list" ng-show="canShow('side-menu-sref-warehouse-wise-product-pending-list')">
+                            <span class="lbl">WareHouse Wise Product Pending List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.sales"
+                           ng-show="canShow('side-menu-sref-sale-list')">
+
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.sales-dues" ng-show="canShow('side-menu-sref-sales-dues-list')">
+                            <span class="lbl">List(Sales-Due)</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a ui-sref="root.sales-pending"
+                           ng-show="canShow('side-menu-sref-sales-pending-list')">
+
+                            <span class="lbl">Pending</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.sales-created" ng-show="canShow('side-menu-sref-sales-created-list')">
+                            <span class="lbl">Created</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a ui-sref="root.sales-ready-to-departure" ng-show="canShow('side-menu-sref-sales-ready-to-departure-list')">
+                            <span class="lbl">Ready to Departure</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a ui-sref="root.sales-ontheway" ng-show="canShow('side-menu-sref-sales-ontheway')">
+                            <span class="lbl">On the way</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a ui-sref="root.sales-ontheway-dues" ng-show="canShow('side-menu-sref-sales-ontheway')">
+                            <span class="lbl">On the way Dues</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a ui-sref="root.sales-delivered" ng-show="canShow('side-menu-sref-sales-delivered')">
+                            <span class="lbl">Delivered</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.sales-delivered-product-categories" ng-show="canShow('side-menu-sref-sales-delivered')">
+                            <span class="lbl">Delivered Product Categoreis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.sales-completed" ng-show="canShow('side-menu-sref-sales-completed')">
+                            <span class="lbl">Completed</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.sales-cancelled" ng-show="canShow('side-menu-sref-sales-cancelled')">
+                            <span class="lbl">Cancelled</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.sales-by-salesman-list" ng-show="canShow('side-menu-sref-sales-by-salesman')">
+                            <span class="lbl">Sales by salesman</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="green with-sub">
+                <span>
+                    <!--<i class="font-icon font-icon-widget"></i>-->
+                    <span class="lbl">Installment</span>
+                </span>
+                <ul>
+
+                    <li>
+                        <a ui-sref="root.kisti-sale">
+                            <span class="lbl">New (Kisti Sale)</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a ui-sref="root.sale-installment-list">
+
+                            <span class="lbl">Sale List(Installment)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.sale-installment-pay">
+                            <span class="lbl">Installment Pay</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.sale-installments">
+                            <span class="lbl">Installments</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="magenta with-sub" ng-show="canShow('side-menu-stocktransfer')">
+                <span>
+
+                    <span class="lbl">Stock Transfer</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.stocktransfer" ng-show="canShow('side-menu-sref-stocktransfer-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.stocktransfers" ng-show="canShow('side-menu-sref-stocktransfer-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="green with-sub" ng-show="canShow('side-menu-courier')">
+                <span>
+                    <span class="lbl">Couriers</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.couriers-ready-to-departure" ng-show="canShow('side-menu-sref-couriers-ready-to-departure-list')">
+                            <span class="lbl">ReadytoDeparture(Couriers)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.couriers-ontheway" ng-show="canShow('side-menu-sref-couriers-ontheway-list')">
+                            <span class="lbl">Ontheway(Couriers)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.couriers-delivered" ng-show="canShow('side-menu-sref-couriers-delivered-list')">
+                            <span class="lbl">Delivered(Couriers)</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="green with-sub" ng-show="canShow('side-menu-transaction')">
+                <span>
+                    <!--<i class="font-icon font-icon-widget"></i>-->
+                    <span class="lbl">Transactions</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.new-transaction" ng-show="canShow('side-menu-sref-transaction-new')">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a ui-sref="root.transactions" ng-show="canShow('side-menu-sref-transactions-list')">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.moneytransfer">
+                            <span class="lbl">Money Transfer</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.incomestatement">
+                            <span class="lbl">Income Statement</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.cashflowstatement">
+                            <span class="lbl">Cash Flow Statement</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="green with-sub" ng-show="canShow('side-menu-delivery')">
+                <span>
+                    <!--<i class="font-icon font-icon-widget"></i>-->
+                    <span class="lbl">Deliveries</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.salesdelivery" ng-show="canShow('side-menu-sref-salesdelivery-list')">
+                            <span class="lbl">My Deliveries</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="green with-sub" >
+                <span>
+                    <!--<i class="font-icon font-icon-widget"></i>-->
+                    <span class="lbl">Operation Log</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.operation-logs" >
+                            <span class="lbl">Operation Log History</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.operation-log-detail-history">
+                            <span class="lbl">Operation History</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="brown with-sub">
+                <span>
+                    <span class="lbl">Customer Feedback</span>
+                </span>
+                <ul>
+                    <li>
+                        <a ui-sref="root.customerfeedback">
+                            <span class="lbl">New</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.customerfeedbacks">
+                            <span class="lbl">List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+
+    <li class="green with-sub" ng-show="canShow('side-menu-report')">
+        <span>
+            <i class="font-icon font-icon-widget"></i>
+            <span class="lbl">Reports</span>
+        </span>
+        <ul>
+            <li>
+                <a ui-sref="root.sale-individual-report">
+                    <span class="lbl">Sales Individual Report</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.daily-sales-overview-report">
+                    <span class="lbl">Daily Sales Overview Report</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.monthly-sales-overview-report">
+                    <span class="lbl">Monthly Sales Overview Report</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.yearly-sales-overview-report">
+                    <span class="lbl">Yearly Sales Overview Report</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.channel-wise-sales-report">
+                    <span class="lbl">Channel Wise Sales Report</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.customer-search-by-sale-report">
+                    <span class="lbl">Customer Search by Sales Report</span>
+                </a>
+            </li>
+            <!--<li>
+                <a ui-sref="root.sales-by-product-report">
+                    <span class="lbl"> Sales by product Report</span>
+                </a>
+            </li>-->
+            <li>
+                <a ui-sref="root.sales-by-product-detail-report">
+                    <span class="lbl"> Sales by product Detail Report</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.sales-by-product-category-report">
+                    <span class="lbl"> Sales by product category Report</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.sales-by-product-group-report">
+                    <span class="lbl"> Sales by product Group Report</span>
+                </a>
+            </li>
+                     
+            <li>
+                <a ui-sref="root.product-details-stock-report" ng-show="canShow('side-menu-sref-product-details-stock-report')">
+                    <span class="lbl">Stock Report</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.product-details-history-report2" ng-show="canShow('side-menu-sref-product-details-history-report2')">
+                    <span class="lbl">Product History</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.zone-wise-sales-report" ng-show="canShow('side-menu-sref-product-details-history-report2')">
+                    <span class="lbl">Zone Wise Sales Report</span>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+</ul>
+
+
+
+<script src="js/app.js"></script>

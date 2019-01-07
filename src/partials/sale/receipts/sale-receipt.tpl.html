@@ -1,0 +1,134 @@
+﻿<button type="button" class="btn btn-inline" ng-click="vm.back()"><</button>
+<button type="button" class="btn btn-inline" ng-click="vm.print()">Print</button>
+<div class="container" id="receipt" style="background: white">
+    <div class="box-typical box-typical-padding">
+        <div class="row">
+            <div class="col col-lg-12">               
+                <div class="col-xs-12" style="margin-top: 20px">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <img ng-src="{{vm.model.shop.logoUrl}}" style="height:100px; width: 100px; margin-left:-5%;" />                            
+                            <br/>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <br />
+                            <br />                            
+                            <address class="ng-binding">
+                                Order # <strong>{{vm.model.orderNumber}}</strong>
+                                {{vm.model.orderDate | date}}<br>
+                                <strong>{{vm.model.orderReferenceNumber}}</strong>
+                            </address>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <address>
+                                <strong>Billed To:</strong><br>
+                                {{vm.model.customerName}}<br />
+                                {{vm.model.customerPhone}}<br />
+                                {{vm.model.address.streetAddress}}<br />
+                                <span ng-show="vm.model.customerNote.length > 0 ">
+                                    l.
+                                    <strong>Note:</strong>
+                                    {{vm.model.customerNote}}<br />
+                                </span>
+                                Customer Total Due:<strong>( {{vm.model.customer.totalDue}} )</strong>
+                            </address>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <address>
+                                <strong>{{vm.model.shop.name}}</strong><br>
+                                {{vm.model.shop.streetAddress}}<br />
+                                {{vm.model.shop.area}}
+                                <span ng-show="vm.model.shop.area.length > 0 ">,</span>
+                                {{vm.model.shop.thana}}
+                                <span ng-show="vm.model.shop.thana > 0 ">,</span>
+                                {{vm.model.shop.postCode}}
+                                <span ng-show="vm.model.shop.postCode > 0 ">,</span>
+                                {{vm.model.shop.district}}<br />
+                                {{vm.model.shop.website}}<br />
+                                {{vm.model.shop.facebook}}<br />
+                                {{vm.model.shop.email}}<br />
+                                {{vm.model.shop.phone}}<br />
+                            </address>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="panel panel-default white-border-color">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Order summary</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <td><strong>Item</strong></td>
+                                            <td class="text-center"><strong>Price</strong></td>
+                                            <td class="text-center"><strong>Quantity</strong></td>
+                                            <td class="text-right"><strong>Totals</strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="p in vm.model.saleDetails track by $index" ng-hide="p.isReturned" ng-if="p.quantity>0">
+                                            <td>{{p.productDetailName}}</td>
+                                            <td class="text-center">{{p.salePricePerUnit}}</td>
+                                            <td class="text-center">{{p.quantity}}</td>
+                                            <td class="text-right">{{p.total}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="thick-line"><strong>Product Total</strong></td>
+                                            <td class="thick-line"></td>
+                                            <td class="thick-line"></td>
+                                            <td class="thick-line text-right">{{vm.model.productAmount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="no-line"><strong>Delivery Charge</strong></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line text-right">{{vm.model.shippingAmount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="no-line"><strong>Total</strong></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line text-right">{{vm.model.totalAmount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="no-line"><strong>Discount</strong></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line text-right">{{vm.model.discountAmount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="no-line"><strong>Payable</strong></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line text-right">{{vm.model.payableTotalAmount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="no-line"><strong>Paid</strong></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line text-right"><strong>{{vm.model.paidAmount}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="no-line"><strong>Due</strong></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line"></td>
+                                            <td class="no-line text-right"><strong>{{vm.model.dueAmount}}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

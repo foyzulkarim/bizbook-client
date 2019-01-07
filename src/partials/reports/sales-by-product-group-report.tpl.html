@@ -1,0 +1,93 @@
+﻿<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border"> Sales By Product Group Report</h5>
+    <div class="form-horizontal">
+        <div class="form-group row">
+            <div class="col col-sm-4" ng-hide="true">
+                <label class="control-label">Search Order</label>
+                <div ng-include="'partials/common/search-box.html'"></div>
+            </div>
+            <div class="col col-sm-2">
+                <div class="input-group">
+                    <label class="control-label">Warehouse</label>
+                    <select type="text" class="form-control " name="warehouseName" ng-model="vm.searchRequest.warehouseId" ng-options="i.id as i.text for i in vm.warehouses" ng-change="vm.saveChangeWarehouse()"></select>
+                </div>
+            </div>
+            <div class="col col-sm-3">
+                <div ng-include="'partials/common/report-header-fromDate.tpl.html'"></div>
+            </div>
+            <div class="col col-sm-3">
+                <div ng-include="'partials/common/report-header-toDate.tpl.html'"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="bootstrap-table">
+            <div class="fixed-table-container">
+                <div class="fixed-table-body">
+                    <div class="table-responsive">
+                        <table id="table-edit" class="table table-bordered table-hover ">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Cost Total</th>
+                                    <th>Price Total</th>
+                                    <th>Discount Total</th>
+                                    <th>Total</th>
+                                    <th>Paid</th>
+                                    <th>Due</th>
+                                    <th>Total Percent</th>
+                                    <th>Sale Count</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="p in vm.models track by $index">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{p.product.name}}</td>
+                                    <td>{{p.quantity}}</td>
+                                    <td>{{p.costTotal | currency : ''}}</td>
+                                    <td>{{p.priceTotal | currency : ''}}</td>
+                                    <td>{{p.discountTotal | currency : ''}}</td>
+                                    <td>{{p.total | currency : ''}}</td>
+                                    <td>{{p.paid | currency : ''}}</td>
+                                    <td>{{p.due | currency: ''}}</td>
+                                    <td>{{p.totalPercent | currency: ''}}</td>
+                                    <td>{{p.saleCount}}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td>{{vm.quantityTotal | currency : ''}}</td>
+                                    <td>{{vm.costAmountTotal | currency : ''}}</td>
+                                    <td>{{vm.priceAmountTotal | currency : ''}}</td>
+                                    <td>{{vm.discountAmountTotal | currency : ''}}</td>
+                                    <td>{{vm.amountTotal | currency : ''}}</td>
+                                    <td>{{vm.paidAmountTotal | currency : ''}}</td>
+                                    <td>{{vm.dueAmountTotal | currency: ''}}</td>
+                                    <td>{{vm.percentTotal | currency: ''}}</td>
+                                    <td>{{vm.saleCountTotal}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div ng-include="vm.subUrlPath+'/partials/common/pagination.html'"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-xs-12">
+            <canvas id="chart" class="chart chart-bar"
+                    chart-data="vm.chartData" chart-labels="vm.chartLabels" chart-options="vm.chartOptions"></canvas>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

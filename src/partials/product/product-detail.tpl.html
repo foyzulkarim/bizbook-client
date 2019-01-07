@@ -1,0 +1,309 @@
+﻿<div class="row">
+    <div class="col col-xs-12 col-sm-5 col-md-5 col-lg-5">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title text-capitalize">Add Product</h3>
+            </div>
+            <div class="panel-body">
+
+                <!-- product variance form -->
+                <form class="form-horizontal" ng-submit="vm.saveProductPrice()" ng-show="vm.view == 'productVariance'">
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Group Name</label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <select type="text" class="form-control " name="GroupName" ng-model="vm.model.productGroupId" ng-options="i.id as i.name for i in vm.dropdown.productGroup" required="required" ng-change="vm.loadProducts()"></select>
+                            
+                        </div>
+                        <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2"ng-if="vm.user.role ==='SuperAdmin' ">
+                            <button class="btn glyphicon glyphicon-plus-sign" type="button" ng-click="vm.loadView('group')"></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Product Name</label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <select type="text" class="form-control" name="Name" ng-model="vm.model.productId"
+                                    required="required" ng-options="i.id as i.name for i in vm.dropdown.product"></select>
+                        </div>
+                        <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <button class="btn glyphicon glyphicon-plus-sign" type="button" ng-click="vm.loadSaveProductView('product')"></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Name</label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <input type="text" required class="form-control" name="name" ng-model="vm.model.name" placeholder="Product Identifire" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Size</label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <select type="text" class="form-control" name="size" ng-model="vm.model.size" ng-options="i.name as i.name for i in vm.dropdown.size"></select>
+                        </div>
+                        <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <button ng-class="{'glyphicon-plus-sign':!vm.isCreateNewSize,'glyphicon-minus-sign':vm.isCreateNewSize}"  class="btn glyphicon" type="button" ng-click="vm.isCreateNewSize=!vm.isCreateNewSize"></button>
+                        </div>
+                        <div ng-if="vm.isCreateNewSize">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3"></label>
+                            <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                                <input type="text" class="form-control" name="Size" ng-model="vm.varianceDetail.name" placeholder="Create New Size"/>
+                                <button type="button" class="btn glyphicon glyphicon-save" ng-click="vm.varianceDetail.name && vm.saveVarianceDetail(vm.varianceIdsObj.sizeId,'size') ; vm.isCreateNewSize=!vm.isCreateNewSize">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Color</label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <select type="text" class="form-control" name="color" ng-model="vm.model.color" ng-options="i.name as i.name for i in vm.dropdown.color"></select>
+                        </div>
+                        <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <button ng-class="{'glyphicon-plus-sign':!vm.isCreateNewColor,'glyphicon-minus-sign':vm.isCreateNewColor}"  class="btn glyphicon" type="button" ng-click="vm.isCreateNewColor=!vm.isCreateNewColor"></button>
+                        </div>
+                        <div ng-if="vm.isCreateNewColor">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3"></label>
+                            <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                                <input type="text" class="form-control" name="Color" ng-model="vm.varianceDetail.name" placeholder="Create New Color"/>
+                                <button type="button" class="btn glyphicon glyphicon-save" ng-click="vm.varianceDetail.name && vm.saveVarianceDetail(vm.varianceIdsObj.colorId,'color') ; vm.isCreateNewColor=!vm.isCreateNewColor">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Weight</label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <select type="text" class="form-control" name="weight" ng-model="vm.model.weight" ng-options="i.name as i.name for i in vm.dropdown.weight"></select>
+                        </div>
+                        <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <button ng-class="{'glyphicon-plus-sign':!vm.isCreateNewWeight,'glyphicon-minus-sign':vm.isCreateNewWeight}"  class="btn glyphicon" type="button" ng-click="vm.isCreateNewWeight=!vm.isCreateNewWeight"></button>
+                        </div>
+                        <div ng-if="vm.isCreateNewWeight">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3"></label>
+                            <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                                <input type="text" class="form-control" name="Weight" ng-model="vm.varianceDetail.name" placeholder="Create New Weight"/>
+                                <button type="button" class="btn glyphicon glyphicon-save" ng-click="vm.varianceDetail.name && vm.saveVarianceDetail(vm.varianceIdsObj.weightId,'weight') ; vm.isCreateNewWeight=!vm.isCreateNewWeight">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Length</label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <select type="text" class="form-control" name="length" ng-model="vm.model.length" ng-options="i.name as i.name for i in vm.dropdown.length"></select>
+                        </div>
+                        <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <button ng-class="{'glyphicon-plus-sign':!vm.isCreateNewLength,'glyphicon-minus-sign':vm.isCreateNewLength}"  class="btn glyphicon" type="button" ng-click="vm.isCreateNewLength=!vm.isCreateNewLength"></button>
+                        </div>
+                        <div ng-if="vm.isCreateNewLength">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3"></label>
+                            <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                                <input type="text" class="form-control" name="Length" ng-model="vm.varianceDetail.name" placeholder="Create New Length"/>
+                                <button type="button" class="btn glyphicon glyphicon-save" ng-click="vm.varianceDetail.name && vm.saveVarianceDetail(vm.varianceIdsObj.lengthId,'length') ; vm.isCreateNewLength=!vm.isCreateNewLength">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Volume</label>
+                    <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                        <select type="text" class="form-control" name="volume" ng-model="vm.model.volume" ng-options="i.name as i.name for i in vm.dropdown.volume"></select>
+                    </div>
+                    <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <button ng-class="{'glyphicon-plus-sign':!vm.isCreateNewVolume,'glyphicon-minus-sign':vm.isCreateNewVolume}"  class="btn glyphicon" type="button" ng-click="vm.isCreateNewVolume=!vm.isCreateNewVolume"></button>
+                    </div>
+                    <div ng-if="vm.isCreateNewVolume">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3"></label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <input type="text" class="form-control" name="Volume" ng-model="vm.varianceDetail.name" placeholder="Create New Volume"/>
+                            <button type="button" class="btn glyphicon glyphicon-save" ng-click="vm.varianceDetail.name && vm.saveVarianceDetail(vm.varianceIdsObj.volumeId,'volume') ; vm.isCreateNewVolume=!vm.isCreateNewVolume">Save</button>
+                        </div>
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Material</label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <select type="text" class="form-control" name="material" ng-model="vm.model.material" ng-options="i.name as i.name for i in vm.dropdown.material"></select>
+                        </div>
+                        <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <button ng-class="{'glyphicon-plus-sign':!vm.isCreateNewMaterial,'glyphicon-minus-sign':vm.isCreateNewMaterial}" class="btn glyphicon" type="button" ng-click="vm.isCreateNewMaterial=!vm.isCreateNewMaterial"></button>
+                        </div>
+                        <div ng-if="vm.isCreateNewMaterial">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3"></label>
+                            <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                                <input type="text" class="form-control" name="Material" ng-model="vm.varianceDetail.name" placeholder="Create New Material"/>
+                                <button type="button" class="btn glyphicon glyphicon-save" ng-click="vm.varianceDetail.name && vm.saveVarianceDetail(vm.varianceIdsObj.materialId,'material') ; vm.isCreateNewMaterial=!vm.isCreateNewMaterial">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Other</label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <input type="text" class="form-control" name="other" ng-model="vm.model.other" placeholder="Other variance" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">BarCode</label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <input type="text" class="form-control" name="BarCode" ng-model="vm.model.barCode"/>
+                        </div>
+                        <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <button type="button" class="btn glyphicon glyphicon-asterisk" ng-click="vm.getBarcode()"></button>
+                        </div>
+                    </div>
+
+                     <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Cost Price</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.model.costPrice"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Dealer Price</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="DealerPrice" ng-model="vm.model.dealerPrice"/>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Sale Price</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="SalePrice" ng-model="vm.model.salePrice"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">&nbsp;</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <button ng-show="!vm.isUpdateMode" type="submit" class="btn btn-floating btn-info">Save</button>
+                            <button ng-show="vm.isUpdateMode" type="submit" class="btn btn-floating btn-danger" ng-click="vm.edit()">Update</button>
+                            <button ng-show="vm.isUpdateMode" type="reset" class="btn btn-floating btn-danger" ng-click="vm.activate()">Reset</button>
+
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="vm.isUpdateMode">
+                        <button type="button" class="btn btn-floating btn-info pull-left" ng-click="vm.generate()" style="display: none">DownLoad Barcode</button>
+                        <button type="button" class="btn btn-floating btn-danger pull-right" ng-click="vm.deleteImage()"style="display: none">Delete Barcode</button>
+                    </div>
+                </form>
+
+                <!-- product group form -->
+                <form class="form-horizontal" ng-submit="vm.saveGroup()" ng-show="vm.view == 'group'">
+
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Name</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="Name" ng-model="vm.group.name" required="required" placeholder="Group Name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">&nbsp;</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <button ng-show="!vm.isUpdateMode" type="submit" class="btn btn-floating btn-info">Save</button>
+                            <button type="button" class="btn btn-warning" ng-click="vm.loadView('productVariance')">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- product form -->
+            <form class="form-horizontal" ng-submit="vm.saveProduct()" ng-show="vm.view == 'product'">
+                <div class="form-group">
+                    <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Group Name</label>
+                    <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                        <select type="text" class="form-control " name="GroupName" ng-model="vm.product.productGroupId" ng-options="i.id as i.name for i in vm.dropdown.productGroup" required="required"></select>                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Product Name</label>
+                    <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                        <input type="text" class="form-control" name="Name" ng-model="vm.product.name" required="required" placeholder="Product Name in English"/>
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">&nbsp;</label>
+                    <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                        <button ng-show="!vm.isUpdateMode" type="submit" class="btn btn-floating btn-info">Save</button>
+                        <button type="button" class="btn btn-warning" ng-click="vm.loadView('productVariance')">Cancel</button>
+                    </div>
+                </div>
+            </form>
+
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-xs-12 col-sm-7 col-md-7 col-lg-7">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h3 class="panel-title">Product List</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <form ng-submit="vm.search()">
+                        <div class="col col-xs-9 col-sm-7 col-md-7 col-lg-7">
+                            <input class="form-control input-field" type="text" placeholder="Search" ng-model="vm.searchRequest.keyword"/>
+                        </div>
+                        <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button type="submit" class="btn btn-default pull-left">
+                                <span class="glyphicon glyphicon-search"></span></button>
+
+                            <button type="button" class="btn btn-default pull-right" ng-click="vm.report()">
+                                <span class="glyphicon glyphicon-download-alt"></span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <table class="table table-responsive table-bordered table-hover">
+                <thead>
+                <tr class="active">
+                    <th>#</th>
+                    <th>P.Code</th>
+                    <th>Name</th>
+                    <th>Dealer Price</th>
+                    <th>Cost Price</th>
+                    <th>Sale Price</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="p in vm.models track by $index" ng-class="{'selected':$index == vm.selectedRow}" ng-click="vm.detail(p,$index)" style="cursor: alias">
+                    <td>{{$index + 1}}</td>
+                    <td>{{p.barCode}}</td>
+                    <td>{{p.name}}</td>
+                    <td>{{p.dealerPrice}}</td>
+                    <td>{{p.costPrice}}</td>
+                    <td>{{p.salePrice}}</td>
+                    <td>
+                        <a class="glyphicon glyphicon-remove" style="cursor: pointer; display: none" ng-click="vm.delete(p.id)" ng-show="vm.user.role ==='Admin' "></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="panel-footer"ng-if="vm.searchRequest.totalPage>0">
+                <div class="page-nation">
+                    <ul class="pagination pagination-large">
+                        <li ng-class="{'disabled' : vm.searchRequest.page==1 }">
+                            <a ng-hide="vm.searchRequest.page==1" ng-click="vm.goto(1)">First</a>
+                        </li>
+                        <li ng-class="{'disabled' : vm.searchRequest.page==1 }">
+                            <a ng-hide="vm.searchRequest.page==1" ng-click="vm.goto(vm.searchRequest.page-1)">< Previous</a>
+                        </li>
+                        <li class="disabled">
+                            <a href="javascript:void(0)">Page # {{vm.searchRequest.page}} / {{vm.searchRequest.totalPage}}</a>
+                        </li>
+                        <li>
+                            <a ng-hide="vm.searchRequest.page == vm.searchRequest.totalPage" ng-click="vm.goto(vm.searchRequest.page+1)"> Next ></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

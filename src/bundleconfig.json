@@ -1,0 +1,150 @@
+﻿[
+  {
+    "outputFileName": "dist/css/all.css",
+    "inputFiles": [
+      "css/lib/lobipanel/lobipanel.min.css",
+      "css/separate/vendor/lobipanel.min.css",
+      "css/lib/jqueryui/jquery-ui.min.css",
+      "css/separate/pages/widgets.min.css",
+      "css/lib/font-awesome/font-awesome.min.css",
+      "css/lib/bootstrap/bootstrap.min.css",
+      "css/main.css",
+      "Content/ui-bootstrap-csp.css",
+      "Content/loader.css",
+      "css/bizclient.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "dist/scripts/others.js",
+    "inputFiles": [
+      "js/lib/tether/tether.min.js",
+      "js/lib/bootstrap/bootstrap.min.js",
+      "js/plugins.js",
+      "js/lib/lobipanel/lobipanel.min.js",
+      "js/lib/match-height/jquery.matchHeight.min.js",
+      "js/loader.js",
+      "js/app.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "collapseWhitespace": true,
+      "outputMode": "singleLine"
+    }
+  },
+  {
+    "outputFileName": "dist/scripts/angulars.js",
+    "inputFiles": [
+      "Scripts/angular-local-storage.min.js",
+      "Scripts/ng-csv.js",
+      "Scripts/html2canvas.min.js",
+      "Scripts/jspdf.min.js",
+      "Scripts/Chart.min.js",
+      "Scripts/angular-chart.min.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "collapseWhitespace": true,
+      "outputMode": "singleLine"
+    }
+  },
+  {
+    "outputFileName": "dist/scripts/configs.js",
+    "inputFiles": [
+      "App/App.Config.js",
+      "App/App.SuperAdmin.Config.js",
+      "App/*/*.Config.js",
+      "App/*/*Config.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "dist/scripts/directives.js",
+    "inputFiles": [
+      "App/Directive/*.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "dist/scripts/commons.js",
+    "inputFiles": [
+      "App/Common/*.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "dist/scripts/models.js",
+    "inputFiles": [
+      "App/*/*Model.js",
+      "App/*/Model.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "dist/scripts/services.js",
+    "inputFiles": [
+      "App/*/*Service.js",
+      "App/*/SecurityLibrary.js",
+      "App/*/SecurityInterceptors.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "dist/scripts/controllers.js",
+    "inputFiles": [
+      "App/BaseController.js",
+      "App/*/*Controller.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "dist/scripts/templates.js",
+    "inputFiles": [
+      "js/lib/jquery/jquery.min.js",
+      "js/lib/tether/tether.min.js",
+      "js/lib/bootstrap/bootstrap.min.js",
+      "js/plugins.js",
+      "js/lib/jqueryui/jquery-ui.min.js",
+      "js/lib/lobipanel/lobipanel.min.js",
+      "js/lib/match-height/jquery.matchHeight.min.js",
+      "js/app.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "js/loader.min.js",
+    "inputFiles": [
+      "js/loader.js"
+    ]
+  },
+  {
+    "outputFileName": "index.min.html",
+    "inputFiles": [
+      "index.html"
+    ]
+  }
+]

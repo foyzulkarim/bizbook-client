@@ -1,0 +1,85 @@
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+
+
+
+                <div class="panel panel-default" ng-show="vm.isSignedIn">
+                    <div class="panel-heading">
+                        Dashboard
+                    </div>
+                    <div class="panel-body">
+                        <!--<h1>Welcome to Code Coopers Inventory System</h1>
+            <h1>Please call/message for more info.</h1>
+            <h3>Customization is available for your own unique business.</h3>-->
+
+                        <div class="col-sm-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">User Info</div>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Username: </td>
+                                                <td>{{vm.user.userName}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Role: </td>
+                                                <td>{{vm.user.role}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email: </td>
+                                                <td>{{vm.user.userName}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Phone: </td>
+                                                <td>{{vm.user.phone}}</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Shop Info (Will be added soon)</div>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Shop Name: </td>
+                                                <td>{{vm.shop.name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Area: </td>
+                                                <td>{{vm.shop.area}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Phone: </td>
+                                                <td>{{vm.shop.phone}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Active: </td>
+                                                <td>{{vm.shop.expiryDate}}</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-hide="vm.isSignedIn" ng-include="vm.subUrlPath+'/partials/home/public-home.tpl.html'">
+                </div>
+
+
+
+
+            </div><!--.col-->
+        </div><!--.row-->
+
+    </div><!--.container-fluid-->
+</div><!--.page-content-->

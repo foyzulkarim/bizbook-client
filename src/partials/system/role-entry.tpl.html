@@ -1,0 +1,39 @@
+﻿<div class="box-typical box-typical-padding">
+
+    <h5 class="m-t-lg with-border">New Role</h5>
+
+    <form name="roleForm" ng-submit="roleForm.$valid && vm.save()">       
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Name</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">
+                    <input type="text" class="form-control" id="name" name="name" ng-model="vm.model.name" required>
+                </p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Description</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">
+                    <input type="text" class="form-control" id="description" name="description" ng-model="vm.model.description">
+                </p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Default Route</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">
+                    <input type="text" class="form-control" id="defaultRoute" name="defaultRoute" ng-model="vm.model.defaultRoute">
+                </p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">&nbsp;</label>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-inline btn-success" ng-if="!vm.isUpdateMode" >Save</button>
+                <button type="button" class="btn btn-inline btn-success" ng-if="vm.isUpdateMode" ng-click="vm.update()">Update</button>
+                <a class="btn btn-inline btn-info" ui-sref="root.roles">Back</a>
+            </div>
+        </div>
+    </form>
+</div>

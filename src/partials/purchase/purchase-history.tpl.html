@@ -1,0 +1,87 @@
+﻿
+<div class="row">
+
+    <div class="col col-xs-4 col-sm-3 col-md-2 col-lg-2">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <button class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> REQUEST</button>
+                <button ng-repeat="s in vm.dropdown.states" ng-click="vm.searchOrder2(s.value)" class="btn btn-block">{{s.name}}</button>                
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-xs-8 col-sm-9 col-md-10 col-lg-10">
+
+        <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <form ng-submit="vm.searchOrder()">
+                            <div class="row">
+                                <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <select class="form-control" ng-model="vm.searchRequest.orderType" ng-options="p as p for p in vm.dropdown.orderType" ng-change="vm.searchOrder()"></select>
+                                </div>
+                                <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <select class="form-control" ng-model="vm.searchRequest.dateRange" ng-options="p.value as p.name for p in vm.dropdown.dateRange" ng-change="vm.searchOrder()"></select>
+                                </div>
+                                <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" aria-describedby="keyword" placeholder="Search" ng-model="vm.searchRequest.keyword">
+                                        <span class="input-group-addon " id="keyword" style="cursor: pointer" ng-click="vm.searchOrder()"> <span class="glyphicon glyphicon-search"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="panel panel-info">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <div class="panel-title">Purchase History: <span class="text-danger">{{vm.requestTypeText}}</span></div>
+                </div>
+
+                <div class="panel-body">
+
+                    <!-- Table -->
+                    <table class="table table-responsive table-bordered table-hover">
+                        <thead>
+                            <tr class="active">
+                                <th>#</th>
+                                <th>Memo</th>
+                                <th>Date</th>
+                                <th>Total</th>
+                                <th>Creator</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="p in vm.models track by $index" ng-class="{'selected':$index == vm.selectedRow}" ng-click="vm.showDetail(p)" style="cursor: alias">
+                            <td>{{$index + 1}}</td>
+                            <td>{{p.memo}}</td>
+                            <td>{{p.created |date}}</td>
+                            <td>{{p.total}}</td>
+                            <td>{{p.createdBy}}</td>
+                        </tr>                        
+                        </tbody>
+                    </table>
+
+                    <div class="panel-footer form">
+                        <div class="form-group">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

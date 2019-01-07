@@ -1,0 +1,44 @@
+﻿<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border">
+        System User List
+    </h5>
+    <div class="form-horizontal">
+        <form ng-submit="vm.search()">
+            <div class="form-group row">
+                <div class="col col-sm-6">
+                    <div ng-include="'partials/common/search-box.html'"></div>
+                </div>
+                <div class="col col-sm-2">
+                    <!--<button type="button" class="btn btn-default-outline" ng-click="vm.report()"><span class="glyphicon glyphicon-download-alt"></span></button>-->
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" id="list-history-head">
+        <div class="bootstrap-table">
+            <div class="fixed-table-container">
+                <div class="fixed-table-body">
+                    <table class="display table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th  ng-click="vm.toggleSort('name')">Full Name <span class="glyphicon glyphicon-sort"></span></th>
+                                <th ng-click="vm.toggleSort('email')">Email<span class="glyphicon glyphicon-sort"></span></th>
+                                <th>Phone Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.models track by $index" ui-sref="root.employee({applicationUserId:p.id})" style="cursor: pointer">
+                                <td>{{$index + 1}}</td>
+                                <td>{{p.firstName + " " + p.lastName}}</td>
+                                <td>{{p.email}}</td>
+                                <td>{{p.phoneNumber}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-include="'partials/common/pagination.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

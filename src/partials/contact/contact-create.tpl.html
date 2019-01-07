@@ -1,0 +1,76 @@
+﻿<div class="row">
+	<div class="col col-xs-12 col-sm-5 col-md-5 col-lg-5">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">Contact Us</h3>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" ng-submit="vm.save()">
+					<div class="form-group">
+						<label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Shop Name :</label>
+						<div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+							<input type="text" class="form-control" name="Name" ng-model="vm.model.shopName" required="required" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Contact Person :</label>
+						<div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+							<input type="text" class="form-control" name="ContactPerson" ng-model="vm.model.contactPerson" />
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">FaceBook Page :</label>
+						<div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+							<input type="text" class="form-control" name="FaceBookLink" ng-model="vm.model.faceBookLink" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Shop Area :</label>
+						<div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+							<input type="text" class="form-control" name="ShopArea" ng-model="vm.model.shopArea" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">PhoneNumber :</label>
+						<div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+							<input type="tel" class="form-control" name="PhoneNumber" ng-model="vm.model.phoneNumber" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Message :</label>
+						<div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+							<textarea class="form-control" name="Comment" ng-model="vm.model.comment"></textarea>
+						</div>
+					</div>
+
+					
+
+					<div class="form-group">
+						<label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">&nbsp;</label>
+						<div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+							<button type="submit" class="btn btn-floating btn-info">Submit</button>
+							<button type="reset" class="btn btn-floating btn-info">Clear</button>
+						</div>
+						
+					</div>
+				</form>
+			</div>
+			<div class="panel-footer"></div>
+		</div>
+	</div>
+
+
+
+</div>
+
+<script>
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip();
+	})
+</script>

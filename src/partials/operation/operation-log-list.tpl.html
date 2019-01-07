@@ -1,0 +1,65 @@
+<div class="box-typical box-typical-padding">
+
+    <h5 class="m-t-lg with-border">Operation Log List</h5>
+
+    <div class="form-horizontal">
+        <form ng-submit="vm.search()">
+            <div class="form-group row">
+                <div class="col col-sm-6">
+                    <div ng-include="'partials/common/search-box.html'"></div>
+                </div>
+                <div class="col col-sm-2">
+                    <button type="button" class="btn btn-default-outline" ng-click="vm.search()"><span class="glyphicon glyphicon-repeat"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" id="list-history-head">
+        <div class="bootstrap-table">
+            <div class="fixed-table-container">
+                <div class="fixed-table-body">
+                    <table id="table-edit" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th width="1">
+                                    #
+                                </th>
+                                <th>Model Name</th>
+                                <th>Operation Type</th>
+                                <th>
+                                        Created By
+                                    </th>                                                                 
+                                <th>Created</th>
+                                <th>Time</th>
+                                <th>Order Number</th>                             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.models track by $index" style="cursor: pointer">
+                                <td>
+                                    <span class="tabledit-span tabledit-identifier">{{$index + 1}}</span>
+                                </td>
+                                <td>
+                                    <span class="tabledit-span">
+                                        {{p.modelName}}</span>
+                                </td>
+                                <td>{{p.operationType}}</td>
+                                <td>{{p.createdBy}}</td>
+                                <td>{{p.created | date}}</td>
+                                <td>{{p.created | date:'hh:mm:ss a'}} </td>
+                                <td class="tabledit-view-mode">
+                                    <a style="cursor: pointer" ui-sref="root.operation-log-detail({id:p.id})" href="javascript:void(0)">{{p.objectIdentifier}}
+                                    </a>                                
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-include="'partials/common/pagination.html'"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

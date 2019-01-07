@@ -1,0 +1,29 @@
+﻿<div class="box-typical box-typical-padding">
+
+    <h5 class="m-t-lg with-border">Local configuration</h5>
+
+    <form name="configForm">
+        <div class="form-group">
+            <input type="checkbox" id="showOrderNumber" name="showOrderNumber" ng-model="vm.showOrderNumberAfterSave" ng-change="vm.valueChanged(0,vm.showOrderNumberAfterSave)" /> Show Order Number
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="addToCart" name="addToCart" ng-model="vm.addToCartIfResultIsOne" ng-change="vm.valueChanged(1,vm.addToCartIfResultIsOne)" /> Add to cart if search result is 1
+        </div>
+        <div class="form-group">
+            Delivery charge : <input type="number" id="delivery" name="addToCart" ng-model="vm.deliveryChargeAmount" ng-blur="vm.valueChanged(2,vm.deliveryChargeAmount)" />
+        </div>
+        <div class="form-group">
+            Receipt Name : <input type="text" id="receiptName" name="receiptName" ng-model="vm.receiptName" ng-blur="vm.valueChanged(3,vm.receiptName)"/>
+        </div>
+        <div class="form-group">
+            Chalan Name : <input type="text" id="chalanName" name="chalanName" ng-model="vm.chalanName" ng-blur="vm.valueChanged(4,vm.chalanName)" />
+        </div>
+        <div class="form-group">
+            Default  Warehouse : <input type="text" id="defaultWarehouse" name="defaultWarehouse" ng-model="vm.defaultWarehouse" ng-blur="vm.valueChanged(5,vm.defaultWarehouse)" />
+        </div>
+        <div class="form-group">
+            Dealer Price Change : <input type="text" id="dealerPriceChange" name="dealerPriceChange" ng-model="vm.dealerPriceChange"
+                ng-blur="vm.valueChanged(7,vm.dealerPriceChange)" />
+        </div>
+    </form>
+</div>

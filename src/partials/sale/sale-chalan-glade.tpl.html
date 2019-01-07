@@ -1,0 +1,221 @@
+﻿<button type="button" class="btn btn-inline" ng-click="vm.print()">Print</button>
+<div class="container-fluid" id="receipt" style="background: white">
+    <!--<style type="text/css">
+        .invoice-title h2, .invoice-title h3 {
+            display: inline-block;
+        }
+
+        .table > tbody > tr > .no-line {
+            border-top: none;
+        }
+
+        .table > thead > tr > .no-line {
+            border-bottom: none;
+        }
+
+        .table > tbody > tr > .thick-line {
+            border-top: 2px solid;
+        }
+
+        .white-border-color {
+            border-color: white
+        }
+    </style>-->
+
+    <div class="box-typical box-typical-padding">
+        <div class="row">
+            <!--<div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row text-center">
+                    <label class="text-center" style="color: darkgray;">
+                        Printed on {{vm.today | date}} from BizBook365, proudly developed by Code Coopers
+                    </label>
+                    <br />
+                    <br />
+                </div>
+            </div>-->
+
+            <div class="col col-xs-12">
+                &nbsp;
+                <div class="col col-xs-4">&nbsp;</div>
+                <div class="col col-xs-6">
+                    <img ng-src="{{vm.model.shop.logoUrl}}" class="img-responsive col-xs-8" />
+                </div>
+                <div class="col col-xs-2">&nbsp;</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-xs-12">
+                &nbsp;
+                <div class="col col-xs-4">&nbsp;</div>
+                <div class="col col-xs-6">
+                    <h2 style="margin-left: 35px;"><strong><u>Chalan</u></strong></h2>
+                </div>
+                <div class="col col-xs-2">&nbsp;</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="table table-responsive">
+                    <table class="table table-bordered">
+                        <!--<thead>
+                            <tr>
+                                <th rowspan="2">State</th>
+                                <th rowspan="2">Utilities Company</th>
+                                <th colspan="2">Summer Period</th>
+                            </tr>
+                            <tr>
+                                <th>data1</th>
+                                <th>data2</th>
+
+                            </tr>
+                        </thead>-->
+                        <tbody>
+                            <tr>
+                                <td rowspan="4">Client Name & Addrss</td>
+                                <td rowspan="4">
+
+                                    {{vm.model.customerName}}<br />
+                                    {{vm.model.customerPhone}}<br />
+                                    {{vm.model.address.streetAddress}}<br />
+                                    {{vm.model.address.area}} ,{{vm.model.address.thana}}
+                                    {{vm.model.address.district}}
+
+                                </td>
+                                <!--<td>Bill No</td>
+                                <td>&nbsp;</td>-->
+
+                            </tr>
+                            <tr>
+                                <!--<td>State name</td>-->
+                                <!--<td>Utility co</td>-->
+                                <!--<td>Date</td>
+                                <td>{{vm.today | date}}</td>-->
+
+                            </tr>
+                            <tr>
+                                <!--<td>State name</td>-->
+                                <!--<td>Utility co</td>-->
+                                <td>Chalan No</td>
+                                <td># <strong>{{vm.model.orderNumber}}</strong></td>
+
+                            </tr>
+                            <tr>
+                                <!--<td></td>-->
+                                <!--<td>&nbsp;</td>-->
+                                <td>Date</td>
+                                <td>{{vm.model.address.created | date}}</td>
+
+                            </tr>
+                            <tr>
+                                <td>Reference Number</td>
+                                <td colspan="3"><strong>{{vm.model.orderReferenceNumber}}</strong></td>
+                                <!--<td>&nbsp;</td>
+                                <td>&nbsp;</td>-->
+
+                            </tr>
+                            <tr>
+                                <td>Info</td>
+                                <td colspan="3">
+                                    Customer Note:
+                                    <strong>
+                                        {{vm.model.customerNote}}
+                                    </strong>
+                                </td>
+                                <!--<td>&nbsp;</td>
+                                <td>&nbsp;</td>-->
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td><strong>SL</strong></td>
+                                <td><strong>Item Description</strong></td>
+                                <td class="text-center"><strong>Quantity</strong></td>
+                                <td class="text-center"><strong>Remarks</strong></td>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.model.saleDetails track by $index" ng-hide="p.isReturned" ng-if="p.quantity>0">
+                                <td>{{$index+1}}</td>
+                                <td>{{p.productDetailName}}</td>
+                                <td class="text-center">{{p.quantity}}</td>
+                                <td class="text-center">&nbsp;</td>
+                               
+                            </tr>
+                            <tr>
+                                <td class="thick-line"></td>
+                                <td class="thick-line"><strong>Product Total</strong></td>
+                                <td class="thick-line text-center">{{vm.totalQuantity}}</td>
+                                <td class="thick-line">&nbsp;</td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <br />
+            <br />
+
+
+            <div class="col col-lg-2 col-md-2 col-sm-2 col-xs-2">&nbsp;</div>
+            <div class="col col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <br />
+                <br />
+                <br />
+
+                &nbsp;&nbsp;&nbsp;<strong>Receiver Signature</strong>
+            </div>
+            <div class="col col-lg-2 col-md-2 col-sm-2 col-xs-2">&nbsp;</div>
+            <div class="col col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <br />
+                <br />
+                <br />
+
+                &nbsp;&nbsp;&nbsp;<strong>For {{vm.model.shop.name}}</strong>
+            </div>
+
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <div class="row">
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+                &nbsp;<strong>
+                    Address:  &nbsp;  {{vm.model.shop.streetAddress}},{{vm.model.shop.area}}
+                    <span ng-show="vm.model.shop.area.length > 0 ">,</span>
+                    {{vm.model.shop.thana}}
+                    <span ng-show="vm.model.shop.thana > 0 ">,</span>
+                    {{vm.model.shop.postCode}}
+                    <span ng-show="vm.model.shop.postCode > 0 ">,</span>
+                    {{vm.model.shop.district}}
+                </strong>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+                &nbsp;<strong>***Thanks for shopping with us.</strong>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

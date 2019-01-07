@@ -1,0 +1,132 @@
+﻿<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border">Transactions List</h5>
+    <div class="form-horizontal">
+        <form ng-submit="vm.searchOrders()">
+            <div class="form-group row">
+                <div class="col col-sm-3">
+                    <div ng-include="'partials/common/report-header-fromDate.tpl.html'"></div>
+                </div>
+                <div class="col col-sm-3">
+                    <div ng-include="'partials/common/report-header-toDate.tpl.html'"></div>
+                </div>
+                <div class="col col-sm-2">
+                    <label class="control-label">Account Head</label>
+                    <select type="text" class="form-control " name="accountType" ng-model="vm.searchRequest.accountHeadId" ng-options="i.id as i.text for i in vm.accountHeads" required="required" ng-change="vm.search()"> </select>
+                </div>
+                <div class="col col-sm-2">
+                    <label class="control-label">Account Info</label>
+                    <select type="text" class="form-control " name="accountTitel" ng-model="vm.searchRequest.accountInfoId" ng-options="i.id as i.text for i in vm.accountInfos" required="required" ng-change="vm.search()"></select>
+                </div>
+                <div class="col col-sm-2">
+                    <label class="control-label">&nbsp;</label>
+                    <div ng-include="'partials/common/search-box.html'"></div>
+                </div>
+
+               
+
+                <!--<div class="col col-sm-2">
+        <select type="text" class="form-control " name="accountInfoType" ng-model="vm.accountInfoType" ng-options="i as i for i in vm.accountInfoTypes" required="required"></select>
+    </div>-->
+
+                <div class="col col-sm-3" ng-hide="true">
+                    <div class="input-group">
+                        <label class="control-label">From Date:</label>
+                        <input type="date" class="form-control" name="fromdate" id="dtFromDate" ng-model="vm.startDate" />
+                    </div>
+                </div>
+                <div class="col col-sm-3" ng-hide="true">
+                    <div class="input-group">
+                    <label class="control-label">To Date:</label>
+                    <input type="date" class="form-control" name="todate" id="dtToDate" ng-model="vm.endDate"  />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col col-sm-3">
+                    <label class="control-label">Transaction Medium</label>
+                    <select type="text" class="form-control " name="Transactiontype" ng-model="vm.searchRequest.transactionMediumName"
+                        ng-options="i as i for i in vm.transactionMediums" required="required" ng-change="vm.search()"></select>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row" id="list-history-head">
+        <div class="bootstrap-table">
+            <div class="fixed-table-container">
+                <div class="fixed-table-body">
+                    <table id="table-edit" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th width="1">#</th>
+                                <th>Date</th>
+                                <th>Transaction for</th>
+                                <th ng-click="vm.toggleSort('orderNumber')">Order #<span class="glyphicon glyphicon-sort"></span></th>
+
+                                <th>Account Head</th>
+                                <th>Income</th>
+                                <th>Expense</th>
+                                <th>Transication Date</th>
+                                <th ng-click="vm.toggleSort('transactionWith')">Person<span class="glyphicon glyphicon-sort"></span></th>
+                                <th>Person</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.models track by $index">
+                                <td>{{$index + 1}}</td>
+                                <td>{{p.modified | date}}</td>
+                                <td>{{p.transactionFor}}</td>
+                                <td>
+                                    <a ng-show="p.transactionFor=='Sale'" ui-sref="root.saledetail({id: p.orderId})">{{p.orderNumber}}</a>
+                                    <a ng-show="p.transactionFor=='Purchase'" ui-sref="root.purchasedetail({id: p.orderId})">{{p.orderNumber}}</a>
+                                </td>
+                                <td>{{p.accountHeadName}}</td>
+                                <td><a ng-if="p.transactionFlowType=='Income'" href="javascript:void(0)" 
+                                    ui-sref="root.transaction({id:p.id})">
+                                    {{p.amount | currency : ''}}</a>
+                                    <span ng-if="p.transactionType=='0' && p.transactionFor=='Sale'" style="background: greenyellow">{{p.amount | currency : ''}}</span>
+                                    <a ng-if="p.transactionFlowType=='Income'" ui-sref="root.moneyreceipt({id:p.id})" style="cursor: pointer" href="javascript:void(0)">Money Receipt</a>
+                                </td>
+                                <td><a ng-if="p.transactionFlowType=='Expense'" href="javascript:void(0)" 
+                                    ui-sref="root.transaction({id:p.id})">
+                                    {{p.amount | currency : ''}}</a>
+                                    <span ng-if="p.transactionType=='0' && p.transactionFor=='Purchase'" style="background: yellow">{{p.amount | currency : ''}}</span>
+                                    <a ng-if="p.transactionFlowType=='Expense'" ui-sref="root.moneyreceipt({id:p.id})" style="cursor: pointer" href="javascript:void(0)">Money
+                                        Receipt</a>
+                                </td>
+                                <td>{{p.transactionDate | date}}</td>
+                                <td>
+                                   <span></span>
+                                    <a ng-show="p.transactionFor == 'Sale'" ui-sref="root.customerhistory({id:p.parentId})">(History)</a>
+                                    <a ng-show="p.transactionFor == 'Purchase'" ui-sref="root.supplierhistory({id:p.parentId})">(History)</a>
+                                </td>
+
+                                <td>{{p.contactPersonName}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>{{vm.totalIncome}}</td>
+                                <td>{{vm.totalExpense}}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-include="'partials/common/pagination.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

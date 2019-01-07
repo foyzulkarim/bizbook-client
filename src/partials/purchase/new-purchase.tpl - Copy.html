@@ -1,0 +1,152 @@
+﻿<div class="row">
+
+    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h4>Purchase Detail</h4>
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Partner</label>
+                            <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                <select class="form-control" ng-model="vm.purchaseViewModel.partnerShopId" ng-options="p.partnerShopId as p.partnerShopName for p in vm.dropdown.partner" ng-change="vm.loadProductsByShop(vm.purchaseViewModel.partnerShopId,vm.oldpartnerShopId)"ng-click="vm.oldpartnerShopId = vm.purchaseViewModel.partnerShopId"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Product</label>
+                            <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                <select type="text" class="form-control" name="Product" ng-model="vm.purchaseCartModel.productId" required="required" ng-options="i.id as i.name for i in vm.dropdown.productByShop" ng-change="vm.loadProductPricesByProduct()"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Prices</label>
+                            <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                <select type="text" class="form-control" name="ProductPrice" ng-model="vm.purchaseCartModel.productPriceId" required="required" ng-options="i.id as i.name for i in vm.dropdown.productPriceByProduct" ng-change="vm.getPriceAndName()"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Price</label>
+                            <div class="col col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                                <input type="text" readonly="readonly" class="form-control" name="Price" ng-model="vm.purchaseCartModel.price"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Quantity</label>
+                            <div class="col col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                                <input type="number" class="form-control" name="Quantity" ng-model="vm.purchaseCartModel.quantity"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">&nbsp;</label>
+                            <div class="col col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                                <button type="button" class="btn btn-floating btn-info" ng-click="vm.addToCart(vm.purchaseCartModel)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a showtab="" href="#tab1Detail" data-toggle="tab">Detail</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1Detail">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                            </div>
+                            <div class="panel-body">
+                            </div>
+                            <table class="table table-responsive table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Unit Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="p in vm.purchaseViewModel.purchaseDetailViewModels track by $index" ng-click="vm.editCart(p)" style="cursor: alias">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{p.name}}</td>
+                                    <td>{{p.price}}</td>
+                                    <td>{{p.quantity}}</td>
+                                    <td>{{p.total}}</td>
+                                    <td>
+                                        <a class="glyphicon glyphicon-remove" style="cursor: pointer;" ng-click="vm.removeFromCart(p.productPriceId)"></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="panel-footer form">
+                                <div class="form-group">
+                                    <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">Total</label>
+                                    <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                        <span>{{vm.purchaseViewModel.total}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">CourierNo</label>
+                                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                    <input type="text" class="form-control" name="CourierNo" ng-model="vm.purchaseViewModel.courierNo"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Memo</label>
+                                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                    <input type="text" class="form-control" name="Memo" ng-model="vm.purchaseViewModel.memo"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Remarks</label>
+                                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                    <input type="text" class="form-control" name="Remarks" ng-model="vm.purchaseViewModel.remarks"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12 checkbox">
+                                    <label><input ng-disabled="vm.isOwnShopAsPartner" ng-model="vm.purchaseViewModel.isDirectPurchase" type="checkbox" value="">Directly into stock</label>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="form-group">
+                            <div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <button type="button" class="btn btn-floating btn-info" ng-click="vm.save()">Save Purchase</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

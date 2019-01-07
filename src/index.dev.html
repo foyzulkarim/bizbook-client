@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="css/lib/lobipanel/lobipanel.min.css">
+    <link rel="stylesheet" href="css/separate/vendor/lobipanel.min.css">
+    <link rel="stylesheet" href="css/lib/jqueryui/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/separate/pages/widgets.min.css">
+    <link rel="stylesheet" href="css/lib/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="css/lib/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="Content/ui-bootstrap-csp.css" />
+    <link rel="stylesheet" href="Content/loader.css" />
+    <link rel="stylesheet" href="css/bizclient.css?t=112112172018" />
+    <link rel="stylesheet" href="Content/ui-grid.css" />     
+</head>
+<body class="with-side-menu control-panel control-panel-compact ng-cloak">
+    <div id="loaderDiv" loader>
+        <img src="img/loader.gif" class="ajax-loader" />
+    </div>
+    <header class="site-header" ng-include="vm.subUrlPath+'partials/nav.html'" ng-controller="NavController as vm"></header>
+    <div class="mobile-menu-left-overlay"></div>
+    <div class="side-menu" ng-include="vm.subUrlPath+'partials/home/side-menu.tpl.html'" ng-controller="SideMenuController as vm" ng-show="vm.isSignedIn"></div>
+    <div class="page-content">
+        <div ui-view class="container-fluid">
+        </div>
+    </div>
+
+    <div class="control-panel-container">
+        <ul>
+            <li class="tasks">
+                <div class="control-item-header">
+                    <a href="#" class="icon-toggle">
+                        <span class="caret-down fa fa-caret-down"></span>
+                        <span class="icon fa fa-tasks"></span>
+                    </a>
+                    <span class="text">Task list</span>
+                    <div class="actions">
+                        <a href="#">
+                            <span class="fa fa-refresh"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-cog"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-trash"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="control-item-content">
+                    <div class="control-item-content-text">You don't have pending tasks.</div>
+                </div>
+            </li>
+            <li class="sticky-note">
+                <div class="control-item-header">
+                    <a href="#" class="icon-toggle">
+                        <span class="caret-down fa fa-caret-down"></span>
+                        <span class="icon fa fa-file"></span>
+                    </a>
+                    <span class="text">Sticky Note</span>
+                    <div class="actions">
+                        <a href="#">
+                            <span class="fa fa-refresh"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-cog"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-trash"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="control-item-content">
+                    <div class="control-item-content-text">
+                        StartUI – a full featured, premium web application admin dashboard built with Twitter Bootstrap 4, JQuery and CSS
+                    </div>
+                </div>
+            </li>
+            <li class="emails">
+                <div class="control-item-header">
+                    <a href="#" class="icon-toggle">
+                        <span class="caret-down fa fa-caret-down"></span>
+                        <span class="icon fa fa-envelope"></span>
+                    </a>
+                    <span class="text">Recent e-mails</span>
+                    <div class="actions">
+                        <a href="#">
+                            <span class="fa fa-refresh"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-cog"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-trash"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="control-item-content">
+                    <section class="control-item-actions">
+                        <a href="#" class="link">My e-mails</a>
+                        <a href="#" class="mark">Mark visible as read</a>
+                    </section>
+                    <ul class="control-item-lists">
+                        <li>
+                            <a href="#">
+                                <h6>Welcome to the Community!</h6>
+                                <div>Hi, welcome to the my app...</div>
+                                <div>
+                                    Message text
+                                </div>
+                            </a>
+                            <a href="#" class="reply-all">Reply all</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <h6>Welcome to the Community!</h6>
+                                <div>Hi, welcome to the my app...</div>
+                                <div>
+                                    Message text
+                                </div>
+                            </a>
+                            <a href="#" class="reply-all">Reply all</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <h6>Welcome to the Community!</h6>
+                                <div>Hi, welcome to the my app...</div>
+                                <div>
+                                    Message text
+                                </div>
+                            </a>
+                            <a href="#" class="reply-all">Reply all</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="add">
+                <div class="control-item-header">
+                    <a href="#" class="icon-toggle no-caret">
+                        <span class="icon fa fa-plus"></span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+        <a class="control-panel-toggle">
+            <span class="fa fa-angle-double-left"></span>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/lib/jquery/jquery.min.js"></script>
+    <script src="js/lib/tether/tether.min.js"></script>
+    <script src="js/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="scripts/Chart.min.js"></script>
+
+    <!--signalr-->
+    <script src="scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="http://api.bizbook365.com/signalr/hubs"></script>
+    <!-- <script src="http://localhost:61924/signalr/hubs"></script> -->
+    <!-- angular -->
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-sanitize.min.js"></script>
+    <script src="scripts/angular-resource.min.js"></script>
+    <script src="scripts/angular-animate.min.js"></script>
+    <script src="scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="scripts/angular-ui-router.min.js"></script>
+    <script src="scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="scripts/angular-local-storage.min.js"></script>
+    <script src="scripts/angular-chart.min.js"></script>
+    <!-- <script src="Scripts/ui-grid.min.js"></script> -->
+    <script src="scripts/ng-csv.js"></script>
+    <script src="scripts/html2canvas.min.js"></script>
+    <script src="scripts/jspdf.min.js"></script>
+
+    <!-- app scripts -->
+
+    <script src="App/App.Config.js?t=112112172018"></script>
+    <script src="App/App.SuperAdmin.Config.js?t=112112172018"></script>
+    <script src="App/Report/Report.Config.js?t=112112172018"></script>
+    <script src="App/Home/Home.Config.js?t=112112172018"></script>
+    <script src="App/Sales/Sale.Config.js?t=112112172018"></script>
+    <script src="App/Customer/Customer.Config.js?t=112112172018"></script>
+    <script src="App/Product/Product.Config.js?t=112112172018"></script>
+    <script src="App/Purchase/Purchase.Config.js?t=112112172018"></script>
+    <script src="App/Transactions/Transaction.Config.js?t=112112172018"></script>
+    <script src="App/Warehouse/Warehouse.Config.js?t=112112172018"></script>
+    <script src="App/Message/Sms.config.js?t=112112172018"></script>
+    <script src="App/Operation/Operation.Config.js?t=112112172018"></script>
+    <!-- Directives -->
+    <script src="App/Directive/App.Directives.js?t=112112172018"></script>
+    <script src="App/Directive/Permission.js?t=112112172018"></script>
+    <script src="App/Common/excel.js"></script>
+
+    <!-- Services -->
+    <script src="App/Common/BaseService.js?t=112112172018"></script>
+    <script src="App/Common/WebService.js?t=112112172018"></script>
+    <script src="App/Common/UrlService.js?t=112112172018"></script>
+    <script src="App/Common/SaveService.js?t=112112172018"></script>
+    <script src="App/Common/SearchService.js?t=112112172018"></script>
+    <script src="App/Common/SecurityService.js?t=112112172018"></script>
+    <script src="App/Common/SecurityLibrary.js?t=112112172018"></script>
+    <script src="App/Common/SecurityInterceptors.js?t=112112172018"></script>
+
+
+    <script src="App/Customer/CustomerService.js?t=112112172018"></script>
+    <script src="App/Common/LocalStorageService.js?t=112112172018"></script>
+
+    <!-- Controllers -->
+    <script src="App/BaseController.js?t=112112172018"></script>
+    <script src="App/Home/HomeController.js?t=112112172018"></script>
+    <script src="App/Menu/SideMenuController.js?t=112112172018"></script>
+    <script src="App/Common/SecurityController.js?t=112112172018"></script>
+    <script src="App/Product/ProductDetailController.js?t=112112172018"></script>
+    <script src="App/Product/ProductGroupController.js?t=112112172018"></script>
+    <script src="App/Product/ProductCategoryController.js?t=112112172018"></script>
+    <script src="App/Product/ProductHistoryController.js?t=112112172018"></script>
+    <script src="App/Sales/SaleController.js?t=112112172018"></script>
+    <script src="App/Sales/SaleStatesListController.js?t=112112172018"></script>
+    <script src="App/Sales/SaleDetailController.js?t=112112172018"></script>
+    <script src="App/Sales/OnlineSaleController.js?t=112112172018"></script>
+    <script src="App/Sales/SalesBySalesmanController.js?t=112112172018"></script>
+    <script src="App/Purchase/PurchaseController.js?t=112112172018"></script>
+    <script src="App/Purchase/PurchaseHistoryController.js?t=112112172018"></script>
+    <script src="App/Purchase/PurchaseDetailController.js?t=112112172018"></script>
+    <script src="App/Profile/ProfileController.js?t=112112172018"></script>
+    <script src="App/Customer/CustomerController.js?t=112112172018"></script>
+    <script src="App/Customer/CustomerHistoryController.js?t=112112172018"></script>
+    <script src="App/Transactions/TransactionController.js?t=112112172018"></script>
+    <script src="App/Transactions/TransactionsController.js?t=112112172018"></script>
+    <script src="App/Shops/DealerController.js?t=112112172018"></script>
+    <script src="App/Shops/CourierController.js?t=112112172018"></script>
+    <script src="App/Shops/BrandController.js?t=112112172018"></script>
+    <script src="App/Shops/SupplierController.js?t=112112172018"></script>
+    <script src="App/Shops/ShopController.js?t=112112172018"></script>
+    <script src="App/Transactions/AccountHeadController.js?t=112112172018"></script>
+    <script src="App/Employee/EmployeeController.js?t=112112172018"></script>
+    <script src="App/Transactions/AccountInfoController.js?t=112112172018"></script>
+    <script src="App/Message/SmsController.js?t=112112172018"></script>
+    <script src="App/Message/SmsHookController.js?t=112112172018"></script>
+    <script src="App/Report/BaseReportController.js?t=112112172018"></script>
+    <script src="App/Report/SalesIndividualReportController.js"></script>
+    <script src="App/Report/SalesReportsController.js?t=112112172018"></script>
+    <script src="App/Report/ProductReportsController.js?t=112112172018"></script>
+    <script src="App/Report/TransactionReportsController.js?t=112112172018"></script>
+    <script src="App/Report/ZoneWiseSalesReportsController.js?t=112112172018"></script>
+    <script src="App/Common/LocalConfigController.js?t=112112172018"></script>
+    <script src="App/Warehouse/WarehouseController.js?t=105503142018"></script>
+    <script src="App/Message/SmsPaymentControllers.js?t=105503142018"></script>
+    <script src="App/Operation/OperationController.js?t=105503142018"></script>
+    <!-- System -->
+    <script src="App/System/ApplicationRolesController.js?t=112112172018"></script>
+    <script src="App/System/ApplicationUsersController.js?t=112112172018"></script>
+    <script src="App/System/ApplicationUserRolesController.js?t=112112172018"></script>
+    <script src="App/System/ApplicationResourcesController.js?t=112112172018"></script>
+    <script src="App/System/ApplicationPermissionsController.js?t=112112172018"></script>
+    <script src="App/System/SecurityModel.js?t=112112172018"></script>
+    <!-- System -->
+    <!-- Models -->
+    <script src="App/Common/RequestModel.js?t=112112172018"></script>
+    <script src="App/Common/ResponseModel.js?t=112112172018"></script>
+    <script src="App/Customer/Model.js?t=112112172018"></script>
+    <script src="App/Transactions/Model.js?t=112112172018"></script>
+    <script src="App/Product/Model.js?t=112112172018"></script>
+    <script src="App/Profile/Model.js?t=112112172018"></script>
+    <script src="App/Purchase/Model.js?t=112112172018"></script>
+    <script src="App/Sales/Model.js?t=112112172018"></script>
+    <script src="App/Shops/Model.js?t=112112172018"></script>
+    <script src="App/Employee/Model.js?t=112112172018"></script>
+    <script src="App/Message/Model.js?t=112112172018"></script>
+    <script src="App/Report/Model.js?t=112112172018"></script>
+    <script src="App/Warehouse/Model.js?t=105503142018"></script>
+
+    <!-- Models -->
+    <!-- template scripts -->
+    <script type="text/javascript" src="js/lib/jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/lib/lobipanel/lobipanel.min.js"></script>
+    <script type="text/javascript" src="js/lib/match-height/jquery.matchHeight.min.js"></script>
+    <script type="text/javascript" src="js/loader.js"></script>
+    <script>
+        $(document)
+            .ready(function () {
+                $('.panel')
+                    .lobiPanel({
+                        sortable: true
+                    });
+                $('.panel')
+                    .on('dragged.lobiPanel',
+                    function (ev, lobiPanel) {
+                        $('.dahsboard-column').matchHeight();
+                    });
+            });
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

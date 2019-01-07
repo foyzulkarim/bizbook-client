@@ -1,0 +1,18 @@
+﻿<div class="fixed-table-pagination" style="display: block;">
+    <div class="pull-left pagination-detail">
+        <span class="pagination-info">Showing {{(vm.searchRequest.page-1)*10+1}} to {{(vm.searchRequest.page)*10}} of {{vm.totalCount}} rows</span>
+    </div>
+    <div class="pull-right pagination">
+        <ul class="pagination">
+            <li class="page-pre" ng-if="vm.searchRequest.page>2">
+                <a href="javascript:void(0)" ng-click="vm.goto(vm.searchRequest.page-2)"><i class="font-icon font-icon-arrow-left"></i></a>
+            </li>
+            <li class="page-number" ng-if="vm.searchRequest.page>1"><a href="javascript:void(0)" ng-click="vm.goto(vm.searchRequest.page-1)">{{vm.searchRequest.page-1}}</a></li>
+
+            <li class="page-number active"><a href="javascript:void(0)" ng-click="vm.goto(vm.searchRequest.page)">{{vm.searchRequest.page}}</a></li>
+
+            <li class="page-number" ng-if="(vm.searchRequest.totalPage-vm.searchRequest.page)>0"><a href="javascript:void(0)" ng-click="vm.goto(vm.searchRequest.page+1)">{{vm.searchRequest.page + 1}}</a></li>
+            <li class="page-next" ng-if="(vm.searchRequest.totalPage-vm.searchRequest.page)>1"><a href="javascript:void(0)" ng-click="vm.goto(vm.searchRequest.page+2)"><i class="font-icon font-icon-arrow-right"></i></a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+﻿
+<button type="button" class="btn btn-inline" ng-click="vm.back()">
+    <</button> <button type="button" class="btn btn-inline" ng-click="vm.print()">Print
+</button>
+<div class="container biz-receipt-line-height" id="receipt" style="background: white">
+    <div class="box-typical box-typical-padding">
+      
+        <div class="row">
+            <div class="col col-xs-12" style="text-align: center;">
+                <h5><strong>
+                        <ui>Stock Transfer </ui>
+                    </strong></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-xl-12 col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="table-responsive" align="center">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Order: #<strong>{{vm.model.orderNumber}}</strong></td>
+                                <td rowspan="3" colspan="2" class="text-center">
+
+                                    <p>Created By: {{vm.model.createdBy}}</p><br />
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Order Date: <strong>{{vm.model.modified | date}}</strong> </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Delivery Date: <strong>{{vm.model.estimatedDeliveryDate | date }}</strong> </td>
+                            </tr>
+                            
+                            <tr>
+                                <td colspan="3">Delivery Tracking No: <strong>{{vm.model.deliveryTrackingNo }}</strong> </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <p><strong>Source Warehouse:</strong></p>
+                                    <p>{{vm.model.sourceWarehouse.name}}</p>
+                                    
+                                </td>
+                                <td colspan="3">
+                                    <p><strong>Destination Warehouse:</strong></p>
+                                    <p>{{vm.model.destinationWarehouse.name}}</p>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col col-xl-12 col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered" style="font-size: 14px; ">
+                        <thead>
+                            <tr>
+                                <td><strong>SL</strong></td>
+                                <td><strong>Item Description</strong></td>
+                                <td class="text-center"><strong>Quantity</strong></td>
+                                <td class="text-center"><strong>Price</strong></td>
+                                <td class="text-right"><strong>Amount</strong></td>
+                                <td ><strong>Reason</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.model.stockTransferDetails track by $index">
+                                <td>{{$index + 1}}</td>
+                                <td>{{p.productDetailName}}</td>
+                                <td>
+                                    {{p.salePricePerUnit}}
+                                </td>
+                               
+                                <td>
+                                    {{p.quantity}}
+                                    
+                                </td>
+                                
+                                <td>{{p.priceTotal}}</td>
+                                <td >
+                                    {{p.remarks}}
+                                   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                
+                                <td>
+                                    <strong>{{vm.model.productAmount}}</strong>
+                                </td>
+                                <td ></td>
+                            </tr>
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+       
+    </div>
+    <br />
+    <br />
+
+    
+</div>
+
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

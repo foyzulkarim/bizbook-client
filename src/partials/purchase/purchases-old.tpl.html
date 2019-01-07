@@ -1,0 +1,323 @@
+﻿
+<div class="row">
+
+    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h4>Purchase Detail</h4>
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">From :</label>
+                            <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+
+                                <select class="form-control" ng-model="vm.cart.partner" ng-options="p.id as p.name for p in vm.dropdown.partner" ng-change="vm.loadProductsByShop()"></select>
+                                <span>Choose yourself if you want to stock in your own products</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Memo :</label>
+                            <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                <input type="text" class="form-control" name="Memo" ng-model="vm.cart.memo"/>
+                                <span>You can leave it blank and fill it later</span>
+                            </div>
+                        </div>
+                      
+                        <div class="form-group">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Product</label>
+                            <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                <select type="text" class="form-control" name="Name" ng-model="vm.model.productId" required="required" ng-options="i.id as i.name for i in vm.dropdown.productByShop" ng-change="vm.loadVariantDetailByProduct()"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col col-xs-12 col-sm-3 col-md-3 col-lg-3"></div>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <!--<table class="table table-bordered">
+                                    <tbody>
+                                    <tr >
+                                        <th>Variance</th>
+                                        <th>Price</th>
+                                        
+                                    </tr>
+                                        
+                                    <tr ng-repeat="i in vm.models" ng-click="vm.productDetail(i)" style="cursor: alias">
+                                        <td>
+                                            
+                                            <div ng-repeat="v in i.variances">
+
+                                                {{v.variance}}, {{v.varianceDetail}}
+
+                                            </div>
+
+                                        </td>
+                                        <td>{{i.costPrice}}</td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>-->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <div class="panel-footer form">
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Detail</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Name :</label>
+                       
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input type="text" class="form-control" name="Name" ng-model="vm.model.productName" required="required" readonly="readonly" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Price :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input type="text" readonly="readonly" class="form-control" name="SalePrice" ng-model="vm.model.costPrice" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Quantity :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input type="number" class="form-control" name="Quantity" ng-model="vm.purchaseCartModel.quantity" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">&nbsp;</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <button type="button" class="btn btn-floating btn-info" ng-click="vm.addToCart(vm.model,vm.purchaseCartModel.quantity)">Add to Cart</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+
+    </div>
+    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <!--<h4>Memo: <span class="text-danger">{{vm.memo}}</span></h4>-->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a showtab="" href="#tab1Detail" data-toggle="tab">Detail</a></li>
+                    <li><a showtab="" href="#tab2Comment" data-toggle="tab">Comment</a></li>
+                    <li><a showtab="" href="#tab3State" data-toggle="tab">State</a></li>
+                    <li><a showtab="" href="#tab4Log" data-toggle="tab">Log</a></li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+
+                    <div class="tab-pane fade in active" id="tab1Detail">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                            </div>
+                            <div class="panel-body">
+                            </div>
+                            <table class="table table-responsive table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Unit Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.cart.products track by $index" ng-click="vm.editCart(p)" style="cursor: alias">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{p.productVariance.productName}}</td>
+                                        <td>{{p.productVariance.costPrice}}</td>
+                                        <td>{{p.quantity}}</td>
+                                        <td>{{p.total()}}</td>
+                                        <td>
+                                            <a class="glyphicon glyphicon-remove" style="cursor: pointer;" ng-click="vm.removeFromCart(p)"></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="panel-footer form">
+                                <div class="form-group">
+                                    <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">Total</label>
+                                    <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                        <span>{{vm.cart.itemTotal}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <button type="button" class="btn btn-floating btn-info" ng-click="vm.save()">Save</button>
+                                <!--<button type="button" class="btn btn-floating btn-info" ng-click="vm.activate()">Reset</button>-->
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="tab2Comment">
+                        <div class="panel panel-info">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                <!--h3 class="panel-title">Customers</h3>-->
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+
+                            <!-- Table -->
+                            <!--<table class="table table-responsive table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Order Quantity</th>
+                                        <th>Stock Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.orderDetails track by $index">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{p.product.name}}</td>
+                                        <td>{{p.quantity}}</td>
+                                        <td>{{p.stockQuantity}}</td>
+                                        <td>{{p.price}}</td>
+                                        <td>{{p.total}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total:</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{vm.getTotal().total}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>-->
+
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="tab3State">
+                        <div class="panel panel-info">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                <h3 class="panel-title">States</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal">
+                                    <!--<div class="form-group">
+                                        <label class="col col-xs-12 col-sm-12 col-md-12 col-lg-12">Current State: <span class="text-danger">{{vm.currentState}}</span></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col col-xs-12 col-sm-2 col-md-2 col-lg-2">Remarks: </label>
+                                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <textarea class="form-control" name="Remarks" ng-model="vm.purchaseState.note"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+                                        <div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <button ng-hide="vm.nextState == ''" type="button" class="btn btn-floating btn-info" ng-click="vm.updatePurchaseState(vm.nextState)" id="pregress">{{vm.nextState}}</button>
+                                            <button ng-hide="vm.nextState == ''" type="button" class="btn btn-floating btn-info" ng-click="vm.updatePurchaseState('Canceled')">Deny</button>
+                                        </div>
+
+                                    </div>-->
+                                </form>
+                            </div>
+
+
+
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                        <!--<div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Comments</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" ng-submit="vm.saveComments()">
+                                    <div class="form-group">
+                                        <div class="col col-xs-9 col-sm-9 col-md-9 col-lg-9" ng-repeat="p in vm.comments track by $index">
+                                            {{p.shop.name}}: {{p.text}}
+                                            <hr/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <hr/>
+                                        <div class="col col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                                            <input class="form-control input-field" type="text" ng-model="vm.comment.text" required="required"/>
+                                        </div>
+                                        <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <button type="submit" ng-hide="vm.currentState == ''" class="btn btn-floating col col-md-10">Submit</button>
+                                        </div>
+
+
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="panel-footer">
+                            </div>
+                        </div>-->
+                    </div>
+
+                    <div class="tab-pane fade" id="tab4Log">
+                        <div class="panel panel-info">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                <!--h3 class="panel-title">Customers</h3>-->
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+
+                          
+
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

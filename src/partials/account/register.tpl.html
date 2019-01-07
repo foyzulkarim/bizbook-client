@@ -1,0 +1,68 @@
+﻿<div class="container">
+
+    <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Sign Up</div>
+                <div style="float: right; font-size: 85%; position: relative; top: -10px">
+                    <a id="signinlink" ui-sref="root.signin">Sign In</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form id="signupform" name="signupform" class="form-horizontal" role="form" ng-submit="vm.register()" novalidate>
+                    <div id="signupalert" class="alert alert-danger" ng-show="vm.notification.isError">
+                        <span>{{vm.notification.message}}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="vm.notification.isError=false">&times;</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname" class="col-md-3 control-label">First Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name" required ng-model="vm.user.firstName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-md-3 control-label">Last Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name" required ng-model="vm.user.lastName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="col-md-3 control-label">Phone</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="lastname" id="phone" placeholder="Phone Number" required ng-model="vm.user.phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-md-3 control-label">Email</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Email Address" required ng-model="vm.user.email">
+                            <label ng-show="(signupform.email.$invalid && !signupform.email.$pristine) ||signupform.email.$error.email" class="alert danger alert-danger">Enter a valid email.</label>
+                        </div>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Password</label>
+                        <div class="col-md-9">
+                            <input id="password" type="password" class="form-control" name="passwd" placeholder="Password" required ng-model="vm.user.password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Retype Password</label>
+                        <div class="col-md-9">
+                            <input id="password" type="password" class="form-control" name="passwd" placeholder="Retype Password" required ng-model="vm.user.confirmPassword">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <!-- Button -->
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" ng-disabled="vm.isDisabled || signupform.$invalid || vm.user.password!=vm.user.confirmPassword" class="btn btn-primary btn-block btn-lg">Sign Up</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

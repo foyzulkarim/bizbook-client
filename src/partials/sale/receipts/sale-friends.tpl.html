@@ -1,0 +1,152 @@
+<button type="button" class="btn btn-inline" ng-click="vm.back()">
+    <</button> 
+<button type="button" class="btn btn-inline" ng-click="vm.print()">Print
+</button>
+<div class="container biz-receipt-line-height" id="receipt" style="background: white">
+    <div class="box-typical box-typical-padding">
+        <!-- <div class="row">
+            <div class="col col-xs-12" style="text-align: center">
+                <img ng-src="{{vm.model.shop.logoUrl}}" class="img-responsive" style="height: 100px;" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-xs-12" style="text-align: center;">
+                <h5><strong>
+                        <ui>Invoice/Bill</ui>
+                    </strong></h5>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col col-xl-12 col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="table-responsive" align="center">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p><strong>Bill To:</strong></p>
+                                    <p>{{vm.model.customerName}}</p>
+                                    <p>{{vm.model.customerPhone}}</p>
+                                    <p ng-show="vm.model.address.contactName.length>0">
+                                        Contact Name : {{vm.model.address.contactName}}
+                                    </p>
+                                    <p ng-show="vm.model.address.contactPhone.length>0">
+                                        Contact Phone : {{vm.model.address.contactPhone}}</p>
+                                
+                                    <p style="line-height: 1.5em">{{vm.model.address.streetAddress}}</p>
+                                </td>
+                                
+                                <td class="text-right">
+                                
+                                    <p>Bill No: #<strong>{{vm.model.orderNumber}}</strong></p><br />
+                                    <p>Order Date: <strong>{{vm.model.modified | date}}</strong><br />
+                                    <p>Delivery Date: <strong>{{vm.model.requiredDeliveryDateByCustomer | date}}</strong>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col col-xl-12 col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered" style="font-size: 14px; ">
+                        <thead>
+                            <tr>
+                                <td><strong>SL</strong></td>
+                                <td><strong>Book Id</strong></td>
+                                <td><span style="line-height: 18px;"><strong>Book Name</strong></span></td>
+                                <td class="text-center"><strong>Quantity</strong></td>
+                                <td class="text-center"><strong>Author</strong></td>
+                                <td class="text-center"><span><strong>Unit Price</strong></span></td>
+                                <td class="text-right"><strong>Total</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.model.saleDetails track by $index" ng-hide="p.isReturned" ng-if="p.quantity>0">
+                                <td>{{$index+1}}</td>
+                                <td>{{p.productCode}}</td>
+                                <td><span style="line-height: 18px;">{{p.productDetailName}}</span></td>
+                                <td class="text-center">{{p.quantity}}</td>
+                                <td class="text-center"><span style="line-height: 18px;">{{p.model}}</span></td>
+                                <td class="text-center">{{p.salePricePerUnit}}</td>
+                                <td class="text-right">{{p.total}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><span style="line-height: 18px;"><strong>Product Total</strong></span></td>
+                                <td></td>
+                                <td class="text-center">{{vm.totalQuantity}}</td>
+                                <td></td>
+                                <td></td>
+                                <td class="text-right">{{vm.model.productAmount}}</td>
+                            </tr>
+                            <tr>
+                                <td><span style="line-height: 18px;"><strong>Delivery Charge</strong></span></td>
+                                <td>{{vm.model.shippingAmount}}</td>
+                                <td colspan="3"></td>
+                                <td class="text-right" ><strong>Total</strong></td>
+                                <td class="text-right">{{vm.model.totalAmount}}</td>
+                            </tr>
+                            <tr>
+                                <td><span style="line-height: 18px;"><strong>Previouse Due</strong></span></td>
+                                <td ng-if="vm.model.customer.totalDue>0"><strong>{{vm.model.customer.totalDue
+                                        - vm.model.dueAmount }}</strong></td>
+                                <td colspan="3"></td>
+                                <td class="text-right"><strong>Discount</strong></td>
+                                
+                                <td class="text-right">{{vm.model.discountAmount}}</td>
+                            </tr>
+                            
+                            <tr>
+                                <td><span style="line-height: 18px;"><strong>Customer Total Due</strong> </span></td>
+                                <td><strong>{{vm.model.customer.totalDue }}</strong></td>
+                                <td colspan="3"></td>
+                                <td class="text-right" ><strong>Payable</strong></td>
+                                <td class="text-right">{{vm.model.payableTotalAmount}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="text-right" ><strong>Paid</strong></td>
+                                <td class="text-right"><strong>{{vm.model.paidAmount}}</strong></td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="text-right" ><span style="line-height: 18px;"><strong>Net Due</strong></span></td>
+                                <td class="text-right"><strong>{{vm.model.dueAmount}}</strong></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+       
+    </div>
+    <br />
+    <br />
+
+    <div class="row">
+        <div class=" col-xs-12">
+
+            <div class="col-xs-6 h6">
+                &nbsp;
+            </div>
+
+            <div class="row col-xs-6 text-left h6">
+                <strong>For {{vm.model.shop.name}}</strong>
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12 h6">
+            <strong>***Thanks for shopping with us.</strong>
+        </div>
+    </div>
+</div>

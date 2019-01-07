@@ -1,0 +1,218 @@
+﻿<div class="row">
+    <div class="col col-xs-12 col-sm-5 col-md-5 col-lg-5">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Product</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" ng-submit="vm.save()">
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Product</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <select type="text" class="form-control " name="GroupName" ng-model="vm.model.productCategoryId" ng-options="i.id as i.text for i in vm.products" required="required" ng-change="vm.productChanged()"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Brand:</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <select type="text" class="form-control " name="brandName" ng-model="vm.model.brandId" ng-options="i.id as i.text for i in vm.brands" required="required" ng-change="vm.brandChanged()"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Name:</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="name" ng-model="vm.model.name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Model:</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="name" ng-model="vm.model.model" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Year:</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="name" ng-model="vm.model.year" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">BarCode</label>
+                        <div class="col col-xs-10 col-sm-7 col-md-7 col-lg-7">
+                            <input type="text" class="form-control" name="BarCode" ng-model="vm.model.barCode" />
+                        </div>
+                        <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <button type="button" class="btn glyphicon glyphicon-asterisk" ng-click="vm.getBarcode()"></button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Sale Price</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="number" class="form-control" name="name" ng-model="vm.model.salePrice" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Cost Price</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="number" class="form-control" name="CostPrice" ng-model="vm.model.costPrice" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Capacity</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.model.capacity" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Size</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.model.size" />
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Type</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.model.type" />
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Weight</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.model.weight" />
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Volume</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.model.volume" />
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Material</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.model.material" />
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Color</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.model.color" />
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Minimum Stock To Notify</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.model.minimumStockToNotify" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Dimension</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.model.dimension" />
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Other</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.model.other" />
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Starting Inventory</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="number" class="form-control" name="startingInventory" ng-model="vm.model.startingInventory" ng-disabled="vm.model.id.length>0" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Purchased</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="number" class="form-control" name="purchased" ng-model="vm.model.purchased" disabled="disabled" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Sold</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="number" class="form-control" name="sold" ng-model="vm.model.sold" disabled="disabled" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">On Hand</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="number" class="form-control" name="onHand" ng-model="vm.model.onHand" disabled="disabled" />
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">&nbsp;</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <button ng-show="!vm.isUpdateMode" type="submit" class="btn btn-floating btn-info">Save</button>
+                            <button ng-show="vm.isUpdateMode" type="button" class="btn btn-floating btn-danger" ng-click="vm.update()">Update</button>
+                            <button ng-show="vm.isUpdateMode" type="button" class="btn btn-floating btn-danger" ng-click="vm.activate()">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+    </div>
+
+    <div class="col col-xs-12 col-sm-7 col-md-7 col-lg-7">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h3 class="panel-title">List</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <form ng-submit="vm.search()">
+                        <div class="col col-xs-9 col-sm-7 col-md-7 col-lg-7">
+                            <input class="form-control input-field" type="text" placeholder="Search" required="required" ng-model="vm.searchRequest.keyword" />
+                        </div>
+                        <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <button type="submit" class="btn btn-default pull-left"><span class="glyphicon glyphicon-search"></span></button>
+                            <button type="button" class="btn btn-default pull-left" ng-click="vm.report()"><span class="glyphicon glyphicon-download-alt"></span></button>
+                        </div>
+                    </form>
+                    <!--<button type="submit" class="btn btn-info pull-right">Print</button>-->
+                </div>
+            </div>
+
+            <!-- Table -->
+            <table class="table table-responsive table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>On Hand</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in vm.models track by $index" ng-class="{'selected':$index == vm.selectedRow}" ng-click="vm.detail(p,$index)" style="cursor: alias">
+                        <td>{{$index + 1}}</td>
+                        <td>{{p.name}}</td>
+                        <td>{{p.onHand}}</td>
+                        <td>
+                            <a ui-sref="root.productHistory({productId:p.id})">History</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="panel-footer">
+                <div class="page-nation">
+                    <ul class="pagination pagination-large">
+                        <li ng-class="{'disabled' : vm.searchRequest.page==1 }"><a ng-hide="vm.searchRequest.page==1" ng-click="vm.goto(1)">First</a></li>
+                        <li ng-class="{'disabled' : vm.searchRequest.page==1 }"><a ng-hide="vm.searchRequest.page==1" ng-click="vm.goto(vm.searchRequest.page-1)">< Previous</a></li>
+                        <li class="disabled"><a href="javascript:void(0)">Page # {{vm.searchRequest.page}} / {{vm.searchRequest.totalPage}}</a></li>
+                        <li><a ng-hide="vm.searchRequest.page == vm.searchRequest.totalPage" ng-click="vm.goto(vm.searchRequest.page+1)"> Next ></a></li>                        
+                    </ul>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+
+</div>

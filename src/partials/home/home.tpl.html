@@ -1,0 +1,428 @@
+﻿<div class="container-fluid" access-control ng-show="vm.isSignedIn">
+    <div class="row" ng-show="canShow('dashboard-admin-content')">
+        <div class="col-xl-12">
+            <div class="chart-statistic-box">
+                <div class="chart-txt" style="width: 100%">
+                    <div class="chart-txt-top">
+                        <p>
+                            <span class="unit"></span><span class="number">{{vm.response.sales.total | currency:"৳"}}</span>
+                        </p>
+                        <p class="caption">Total Sale Today </p>
+                    </div>
+                    <table class="tbl-data">
+                        <tr ng-hide="true">
+                            <td colspan="2" ng-hide="vm.isPulling"><button class="btn btn-inline btn-success" ng-click="vm.pullEverything()">PULL Everything</button></td>
+                        </tr>
+                        <tr ng-hide="true">
+                            <td colspan="2" ng-hide="vm.isPulling"><button class="btn btn-inline btn-success" ng-click="vm.pull()">PULL Sales</button></td>
+                            <td colspan="2" ng-show="vm.isPulling"><h4 ng-class="color-green">Pulling...</h4></td>
+                        </tr>
+                        <tr>
+                            <td>BizBook365</td>
+                            <td class="price color-purple">{{vm.response.sales.bizbook365 | currency:"৳"}}</td>
+                        </tr>
+                        <tr>
+                            <td>Facebook</td>
+                            <td class="price color-yellow">{{vm.response.sales.facebook | currency:"৳"}}</td>
+                        </tr>
+                        <tr>
+                            <td>Website</td>
+                            <td class="price color-lime">{{vm.response.sales.website | currency:"৳"}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div><!--.chart-statistic-box-->           
+        </div><!--.col-->
+        <div class="col-xl-12" ng-hide="true">
+            <div class="row">
+                <div class="col-sm-6">
+                    <article class="statistic-box red">
+                        <div>
+                            <div class="number">10</div>
+                            <div class="caption">
+                                <div>Pending Orders</div>
+                            </div>
+                        </div>
+                    </article>
+                </div><!--.col-->
+                <div class="col-sm-6">
+                    <article class="statistic-box purple">
+                        <div>
+                            <div class="number">12</div>
+                            <div class="caption">
+                                <div>Closes tickets</div>
+                            </div>
+                            <div class="percent">
+                                <div class="arrow down"></div>
+                                <p>11%</p>
+                            </div>
+                        </div>
+                    </article>
+                </div><!--.col-->
+                <div class="col-sm-6">
+                    <article class="statistic-box yellow">
+                        <div>
+                            <div class="number">104</div>
+                            <div class="caption">
+                                <div>New clients</div>
+                            </div>
+                            <div class="percent">
+                                <div class="arrow down"></div>
+                                <p>5%</p>
+                            </div>
+                        </div>
+                    </article>
+                </div><!--.col-->
+                <div class="col-sm-6">
+                    <article class="statistic-box green">
+                        <div>
+                            <div class="number">29</div>
+                            <div class="caption">
+                                <div>Here is an example of a long name</div>
+                            </div>
+                            <div class="percent">
+                                <div class="arrow up"></div>
+                                <p>84%</p>
+                            </div>
+                        </div>
+                    </article>
+                </div><!--.col-->
+            </div><!--.row-->
+        </div><!--.col-->
+    </div><!--.row-->
+
+    <div class="row" ng-show="canShow('dashboard-admin-content')">
+        <div class="col-xl-12 dahsboard-column" ng-hide="true">
+            <section class="box-typical box-typical-dashboard panel panel-default scrollable">
+                <header class="box-typical-header panel-heading">
+                    <h3 class="panel-title" ui-sref="root.sales" style="cursor: pointer">
+                        <a href="javascript:void(0)">Pending orders</a> (Last 7 days)
+                    </h3>
+                </header>
+                <div class="box-typical-body panel-body">
+                    <table class="tbl-typical">
+                        <tr>
+                            <th align="center">Source</th>
+                            <th align="center">Order Number</th>
+                            <th align="center">Order Date</th>
+                            <th align="center">Remain</th>
+                            <th align="center">Time</th>
+                            <th align="center">Amount</th>
+                            <th align="center">Created</th>
+                        </tr>
+                        <tr ng-repeat="p in vm.response.orders.pending track by $index">
+                            <td align="center">{{p.orderFromName}}</td>
+                            <td align="center"><a ui-sref="root.saledetail({id:p.id})">{{p.orderNumber}}</a></td>
+                            <td class="color-blue-grey" nowrap align="center"><span class="semibold">{{p.orderDate | date:"dd-MMMM-yyyy"}}</span></td>
+                            <td>{{vm.getRelative(p.orderDate)}}</td>
+                            <td align="center">{{p.orderTime}}</td>
+                            <td align="center"> {{p.totalAmount}}</td>
+                            <td class="color-blue-grey" nowrap align="center"><span class="semibold">{{p.modified | date:"dd-MMMM-yyyy"}}</span></td>
+                        </tr>
+                    </table>
+                </div><!--.box-typical-body-->
+            </section><!--.box-typical-dashboard-->
+            <section class="box-typical box-typical-dashboard panel panel-default scrollable" ng-hide="true">
+                <header class="box-typical-header panel-heading">
+                    <h3 class="panel-title">Comments</h3>
+                </header>
+                <div class="box-typical-body panel-body">
+                    <article class="comment-item">
+                        <div class="user-card-row">
+                            <div class="tbl-row">
+                                <div class="tbl-cell tbl-cell-photo">
+                                    <a href="#">
+                                        <img src="img/photo-64-1.jpg" alt="">
+                                    </a>
+                                </div>
+                                <div class="tbl-cell">
+                                    <span class="user-card-row-name"><a href="#">Matt McGill</a></span>
+                                </div>
+                                <div class="tbl-cell tbl-cell-date">
+                                    <span class="semibold">Today</span>
+                                    12:45
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-item-txt">
+                            <p>That’s a great idea! I’m sure we could start this project as soon as possible.</p>
+                            <p>Let’s meet tomorow!</p>
+                        </div>
+                        <div class="comment-item-meta">
+                            <a href="#" class="star">
+                                <i class="font-icon font-icon-star"></i>
+                            </a>
+                            <a href="#">
+                                <i class="font-icon font-icon-re"></i>
+                            </a>
+                            <!--Реализация кнопками-->
+                            <!--<button type="button" class="star">-->
+                            <!--<i class="font-icon font-icon-star"></i>-->
+                            <!--</button>-->
+                            <!--<button type="button">-->
+                            <!--<i class="font-icon font-icon-re"></i>-->
+                            <!--</button>-->
+                        </div>
+                    </article>
+                    <article class="comment-item">
+                        <div class="user-card-row">
+                            <div class="tbl-row">
+                                <div class="tbl-cell tbl-cell-photo">
+                                    <a href="#">
+                                        <img src="img/photo-64-2.jpg" alt="">
+                                    </a>
+                                </div>
+                                <div class="tbl-cell">
+                                    <span class="user-card-row-name"><a href="#">Tim Collins</a></span>
+                                </div>
+                                <div class="tbl-cell tbl-cell-date">
+                                    <span class="semibold">Today</span>
+                                    12:45
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-item-txt">
+                            <p>That’s a great idea! I’m sure we could start this project as soon as possible.</p>
+                            <p>Let’s meet tomorow!</p>
+                        </div>
+                        <div class="comment-item-meta">
+                            <a href="#" class="star active">
+                                <i class="font-icon font-icon-star"></i>
+                            </a>
+                            <a href="#">
+                                <i class="font-icon font-icon-re"></i>
+                            </a>
+                            <!--Реализация кнопками-->
+                            <!--<button type="button" class="star">-->
+                            <!--<i class="font-icon font-icon-star"></i>-->
+                            <!--</button>-->
+                            <!--<button type="button">-->
+                            <!--<i class="font-icon font-icon-re"></i>-->
+                            <!--</button>-->
+                        </div>
+                    </article>
+                </div><!--.box-typical-body-->
+            </section>
+        </div><!--.col-->
+        <div class="col-xl-12 dahsboard-column" ng-hide="true">
+            <section class="box-typical box-typical-dashboard panel panel-default scrollable">
+                <header class="box-typical-header panel-heading">
+                    <h3 class="panel-title" ui-sref="root.productdetails" style="cursor: pointer">
+                        <a href="javascript:void(0)">Low stocks </a>
+                    </h3>
+                </header>
+                <div class="box-typical-body panel-body">
+                    <table class="tbl-typical">
+                        <tr>
+                            <th>
+                                <div>Name</div>
+                            </th>
+                            <th>
+                                <div>Quantity</div>
+                            </th>
+                            <th align="center">
+                                <div>Sold</div>
+                            </th>
+                            <th align="center">
+                                <div>Purchased</div>
+                            </th>
+                        </tr>
+                        <tr ng-repeat="p in vm.response.products.lowStock track by $index">
+                            <td>{{p.name}}</td>
+                            <td align="center">{{p.onHand}}</td>
+                            <td align="center">{{p.sold}}</td>
+                            <td align="center">{{p.purchased}}</td>
+                        </tr>
+                    </table>
+                </div><!--.box-typical-body-->
+            </section><!--.box-typical-dashboard-->
+            <section class="box-typical box-typical-dashboard panel panel-default scrollable" ng-hide="true">
+                <header class="box-typical-header panel-heading">
+                    <h3 class="panel-title">Contacts</h3>
+                </header>
+                <div class="box-typical-body panel-body">
+                    <div class="contact-row-list">
+                        <article class="contact-row">
+                            <div class="user-card-row">
+                                <div class="tbl-row">
+                                    <div class="tbl-cell tbl-cell-photo">
+                                        <a href="#">
+                                            <img src="img/photo-64-2.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="tbl-cell">
+                                        <p class="user-card-row-name">
+                                            <a href="#">Tim Collins</a>
+                                        </p>
+                                        <p class="user-card-row-mail">
+                                            <a href="#">timcolins@mail.com</a>
+                                        </p>
+                                    </div>
+                                    <div class="tbl-cell tbl-cell-status">Director at Tony’s</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="contact-row">
+                            <div class="user-card-row">
+                                <div class="tbl-row">
+                                    <div class="tbl-cell tbl-cell-photo">
+                                        <a href="#">
+                                            <img src="img/photo-64-1.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="tbl-cell">
+                                        <p class="user-card-row-name">
+                                            <a href="#">Maggy Smith</a>
+                                        </p>
+                                        <p class="user-card-row-mail">
+                                            <a href="#">maggysmith@mail.com</a>
+                                        </p>
+                                    </div>
+                                    <div class="tbl-cell tbl-cell-status">PR Manager</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="contact-row">
+                            <div class="user-card-row">
+                                <div class="tbl-row">
+                                    <div class="tbl-cell tbl-cell-photo">
+                                        <a href="#">
+                                            <img src="img/photo-64-3.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="tbl-cell">
+                                        <p class="user-card-row-name">
+                                            <a href="#">Molly Bridjet</a>
+                                        </p>
+                                        <p class="user-card-row-mail">
+                                            <a href="#">mollybr@mail.com</a>
+                                        </p>
+                                    </div>
+                                    <div class="tbl-cell tbl-cell-status">Assistan</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="contact-row">
+                            <div class="user-card-row">
+                                <div class="tbl-row">
+                                    <div class="tbl-cell tbl-cell-photo">
+                                        <a href="#">
+                                            <img src="img/photo-64-4.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="tbl-cell">
+                                        <p class="user-card-row-name">
+                                            <a href="#">Maggy Smith</a>
+                                        </p>
+                                        <p class="user-card-row-mail">
+                                            <a href="#">maggysmith@mail.com</a>
+                                        </p>
+                                    </div>
+                                    <div class="tbl-cell tbl-cell-status">PR Manager</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="contact-row">
+                            <div class="user-card-row">
+                                <div class="tbl-row">
+                                    <div class="tbl-cell tbl-cell-photo">
+                                        <a href="#">
+                                            <img src="img/photo-64-2.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="tbl-cell">
+                                        <p class="user-card-row-name">
+                                            <a href="#">Tim Collins</a>
+                                        </p>
+                                        <p class="user-card-row-mail">
+                                            <a href="#">timcolins@mail.com</a>
+                                        </p>
+                                    </div>
+                                    <div class="tbl-cell tbl-cell-status">Director at Tony’s</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="contact-row">
+                            <div class="user-card-row">
+                                <div class="tbl-row">
+                                    <div class="tbl-cell tbl-cell-photo">
+                                        <a href="#">
+                                            <img src="img/photo-64-1.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="tbl-cell">
+                                        <p class="user-card-row-name">
+                                            <a href="#">Maggy Smith</a>
+                                        </p>
+                                        <p class="user-card-row-mail">
+                                            <a href="#">maggysmith@mail.com</a>
+                                        </p>
+                                    </div>
+                                    <div class="tbl-cell tbl-cell-status">PR Manager</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="contact-row">
+                            <div class="user-card-row">
+                                <div class="tbl-row">
+                                    <div class="tbl-cell tbl-cell-photo">
+                                        <a href="#">
+                                            <img src="img/photo-64-3.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="tbl-cell">
+                                        <p class="user-card-row-name">
+                                            <a href="#">Molly Bridjet</a>
+                                        </p>
+                                        <p class="user-card-row-mail">
+                                            <a href="#">mollybr@mail.com</a>
+                                        </p>
+                                    </div>
+                                    <div class="tbl-cell tbl-cell-status">Assistan</div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="contact-row">
+                            <div class="user-card-row">
+                                <div class="tbl-row">
+                                    <div class="tbl-cell tbl-cell-photo">
+                                        <a href="#">
+                                            <img src="img/photo-64-4.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="tbl-cell">
+                                        <p class="user-card-row-name">
+                                            <a href="#">Maggy Smith</a>
+                                        </p>
+                                        <p class="user-card-row-mail">
+                                            <a href="#">maggysmith@mail.com</a>
+                                        </p>
+                                    </div>
+                                    <div class="tbl-cell tbl-cell-status">PR Manager</div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div><!--.box-typical-body-->
+            </section><!--.box-typical-dashboard-->
+        </div><!--.col-->
+    </div>
+
+    <div class="row">
+        <div class="col col-xs-12">
+            <canvas id="chart" class="chart chart-pie"
+                    chart-data="vm.data" chart-labels="vm.labels" chart-options="vm.options">
+            </canvas> 
+        </div>
+    </div>
+</div><!--.container-fluid-->
+
+
+<div ng-hide="vm.isSignedIn">
+    <h1>Welcome to BizBook365, an Inventory System developed by <a href="http://www.facebook.com/codecoopers" target="_blank">Code Coopers</a></h1>
+    <h2>Message us or call us (+8801968569097) to get a trial account for your own shop.</h2>
+    <h3>
+        Or you can just test the system with a our demo accounts.
+    </h3>
+    <h2><a ui-sref="root.signin">SignIn with demo account</a> </h2>
+</div>

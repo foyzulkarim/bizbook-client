@@ -1,0 +1,174 @@
+﻿<div class="row">
+    <div class="col col-xs-12 col-sm-5 col-md-5 col-lg-5">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add Expense</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" ng-submit="!vm.isUpdateMode && vm.save() || vm.update()">
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Partner :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <select class="form-control" ng-model="vm.model.partnerShopId" ng-options="p.id as p.name for p in vm.partners" name="Supplier"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Account Head :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <select class="form-control" ng-model="vm.model.accountHead" ng-options="p.name as p.name for p in vm.dropdown['accounthead']" name="AccountHead"></select>
+                            <span>If you don't see your desired account head, please contact with us.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Amount :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input type="number" class="form-control" name="Amount" ng-model="vm.model.amount" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Memo :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input type="text" class="form-control" name="Memo" ng-model="vm.model.memo" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">PaidBy :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <select class="form-control" ng-model="vm.model.paidBy" name="PaidBy">
+                                <option selected="selected">Cash</option>
+                                <option>Check</option>
+                                <option>Bank</option>
+                                <option>Other (Please specify into remarks)</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Remarks :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input type="tel" class="form-control" name="Remarks" ng-model="vm.model.remarks" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">&nbsp;</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <button ng-show="!vm.isUpdateMode" type="button" ng-click="vm.save()" class="btn btn-floating btn-info">Save</button>
+                            <button ng-show="vm.isUpdateMode" type="button" class="btn btn-floating btn-danger" ng-click="vm.update()">Update</button>
+                            <button ng-show="vm.isUpdateMode" type="button" class="btn btn-floating btn-danger" ng-click="vm.activate()">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+    </div>
+
+    <div class="col col-xs-12 col-sm-7 col-md-7 col-lg-7">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h3 class="panel-title">Expense List</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" ng-submit="vm.search()">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                            <div class="col col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <p class="input-group">
+                                    <input type="text" class="form-control input-field" uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" placeholder="Start" ng-change="vm.updateDate()" ng-model="vm.searchRequest['Start']" is-open="vm.startDatePopUp" close-text="Close" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="vm.openStartDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="col col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <p class="input-group">
+                                    <input type="text" class="form-control input-field" uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" placeholder="End" ng-change="vm.updateDate()" ng-model="vm.searchRequest['End']" is-open="vm.endDatePopUp" close-text="Close" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="vm.openEndDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+                            <div class="col col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <input class="form-control input-field" type="text" placeholder="Keyword Search" ng-model="vm.searchRequest.keyword" />
+                            </div>
+                            <div class="col col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                <button type="submit" class="btn btn-default pull-left"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                            <div class="col col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                <button type="button" class="btn btn-default pull-left" ng-click="vm.report()"><span class="glyphicon glyphicon-download-alt"></span></button>
+                            </div>
+                            <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Table -->
+            <table class="table table-responsive table-bordered table-hover">
+                <thead>
+                    <tr class="active">
+                        <th>#</th>
+                        <th>Partner</th>
+                     
+                        <th>Amount</th>
+                        <th>Memo</th>
+                        <th>PaidBy</th>
+                        <th>Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in vm.models track by $index" ng-class="{'selected':$index == vm.selectedRow}" ng-click="vm.detail(p,$index)" style="cursor: alias">
+                        <td>{{$index + 1}}</td>
+                        <td>{{p.partner.name}}</td>                       
+                        <td>{{p.amount}}</td>
+                        <td>{{p.memo}}</td>
+                        <td>{{p.paidBy}}</td>
+                        <td>{{p.created | date}}</td>
+                        <td>
+                            
+                            <a class="glyphicon glyphicon-remove" style="cursor: pointer;" ng-click="vm.delete(p.Id)" ></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Total: </td>
+                        <td></td>
+                        <td></td>
+                        <td>{{vm.totalExpense}}/= BDT</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="panel-footer">
+                <div class="page-nation">
+                    <ul class="pagination pagination-large">
+                        <li ng-class="{'disabled' : vm.searchRequest.page==1 }"><a ng-hide="vm.searchRequest.page==1" ng-click="vm.goto(1)">First</a></li>
+                        <li ng-class="{'disabled' : vm.searchRequest.page==1 }"><a ng-hide="vm.searchRequest.page==1" ng-click="vm.goto(vm.searchRequest.page-1)">< Previous</a></li>
+                        <li class="disabled"><a href="javascript:void(0)">Page # {{vm.searchRequest.page}} / {{vm.searchRequest.totalPage}}</a></li>
+                        <li><a ng-hide="vm.searchRequest.page == vm.searchRequest.totalPage" ng-click="vm.Goto(vm.searchRequest.page+1)"> Next ></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

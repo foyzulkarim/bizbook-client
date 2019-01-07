@@ -1,0 +1,141 @@
+﻿<div class="box-typical box-typical-padding" access-control>
+
+    <h5 class="m-t-lg with-border"><a class="glyphicon glyphicon-menu-left" ng-click="vm.back()"></a>Product Detail</h5>
+    <form name="productDetailForm" class="form-horizontal" ng-submit="vm.save()">
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Category</label>
+            <div class="col-sm-10">
+                <select id="exampleSelect" class="form-control" ng-model="vm.model.productCategoryId" ng-options="p.id as p.text for p in vm.productCategories" ng-change="vm.categoryChanged()"></select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Brand</label>
+            <div class="col-sm-10">
+                <select id="exampleSelect" class="form-control" ng-model="vm.model.brandId" ng-options="p.id as p.text for p in vm.brands" ng-change="vm.groupChanged()"></select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Enter Name" ng-model="vm.model.name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="model">Model</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="model" name="model" placeholder="Enter Model" ng-model="vm.model.model">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="occupation">Year</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="year" name="year" placeholder="Enter Year" ng-model="vm.model.year">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="productCode">Product Code</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="productCode" name="productCode" placeholder="Enter Product Code" ng-model="vm.model.productCode">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="membershipCardNo">Bar Code</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="membershipCardNo" id="membershipCardNo" ng-model="vm.model.barCode">
+            </div>
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-rounded btn-inline btn-info-outline" ng-click="vm.getBarcode()">
+                    <i class="font-icon font-icon-cogwheel"></i>
+                </button>
+            </div>
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-rounded btn-inline btn-info-outline" ng-click="vm.downloadBarcode()">
+                    <i class="font-icon font-icon-download"></i>
+                </button>
+            </div>
+        </div>
+        <div class="form-group row" ng-hide="true">
+            <label class="col-sm-2 form-control-label" for="membershipCardNo">Has unique serial no</label>
+            <div class="col-sm-10">
+                <label class="checkbox-inline"><input type="checkbox" class="checkbox" name="salePrice " id="HasUniqueSerial" ng-model="vm.model.hasUniqueSerial"></label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="membershipCardNo">Sale Price</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" name="salePrice " id="salePrice" ng-model="vm.model.salePrice">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="membershipCardNo">Dealer Price</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" name="dealerPrice " id="dealerPrice" ng-model="vm.model.dealerPrice">
+            </div>
+        </div>
+        <div class="form-group row" ng-if="canShow('input-cost-price')">
+            <label class="col-sm-2 form-control-label" for="membershipCardNo">Cost Price</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" name="costPrice " id="costPrice" ng-model="vm.model.costPrice">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="occupation">Type</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="type" name="type" placeholder="Enter Type" ng-model="vm.model.type">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="color">Color</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="color" name="color" placeholder="Enter Color" ng-model="vm.model.color">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="color">Minimum Stock To Notify</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="color" name="color" placeholder="Enter Minimum Stock To Notify" ng-model="vm.model.minimumStockToNotify">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="color">Starting Inventory</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="startingInventory" name="startingInventory" placeholder="Enter Starting Inventory" ng-model="vm.model.startingInventory" ng-disabled="vm.model.id.length>0">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="purchased">Purchased</label>
+
+            <div class="col-sm-10">
+                <input type="number" class="form-control" name="purchased" id="purchased" ng-model="vm.model.purchased" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="sold">Sold</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="sold" name="sold" ng-model="vm.model.sold" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label" for="color">On Hand</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="onHand" name="onHand" ng-model="vm.model.onHand" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">IsActive</label>
+            <div class="col-sm-10">
+                <input type="checkbox" id="isActive" name="isActive" ng-model="vm.model.isActive">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 form-control-label">&nbsp;</label>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-inline btn-success" ng-if="!vm.isUpdateMode">Save</button>
+                <button type="submit" class="btn btn-inline btn-success" ng-if="vm.isUpdateMode">Update</button>
+                <a class="btn btn-inline btn-info" ui-sref="root.productdetails">Back</a>
+            </div>
+        </div>
+    </form>
+</div>

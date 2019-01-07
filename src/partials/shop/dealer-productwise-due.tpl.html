@@ -1,0 +1,91 @@
+﻿<div class="box-typical box-typical-padding" access-control>
+    <h5 class="m-t-lg with-border"><a class="glyphicon glyphicon-menu-left" ng-click="vm.back()"></a></h5>
+    <div class="row">
+        <div class="col col-sm-12">
+            <div class="form-horizontal biz-boxed">
+                <h5>Transactions(Dealer Payments)</h5>
+                &nbsp;
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Amount:</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="amount" ng-model="vm.transaction.amount" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Transaction Mediums:</label>
+                    <div class="col-sm-9">
+                        <!--<select type="text" class="form-control " name="transactionMedium" ng-model="vm.transaction.transactionMedium" ng-options="i as i for i in vm.transactionMediums" required="required"></select>-->
+                        <select type="text" class="form-control " name="accountInfoType" ng-model="vm.accountInfoType" ng-options="i as i for i in vm.accountInfoTypes" required="required"></select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Gateway Services:</label>
+                    <div class="col-sm-9">
+                        <!--<select type="text" class="form-control " name="paymentGatewayService" ng-model="vm.transaction.paymentGatewayService" ng-options="i as i for i in vm.paymentGatewayServices"></select>-->
+                        <select type="text" class="form-control " name="accountType" ng-model="vm.selectedAccountInfo" ng-options="i as i.text for i in vm.accountInfos" required="required" ng-change="vm.accountInfoChanged()"></select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Transaction Number:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="transactionNumber" ng-model="vm.transaction.transactionNumber" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Transaction Date:</label>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" name="transactionDate" ng-model="vm.transactionDate" />
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="form-horizontal  biz-boxed">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Sl #</th>
+                                <th>Product </th>
+                                <th>Quantity</th>
+                                <th>Total Price</th>
+                                <th>Paid</th>
+                                <th>Due</th>
+                                <th>Newly Paid</th>
+                                <th>Updated Due</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.models track by $index">
+                                <td>{{$index + 1}}</td>
+                                <td>{{p.productName}}</td>
+                                <td>{{p.quantity}}</td>
+                                <td>{{p.totalPrice}}</td>
+                                <td>{{p.paid}}</td>
+                                <td>{{p.due}}</td>
+                                <td><input type="number" ng-model="p.newlyPaid" /></td>
+                                <td><span>{{p.due - p.newlyPaid}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-inline btn-success" ng-click="vm.save()">Save</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-inline btn-danger" ng-click="vm.reset()" ng-if="false">Reset</button>
+                    </div>
+                    <div class="col-sm-8">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

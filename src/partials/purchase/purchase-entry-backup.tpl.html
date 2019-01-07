@@ -1,0 +1,130 @@
+﻿<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border">New Purchase</h5>
+    <div class="row">
+        <div class="col col-lg-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="form-label">Supplier</label>
+                    <select class="form-control" ng-model="vm.model.supplierId" ng-options="p.id as p.text for p in vm.suppliers" ng-change="vm.supplierChanged()"></select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Filter Product</label>
+                    <input type="text" class="form-control" name="ProductFilter" ng-model="vm.productFilter" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Product Details ({{(vm.productDetails|filter: vm.productFilter).length}})</label>
+                    <select type="text" class="form-control" name="ProductPrice" ng-model="vm.purchaseDetail.productDetail" required="required" ng-options="p.data as p.text for p in vm.productDetails | filter: vm.productFilter" ng-change="vm.getPriceAndName()"></select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input type="text" readonly="readonly" class="form-control" name="Price" ng-model="vm.purchaseDetail.productDetail.name" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Price</label>
+                    <input ng-disabled="true" type="number" class="form-control" name="Price" ng-model="vm.purchaseDetail.productDetail.costPrice" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Quantity</label>
+                    <input type="number" class="form-control" name="Quantity" ng-model="vm.purchaseDetail.quantity" ng-blur="vm.purchaseDetail.totalAmount=vm.purchaseDetail.quantity*vm.purchaseDetail.productDetail.costPrice" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Total Amount</label>
+                    <input type="number" class="form-control" name="totalAmount" ng-model="vm.purchaseDetail.totalAmount" ng-disabled="true" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label"></label>
+                    <button type="button" class="btn btn-info" ng-click="vm.addToCart()">Add to Cart</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col col-lg-12">
+            <div class="form-horizontal">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Unit Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="p in vm.model.purchaseDetails track by $index" ng-click="vm.editCart(p)" style="cursor: alias">
+                            <td>{{$index + 1}}</td>
+                            <td>{{p.productDetail.name}}</td>
+                            <td>{{p.productDetail.costPrice}}</td>
+                            <td>{{p.quantity}}</td>
+                            <td>{{p.totalAmount}}</td>
+                            <td>
+                                <a class="glyphicon glyphicon-remove" style="cursor: pointer;" ng-click="vm.removeFromCart(p)"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{vm.model.totalAmount}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <label class="control-label">Order Number</label>
+                    <input type="text" class="form-control" name="CourierNo" ng-model="vm.model.orderNumber" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Product Amount</label>
+                    <input type="number" class="form-control" name="CourierNo" ng-model="vm.model.productAmount" readonly="readonly" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Other Amount</label>
+                    <input type="number" class="form-control" name="CourierNo" ng-model="vm.model.otherAmount" ng-blur="vm.model.totalAmount = vm.model.productAmount + vm.model.otherAmount" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Total</label>
+                    <input type="number" readonly="readonly" class="form-control" name="Memo" ng-model="vm.model.totalAmount" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Discount</label>
+                    <input type="number" class="form-control" name="Memo" ng-model="vm.model.discountAmount" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Paid</label>
+                    <input type="number" class="form-control" name="Memo" ng-model="vm.model.paidAmount" ng-blur="vm.model.dueAmount = vm.model.totalAmount-vm.model.discountAmount-vm.model.paidAmount" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Due</label>
+                    <input type="number" class="form-control" name="Memo" ng-model="vm.model.dueAmount" readonly="readonly" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Shipping Provider</label>
+                    <input type="text" class="form-control" name="Memo" ng-model="vm.model.shippingProvider" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Shipment Tracking No.</label>
+                    <input type="text" class="form-control" name="Memo" ng-model="vm.model.shipmentTrackingNo" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label">Remarks</label>
+                    <input type="text" class="form-control" name="Memo" ng-model="vm.model.remarks" />
+                </div>
+                <div class="form-group ">
+                    <button type="button" class="btn btn-inline btn-success" ng-click="vm.save()">Save Purchase</button>
+                    <button type="button" class="btn btn-inline btn-info" ui-sref="root.purchases">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

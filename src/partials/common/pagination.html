@@ -1,0 +1,52 @@
+﻿<div class="fixed-table-pagination" style="display: block;" ng-init="vm.displayKeys=false;vm.showManageColumnsButton=true;">
+    <div class="pull-left pagination-detail">
+        <input type="button" class="btn btn-info" value="Load All {{vm.totalCount}}" ng-click="vm.searchRequest.page=-1;vm.search();" ng-hide="vm.totalCount==0"/>
+        <button class="btn btn-default btn-info" ng-csv="vm.csvModels" csv-header="vm.headers" filename="data.csv" field-separator="," decimal-separator="."  lazy-load="true" >Export to CSV</button>
+        <button ng-hide="false" class="btn btn-default btn-info" ng-click="vm.excelDownload()">Excel</button>
+        <button class="btn btn-default btn-info" ng-show="vm.showManageColumns" ng-click="vm.displayKeys = !vm.displayKeys;">Manage Columns</button>
+    </div>
+    <div class="pull-right pagination" ng-show="vm.searchRequest.page==-1">
+        <div class="pull-left pagination-detail">
+            <span class="pagination-info">Showing {{vm.totalCount}} rows</span>
+            <input type="button" class="btn btn-block" value="Reset" ng-click="vm.searchRequest.page=1;vm.search();" />
+        </div>
+    </div>
+    <div class="pull-right pagination" ng-hide="vm.searchRequest.page==-1">
+        <div class="pull-left pagination-detail">
+            <span class="pagination-info">Showing {{(vm.searchRequest.page-1)*10+1}} to {{(vm.searchRequest.page)*10}} <span ng-hide="vm.totalCount==0"> of {{vm.totalCount}} rows</span></span>            
+        </div>
+        <ul class="pagination">
+            <li class="page-pre" ng-if="vm.searchRequest.page>2">
+                <a href="javascript:void(0)" ng-click="vm.goto(1)"><i class="fa fa-angle-double-left" style="
+                    font-weight: 600;
+                    font-size: 24px;
+                "></i></a>
+            </li>
+            <li class="page-pre" ng-if="vm.searchRequest.page>2">
+                <a href="javascript:void(0)" ng-click="vm.goto(vm.searchRequest.page-2)"><i class="font-icon font-icon-arrow-left"></i></a>
+            </li>
+            <li class="page-number" ng-if="vm.searchRequest.page>1"><a href="javascript:void(0)" ng-click="vm.goto(vm.searchRequest.page-1)">{{vm.searchRequest.page-1}}</a></li>
+
+            <li class="page-number active"><a href="javascript:void(0)" ng-click="vm.goto(vm.searchRequest.page)">{{vm.searchRequest.page}}</a></li>
+
+            <li class="page-number" ng-if="(vm.searchRequest.totalPage-vm.searchRequest.page)>0"><a href="javascript:void(0)" ng-click="vm.goto(vm.searchRequest.page+1)">{{vm.searchRequest.page + 1}}</a></li>
+            <li class="page-next" ng-if="(vm.searchRequest.totalPage-vm.searchRequest.page)>1"><a href="javascript:void(0)" ng-click="vm.goto(vm.searchRequest.page+2)"><i class="font-icon font-icon-arrow-right"></i></a></li>
+        </ul>
+    </div>
+</div>
+<div class="fixed-table-pagination" ng-show="vm.displayKeys">    
+    <div class="container">
+        <div class="form-group">
+            <button class="btn btn-default btn-success" ng-click="vm.updateKeys(); vm.displayKeys=false;">Save and Close</button>
+        </div>
+    </div>
+    <div class="container">
+        <!--<ul class="list-group">
+            <li class="list-group-item" ng-repeat="k in vm.keys">{{k.key}}</li><input type="checkbox" ng-model="k.value" class="form-check-input" />
+        </ul>-->
+        <div class="form-check border-default" ng-repeat="k in vm.keys">
+            <input type="checkbox" class="form-check-input" ng-model="k.value" id="{{k.key}}">
+            <label class="form-check-label" for="{{k.key}}">{{k.key}}</label>
+        </div>
+    </div>
+</div>

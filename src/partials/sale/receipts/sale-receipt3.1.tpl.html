@@ -1,0 +1,148 @@
+﻿<button type="button" class="btn btn-inline" ng-click="vm.back()"><</button>
+<button type="button" class="btn btn-inline" ng-click="vm.print()">Print</button>
+<div class="container" id="receipt" style="background: white">
+    <div class="box-typical box-typical-padding">
+        <div class="row" style="line-height: 1.0">
+            <div class="col col-xs-4">&nbsp;</div>
+            <div class="col col-xs-6">
+                <img ng-src="{{vm.model.shop.logoUrl}}" class="img-responsive col-xs-8" />
+            </div>
+            <div class="col col-xs-2">&nbsp;</div>
+        </div>
+        <div class="row" style="line-height: 1.0">
+            <div class="col col-xs-12" style="text-align: center;">
+                <h5 style="margin-left: 35px;"><strong><u>Invoice/Bill</u></strong></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-xl-12 col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="table-responsive" align="center">
+                    <table class="table table-bordered" style="font-size: 14px; line-height: 1.0;">
+                        <tbody>
+                            <tr>
+                                <td colspan="3">Bill No: #<strong>{{vm.model.orderNumber}}</strong></td>
+                                <td rowspan="3" colspan="2" class="text-center">
+                                    <strong>
+                                        {{vm.model.shop.website}}<br />
+                                        {{vm.model.shop.facebook}}<br />
+                                        {{vm.model.shop.email}}<br />
+                                        {{vm.model.shop.phone}}
+                                    </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Date: <strong>{{vm.today | date}}</strong> </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <strong>Bill To:</strong><br />
+                                    {{vm.model.customerName}}<br />
+                                    {{vm.model.customerPhone}}<br />
+                                    {{vm.model.address.streetAddress}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col col-xl-12 col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered" style="font-size: 14px; line-height: 1.0;">
+                        <thead>
+                            <tr>
+                                <td><strong>SL</strong></td>
+                                <td><strong>Item Description</strong></td>
+                                <td class="text-center"><strong>Quantity</strong></td>
+                                <td class="text-center"><strong>Price</strong></td>
+                                <td class="text-right"><strong>Amount</strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.model.saleDetails track by $index" ng-hide="p.isReturned" ng-if="p.quantity>0">
+                                <td>{{$index+1}}</td>
+                                <td>{{p.productDetailName}}</td>
+                                <td class="text-center">{{p.quantity}}</td>
+                                <td class="text-center">{{p.salePricePerUnit}}</td>
+                                <td class="text-right">{{p.total}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><strong>Product Total</strong></td>
+                                <td class="text-center">{{vm.totalQuantity}}</td>
+                                <td></td>
+                                <td class="text-right">{{vm.model.productAmount}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" colspan="4"><strong>Delivery Charge</strong></td>
+                                <td class="text-right">{{vm.model.shippingAmount}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" colspan="4"><strong>Total</strong></td>
+
+                                <td class="text-right">{{vm.model.totalAmount}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" colspan="4"><strong>Discount</strong></td>
+
+                                <td class="text-right">{{vm.model.discountAmount}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right" colspan="4"><strong>Payable</strong></td>
+                                <td class="text-right">{{vm.model.payableTotalAmount}}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left" rowspan="4" colspan="2"><strong>Note: &nbsp; {{vm.model.customerNote}}</strong></td>
+                                <td class="text-right" colspan="2"><strong>Paid</strong></td>
+                                <td class="text-right"><strong>{{vm.model.paidAmount}}</strong></td>
+
+                            </tr>
+                            <tr>
+
+                                <td class="text-right" colspan="2"><strong>Net Due</strong></td>
+                                <td class="text-right"><strong>{{vm.model.dueAmount}}</strong></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td class="text-right" colspan="2"><strong>Previouse Due</strong></td>
+
+                                <td class="text-right"><strong>{{vm.model.customer.totalDue - vm.model.dueAmount }}</strong></td>
+                            </tr>
+                            <tr>
+
+                                <td class="text-right" colspan="2"><strong>Customer Total Due</strong></td>
+
+                                <td class="text-right"><strong>{{vm.model.customer.totalDue }}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="row" style="line-height: 1.0;font-size: 14px;">
+            <br />
+            <br />
+            <div class="col col-lg-2 col-md-2 col-sm-2 col-xs-2">&nbsp;</div>
+            <div class="col col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <br />
+                &nbsp;&nbsp;&nbsp;<strong>Receiver Signature</strong>
+            </div>
+            <div class="col col-lg-2 col-md-2 col-sm-2 col-xs-2">&nbsp;</div>
+            <div class="col col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <br />
+                &nbsp;&nbsp;&nbsp;<strong> For {{vm.model.shop.name}}</strong>
+            </div>
+
+        </div>
+        <div class="row" style="line-height: 1.0 ;font-size: 14px;">
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+                <strong>***Thanks for shopping with us.</strong>
+            </div>
+        </div>
+    </div>
+</div>

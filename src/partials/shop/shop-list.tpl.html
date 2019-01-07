@@ -1,0 +1,55 @@
+﻿
+<div class="box-typical box-typical-padding">
+
+    <h5 class="m-t-lg with-border">Shop List</h5>
+
+    <div class="form-horizontal">
+        <form ng-submit="vm.search()">
+            <div class="form-group row">
+                <div class="col col-sm-6">
+                    <div ng-include="'partials/common/search-box.html'"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="bootstrap-table">
+            <div class="fixed-table-container">
+                <div class="fixed-table-body">
+                    <table id="table-edit" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th width="1">
+                                #
+                            </th>
+                            <th>Name</th>
+                            <th>Expiry Date</th>
+                            <th class="table-icon-cell">
+                                <i class="font-icon font-icon-phone"></i>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="p in vm.models track by $index" ui-sref="root.shop({id:p.id})"  style="cursor: pointer">
+                            <td>
+                                <span class="tabledit-span tabledit-identifier">{{$index + 1}}</span>
+                            </td>
+                            <td class="tabledit-view-mode">
+                                <span class="tabledit-span">{{p.name}}</span>
+                            </td>
+                            <td class="color-blue-grey-lighter tabledit-view-mode">
+                                <span class="tabledit-span">{{p.expiryDate | date}}</span>
+                            </td>
+                            <td class="table-icon-cell">{{p.phone}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-include="'partials/common/pagination.html'"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
