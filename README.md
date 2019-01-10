@@ -1,4 +1,7 @@
 # AngularJS(1.5) TypeScript Client of BizBook365 ERP
+
+[![Join the chat at https://gitter.im/bizbook-client/community](https://badges.gitter.im/bizbook-client/community.svg)](https://gitter.im/bizbook-client/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 The client repository of bizbook client. Used AngularJS 1.5 with TypeScript
 
 ## Professional help and support
