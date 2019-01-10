@@ -1,0 +1,7 @@
+﻿<div class="input-group">
+    <input type="text" class="form-control" aria-describedby="keyword" placeholder="Search" ng-model="vm.searchRequest.keyword" ng-model-options="{debounce: 1000}" ng-change="vm.saveSearchKeyword();vm.search()">
+    
+    <span class="input-group-addon " id="keyword" style="cursor: pointer" ng-click="vm.search()">
+        <span class="glyphicon glyphicon-search"></span>
+    </span>
+</div>

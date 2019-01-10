@@ -1,0 +1,88 @@
+﻿<div class="box-typical box-typical-padding">
+    <div class="row">
+        <div class="col col-sm-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title with-border">
+                        <a class="glyphicon glyphicon-menu-left" ng-click="vm.back()"></a> Money Transfer
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" ng-submit="vm.save()">
+                        <fieldset ng-disabled="vm.isUpdateMode">
+                            <div class="form-group row">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction Date:</label>
+                                <div class="col col-sm-3" ng-hide="vm.isUpdateMode">
+                                    <input type="date" id="transicationDate" name="transicationDate" class="form-control" ng-model="vm.transactionDate" ng-change="vm.dateChanged()" />
+                                </div>
+                                <div class="col col-sm-6">
+                                    <input type="text" readonly class="form-control" ng-model="vm.model.transactionDate" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Source AccountInfo:</label>
+                                <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                    <select type="text" class="form-control " name="accountType" ng-model="vm.selectedAccountInfo" ng-options="i as i.text for i in vm.accountInfos" required="required" ng-change="vm.accountInfoChanged()"></select>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Destination AccountInfo:</label>
+                                <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                    <select type="text" class="form-control " name="accountType" ng-model="vm.selectedAccountInfo" ng-options="i as i.text for i in vm.accountInfos" required="required" ng-change="vm.accountInfoChanged()"></select>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Amount:</label>
+                                <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                    <input type="number" class="form-control" name="amount" ng-model="vm.model.amount" />
+                                </div>
+                            </div>
+                            <div class="form-group row" ng-hide="true">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Gateway Service:</label>
+                                <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                    <input type="text" class="form-control" name="transactionService" ng-model="vm.model.paymentGatewayService" readonly />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction Number:</label>
+                                <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                    <input type="text" class="form-control" name="transactionNumber" ng-model="vm.model.transactionNumber" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Person Name:</label>
+                                <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                    <input type="text" class="form-control" name="contactPersonName" ng-model="vm.model.contactPersonName" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Phone:</label>
+                                <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                    <input type="text" class="form-control" name="contactPersonPhone" ng-model="vm.model.contactPersonPhone" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Remarks:</label>
+                                <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                    <input type="text" class="form-control" name="remarks" ng-model="vm.model.remarks" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">&nbsp;</label>
+                                <div class="col-sm-8">
+                                    <button type="submit" class="btn btn-inline btn-success" ng-if="!vm.isUpdateMode">Save</button>
+                                    <button type="submit" class="btn btn-inline btn-success" ng-if="vm.isUpdateMode">Update</button>
+                                    <a class="btn btn-inline btn-info" ui-sref="root.transactions">Back</a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

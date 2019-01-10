@@ -1,0 +1,148 @@
+﻿<!--<div class="container">
+
+    <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Profile</div>
+            </div>
+            <div class="panel-body">
+                <form id="profileform" name="profileform" class="form-horizontal biz-boxed" role="form" novalidate>
+                    <fieldset ng-disabled="vm.disable">
+                        <div class="form-group">
+                            <label for="firstname" class="col-md-3 control-label">Name</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name" ng-model="vm.user.firstName" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname" class="col-md-3 control-label">Role</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Role" required ng-model="vm.user.roleName" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="col-md-3 control-label">Phone</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="lastname" id="phone" placeholder="Phone Number" required ng-model="vm.user.phone" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-md-3 control-label">Username</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Email Address" required ng-model="vm.user.userName" readonly="readonly">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="oldpassword" class="col-md-3 control-label">Old Password</label>
+                            <div class="col-md-9">
+                                <input id="oldpassword" type="password" class="form-control" name="oldpassword" placeholder="Old Password" required ng-model="vm.changePasswordModel.oldPassword">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newpassword" class="col-md-3 control-label">New Password</label>
+                            <div class="col-md-9">
+                                <input id="newpassword" type="password" class="form-control" name="newpassword" placeholder="New Password" required ng-model="vm.changePasswordModel.newPassword">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmpassword" class="col-md-3 control-label">Retype Password</label>
+                            <div class="col-md-9">
+                                <input id="confirmpassword" type="password" class="form-control" name="confirmpassword" placeholder="Retype Password" required ng-model="vm.changePasswordModel.confirmPassword">
+                            </div>
+                        </div>
+                        <div class="form-group" ng-hide="vm.disable">
+
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="button" ng-disabled="vm.changePasswordModel.newPassword.length==0 || (vm.changePasswordModel.newPassword!=vm.changePasswordModel.confirmPassword)" ng-click="vm.update()" class="btn btn-primary btn-block btn-lg">Update Password</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>-->
+
+<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border">User Profile Information :</h5>
+    <div class="row">
+        <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+            <div class="form-horizontal biz-boxed">
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="firstname" class="control-label">Name:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter First Name" ng-model="vm.user.firstName" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="lastname" class="control-label">Role:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Role" required ng-model="vm.user.roleName" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="lastname" class="control-label">Phone Number:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="lastname" id="phone" placeholder="Phone Number" required ng-model="vm.user.phone" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="lastname" class="control-label">UserName:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter UserName" required ng-model="vm.user.userName" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="lastname" class="control-label">UserName:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter UserName" required ng-model="vm.user.userName" readonly="readonly">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="lastname" class="control-label">Old Password:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input id="oldpassword" type="password" class="form-control" name="oldpassword" placeholder="Old Password" required ng-model="vm.changePasswordModel.oldPassword">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="lastname" class="control-label">New Password:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input id="newpassword" type="password" class="form-control" name="newpassword" placeholder="New Password" required ng-model="vm.changePasswordModel.newPassword">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col col-md-3">
+                        <label for="lastname" class="control-label">Retype Password:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input id="confirmpassword" type="password" class="form-control" name="confirmpassword" placeholder="Retype Password" required ng-model="vm.changePasswordModel.confirmPassword">
+                    </div>
+                </div>
+                <div class="form-group row" ng-hide="vm.disable">
+                    <div class="col col-md-4"></div>
+                    <div class="col col-md-4">
+                        <button type="button" ng-disabled="vm.changePasswordModel.newPassword.length==0 || (vm.changePasswordModel.newPassword!=vm.changePasswordModel.confirmPassword)" ng-click="vm.update()" class="btn btn-success btn-block btn-md">Update Password</button>
+                    </div>
+                    <div class="col col-md-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

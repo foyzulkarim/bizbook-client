@@ -1,0 +1,79 @@
+﻿<button type="button" class="btn btn-inline" ng-click="vm.back()"><</button>
+<button type="button" class="btn btn-inline" ng-click="vm.print()">Print</button>
+<div class="container biz-receipt-line-height" id="receipt" style="background: white">
+    <div class="box-typical box-typical-padding">
+       <div class="row">
+           <div class="col col-xl-6">
+                <img ng-src="{{vm.model.shop.logoUrl}}" class="img-responsive" style="height: 100px;" />
+           </div>
+           <div class="col col-xl-6 text-right">
+                <h5>
+                    <ui>BizBook365.com</ui>
+                </h5>
+                <p>
+                    Dhanmondi
+                    Dhaka, Bangladesh 1209
+                </p>
+                <p>
+                    Phone: +8801968569097
+                </p>
+                <p>
+                    <span>Web:http://www.codecoopers.com</span>
+                </p>
+                <p><span>Email: codecoopers@gmail.com</span></p>
+           </div>
+       </div>
+        <div class="row">
+            <div class="col col-xs-12 text-center " >
+                <h5><strong><ui>Money Receipt</ui></strong></h5>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:  20px;" >
+            <div class="col col-xl-6 col-md-4 col-lg-6 col-sm-6 col-xs-6">
+                <span> SL No.{{vm.model.orderNumber}}</span>
+            </div>
+            <div class="col col-xl-6 col-md-6 col-lg-6 col-sm-6 col-xs-6 text-right">
+               <span>Date: {{vm.startDate | date}}</span>
+               
+            </div>
+        </div>
+       
+
+        <div class="row">
+            <div class="col col-xl-12 col-md-12 col-lg-12 col-sm-12 col-xs-12" style="margin-top: 10px;">
+                <p>Received with Thanks from <span>{{vm.model.contactPersonName}}</span> </p>
+                <p>Amount of Taka <span></span> </p>
+               
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col col-xl-4 col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                <p>By {{vm.model.transactionMediumName}}</p>
+            </div>
+            <div class="col col-xl-8 col-md-8 col-lg-8 col-sm-8 col-xs-8">
+                <p>Date: {{vm.model.created | date}} </p>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col col-xl-4 col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                <p>For the purpose of : {{vm.model.accountHeadName}}</p>
+            </div>
+            <div class="col col-xl-8 col-md-8 col-lg-8 col-sm-8 col-xs-8">
+                <p>Contact: {{vm.model.contactPersonPhone}} </p>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col col-xl-4 col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                <p>Taka {{vm.model.amount}}</p>
+            </div>
+            <div class="col col-xl-4 col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                <p>Received By {{vm.model.createdBy}}</p>
+            </div>
+            <div class="col col-xl-4 col-md-4 col-lg-4 col-sm-4 col-xs-4">
+               
+                <p>Authorized Signature</p>
+            </div>
+        </div>
+    </div>
+   
+</div>

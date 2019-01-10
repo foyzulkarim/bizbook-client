@@ -1,0 +1,313 @@
+﻿<div class="row">
+    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a showtab="" href="#tab1Products" data-toggle="tab">Products</a></li>
+                    <li><a showtab="" href="#tab2Customers" data-toggle="tab">Customers</a></li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1Products">
+                        <div class="panel panel-info">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Sales</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <form ng-submit="vm.searchProduct()">
+                                        <div class="col col-xs-9 col-sm-7 col-md-7 col-lg-7">
+                                            <input class="form-control input-field" type="text" placeholder="Search" ng-model="vm.searchRequest.keyword" />
+                                        </div>
+                                        <div class="col col-xs-3 col-sm-2 col-md-2 col-lg-2">
+                                            <button type="submit" class="btn btn-default pull-left"><span class="glyphicon glyphicon-search"></span></button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <!-- Table -->
+                            <table class="table table-responsive table-bordered table-hover">
+                                <thead>
+                                    <tr class="active">
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>On Hand</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.models track by $index"  ng-class="{'selected':$index == vm.selectedRow}" ng-click="vm.detail(p,$index)" style="cursor: alias">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{p.product.name}}</td>
+                                        <td>{{p.product.salePrice}}</td>
+                                        <td>{{p.onHand}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Detail</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Name :</label>
+                                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <input type="text" class="form-control" name="Name" ng-model="vm.model.product.name" required="required" readonly="readonly" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Price :</label>
+                                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <input type="text" readonly="readonly" class="form-control" name="SalePrice" ng-model="vm.model.product.salePrice" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Quantity :</label>
+                                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <input type="number" class="form-control" name="Quantity" ng-model="vm.productCartModel.quantity" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">&nbsp;</label>
+                                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <button type="button" class="btn btn-floating btn-info" ng-click="vm.addToCart(vm.model,vm.productCartModel.quantity)">Add to Cart</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab2Customers">
+                        <div class="panel panel-info">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Customers</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <form ng-submit="vm.customerSearch()">
+                                        <div class="col col-xs-9 col-sm-7 col-md-7 col-lg-7">
+                                            <input class="form-control input-field" type="text" placeholder="Search" ng-model="vm.searchRequest.keyword" />
+                                        </div>
+                                        <div class="col col-xs-3 col-sm-2 col-md-2 col-lg-2">
+                                            <button type="submit" class="btn btn-default pull-left"><span class="glyphicon glyphicon-search"></span></button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <!-- Table -->
+                            <table class="table table-responsive table-bordered table-hover">
+                                <thead>
+                                    <tr class="active">
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.customerModels track by $index" ng-class="{'selected':$index == vm.selectedCustomerRow}" ng-click="vm.customerDetail(p,$index)" style="cursor: alias">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{p.name}}</td>
+                                        <td>{{p.phone}}</td>
+                                        <td>{{p.point}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Detail</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Membarship Card No :</label>
+                                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <input type="text" class="form-control" name="Card" ng-model="vm.customerModel.membarshipCardNo" required="required" readonly="readonly" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Name :</label>
+                                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <input type="text" class="form-control" name="Name" ng-model="vm.customerModel.name" required="required" readonly="readonly" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Phone :</label>
+                                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <input type="text" readonly="readonly" class="form-control" name="Phone" ng-model="vm.customerModel.phone" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Points :</label>
+                                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <input type="text" class="form-control" name="Point" ng-model="vm.customerModel.point" readonly="readonly" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">&nbsp;</label>
+                                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <button type="button" class="btn btn-floating btn-danger" ng-click="vm.setAnnonymous()">Reset to annonymous customer</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h3 class="panel-title">Cart</h3>
+            </div>
+            <!-- Table -->
+            <table class="table table-responsive table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Unit Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in vm.cart.products track by $index" ng-click="vm.editCart(p)" style="cursor: alias">
+                        <td>{{$index + 1}}</td>
+                        <td>{{p.stock.product.name}}</td>
+                        <td>{{p.stock.product.salePrice}}</td>
+                        <td>{{p.quantity}}</td>
+                        <td>{{p.total()}}</td>
+                        <td>
+                            <a class="glyphicon glyphicon-remove" style="cursor: pointer;" ng-click="vm.removeFromCart(p)"></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="panel-footer form">
+                <div class="form-group">
+                    <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">Total</label>
+                    <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                        <span>{{vm.cart.itemTotal}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">Discount:</label>
+                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <input type="number" class="form-control" name="Discount" ng-model="vm.cart.discount" ng-blur="vm.applyDiscount()" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">Total:</label>
+                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <input type="number" readonly="readonly" class="form-control" name="Total" ng-model="vm.cart.total"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">Customer:</label>
+                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <input type="text" readonly="readonly" class="form-control" name="Total" ng-model="vm.customerModel.name"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">SaleType:</label>
+                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <select class="form-control" ng-model="vm.cart.saleType">
+                        <option selected="selected">Cash</option>
+                        <option>Card</option>                      
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" ng-show="vm.cart.saleType=='Card' || vm.cart.saleType=='Both'">
+                <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">Card:</label>
+                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <select class="form-control" ng-model="vm.cart.card">
+                        <option>Master</option>
+                        <option>Visa</option>
+                        <option>Amex</option>
+                        <option>Nexas</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="vm.cart.saleType=='Card' || vm.cart.saleType=='Both'">
+                <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">TrxNo:</label>
+                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <input type="text" class="form-control" name="TrxNo" ng-model="vm.cart.trxNo" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">Paid:</label>
+                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <input type="number" class="form-control" name="Paid" ng-model="vm.cart.paid" ng-blur="vm.getReturn()"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">PointsPaid:</label>
+                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <input type="number" class="form-control" name="PointsPaid" ng-model="vm.cart.pointsPaid" ng-blur="vm.getReturn()"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">Return:</label>
+                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <input type="number" class="form-control" name="Return" ng-model="vm.cart.return" readonly="readonly" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col col-xs-12 col-sm-2 col-md-2 col-lg-2">Remarks:</label>
+                <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                    <input type="text" class="form-control" name="Remarks" ng-model="vm.cart.remarks" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <button type="button" class="btn btn-floating btn-info" ng-click="vm.save()">Save</button>
+                    <button type="button" class="btn btn-floating btn-info" ng-click="vm.activate()">Reset</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

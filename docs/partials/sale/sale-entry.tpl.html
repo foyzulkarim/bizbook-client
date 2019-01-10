@@ -1,0 +1,310 @@
+﻿<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border">New In House Sale #{{vm.model.orderNumber}}</h5>
+    <div class="row">
+        <div class="col col-lg-12">
+            <div class="form-horizontal  biz-boxed">
+                <div class="panel-heading"><h3>Search and Add Products to Cart</h3></div>
+                <div class="form-group row">
+                    <form class="form-horizontal" ng-submit="vm.loadProductDetails()">
+                        <div class="col col-lg-10">
+                            <input class="form-control" type="text" placeholder="Search your product here" ng-model="vm.productDetailSearchRequest.keyword" ng-model-options="{ debounce: 1000 }" ng-change="vm.loadProductDetails()" />
+                        </div>
+                        <div class="col col-lg-2">
+                            <button type="submit" class="btn btn-default pull-left"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel panel-heading">
+                    <h4>Search result (Item found : {{vm.productDetails.length}})</h4>
+                </div>
+                <div class="panel panel-body">
+                    <div class="table-responsive">
+                        <table id="table-edit" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>OnHand</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="p in vm.productDetails track by $index"
+                                    ng-class="{'selected':$index == vm.selectedProduct}"
+                                    style="cursor: alias">
+                                    <!--ng-click="vm.selectedProduct = $index; vm.setProductDetail(p)"-->
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{p.name}}</td>
+                                    <td>{{p.salePrice}}</td>
+                                    <td>{{p.onHand}}</td>
+                                    <td><button type="button" class="btn btn-inline btn-info" ng-click="vm.addToCart2(p)">Add to Cart</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel biz-boxed">
+                <div class="panel-heading"><h4>Shopping Cart</h4></div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <table id="table-edit" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Unit Price</th>
+                                        <th></th>
+                                        <th>Quantity</th>
+                                        <th></th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.model.saleDetails track by $index" style="cursor: alias">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{p.name}}</td>
+                                        <!--<td>{{p.salePricePerUnit}}</td>-->
+                                        <td ng-hide="vm.salePricePerUnitIsFloat"><label>{{p.salePricePerUnit}}</label><a href="javascript:void(0)" ng-click="vm.salePricePerUnitIsFloat=true">Edit</a></td>
+                                        <td ng-show="vm.salePricePerUnitIsFloat"><input type="text" ng-model="p.salePricePerUnit" /><a href="javascript:void(0)" ng-click="vm.salePricePerUnitIsFloat=false;vm.updateQuantity($index)">OK</a></td>
+                                        <td><button class="btn btn-danger glyphicon glyphicon-minus-sign" ng-click="vm.decreaseFromCart($index)"></button></td>
+                                        <td ng-hide="vm.quantityIsFloat"><label>{{p.quantity}}</label><a href="javascript:void(0)" ng-click="vm.quantityIsFloat=true">Edit</a></td>
+                                        <td ng-show="vm.quantityIsFloat"><input type="text" ng-model="p.quantity" /><a href="javascript:void(0)" ng-click="vm.quantityIsFloat=false;vm.updateQuantity($index)">OK</a></td>
+                                        <td><button class="btn btn-success glyphicon glyphicon-plus-sign" ng-click="vm.increaseToCart($index)"></button></td>
+                                        <td>{{p.total}}</td>
+                                        <td>
+                                            <a class="glyphicon glyphicon-remove" style="cursor: pointer;" ng-click="vm.removeFromCart($index)"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{vm.model.productAmount}}</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel biz-boxed">
+                <div class="panel-heading"><h4>Payments (How customer is paying) {{vm.model.totalAmount}}</h4></div>
+                <div class="panel-body">
+                    <div class="form-group row">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Amount:</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="number" class="form-control" name="amount" ng-model="vm.transaction.amount" ng-keypress="vm.transaction.amount>0 && $event.keyCode === 13 && vm.addTransaction()" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction Medium</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <select type="text" class="form-control " name="Transactiontype" ng-model="vm.transaction.transactionMedium" ng-options="i as i for i in vm.transactionMediums" required="required"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-hide="true">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction Medium:</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="transactionMedium" ng-model="vm.transaction.transactionMedium" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction Services:</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <select type="text" class="form-control " name="Transactiontype" ng-model="vm.transaction.paymentGatewayService" ng-options="i as i for i in vm.paymentGatewayServices"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row" ng-hide="true">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction Service:</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="transactionService" ng-model="vm.transaction.paymentGatewayService" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction Number:</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="transactionNumber" ng-model="vm.transaction.transactionNumber" ng-keypress="vm.transaction.amount>0 && $event.keyCode === 13 && vm.addTransaction()" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Remarks:</label>
+                        <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                            <input type="text" class="form-control" name="remarks" ng-model="vm.transaction.remarks" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn" ng-click="vm.addTransaction()">Add</button>
+                    </div>
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="1">#</th>
+                                        <th>Tr. Medium</th>
+                                        <th>Tr. Service</th>
+                                        <th>Tr. Number</th>
+                                        <th>Amount</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.model.transactions track by $index">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{p.transactionMedium}}</td>
+                                        <td>{{p.paymentGatewayService}}</td>
+                                        <td>{{p.transactionNumber}}</td>
+                                        <td>{{p.amount}}</td>
+                                        <td>
+                                            <a class="glyphicon glyphicon-remove" style="cursor: pointer;"
+                                               ng-click="vm.removeTransaction($index)"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{vm.model.paidAmount}}</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-lg-12">
+            <div class="form-horizontal">
+                <div class="panel panel-info biz-boxed">
+                    <div class="panel-heading"><h3>Customer Information</h3></div>
+                    <div class="panel-body">
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="phone" ng-model="vm.customerSearchRequest.keyword" ng-model-options="{ debounce: 1000 }" ng-change="vm.loadCustomers()" placeholder="Enter your keyword" />
+                                </div>
+                                <div class="col col-sm-1">
+                                    <button type="submit" class="btn btn-default pull-left" ng-click="vm.loadCustomers()"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                                <div class="col col-sm-3">
+                                    <button type="submit" class="btn btn-default pull-left" ng-click="vm.resetOrderCustomer()"><span class="glyphicon glyphicon-remove"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="table-responsive">
+                                <table id="table-edit" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Phone</th>
+                                            <th>Membership No</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="c in vm.customers track by $index"
+                                            ng-class="{'selected':$index == vm.customer}"
+                                            ng-click="vm.customer=c">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{c.name}}</td>
+                                            <td>{{c.phone}}</td>
+                                            <td>{{c.totalDue}}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label class="control-label ">Name:</label>
+                            <input type="text" class="form-control" name="name" ng-model="vm.customer.name" ng-disabled="vm.customer.membershipCardNo.length>0" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label ">Phone:</label>
+                            <input type="text" class="form-control" name="name" ng-model="vm.customer.phone" ng-disabled="vm.customer.membershipCardNo.length>0" />
+                        </div>
+                        <div class="form-group " ng-show="vm.customer.point>0">
+                            <label class="control-label ">Point:</label>
+                            <input type="text" class="form-control" name="name" ng-model="vm.customer.point" readonly />
+                        </div>
+                        <div class="form-group " ng-show="vm.customer.membershipCardNo.length>0">
+                            <label class="control-label ">Membership Card No:</label>
+                            <input type="text" class="form-control" name="address" ng-model="vm.customer.membershipCardNo" disabled="disabled" />
+                        </div>
+                        <div class="form-group " ng-show="vm.customer.totalDue>0">
+                            <label class="control-label ">Total Due:</label>
+                            <input type="text" class="form-control" name="address" ng-model="vm.customer.totalDue" disabled="disabled" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel biz-boxed">
+                    <div class="panel-heading"><h3>Summary of the Sale</h3></div>
+                    <div class="panel-body">
+                        <div class="form-group ">
+                            <label class="control-label ">Product Total:</label>
+                            <input type="number" readonly="readonly" class="form-control" name="Total" ng-model="vm.model.productAmount" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label ">Discount:</label>
+                            <input type="number" class="form-control" name="Discount" ng-model="vm.model.discountAmount" ng-blur="vm.applyDiscount()" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label ">Payable Total:</label>
+                            <input type="number" readonly="readonly" class="form-control" name="Total" ng-model="vm.model.totalAmount" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label ">Paid:</label>
+                            <input type="number" class="form-control" name="Paid" ng-model="vm.model.paidAmount" readonly="readonly" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label ">Due:</label>
+                            <input type="number" class="form-control" name="Paid" ng-model="vm.model.dueAmount" readonly="readonly" ng-style="vm.model.dueAmount<0 && {'background-color':'lightgreen'} || vm.model.dueAmount>0 && {'background-color':'lightpink'}" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label ">Remarks:</label>
+                            <input type="text" class="form-control" name="Remarks" ng-model="vm.model.remarks" />
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label ">Order Reference Number:</label>
+                            <input type="text" class="form-control" name="OrderRefNumber" ng-model="vm.model.orderReferenceNumber" />
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="form-group ">
+                            <button type="button" class="btn btn-inline btn-success" ng-click="vm.save()" ng-disabled="vm.model.saleDetails.length==0">Save</button>
+                            <button type="button" class="btn btn-inline btn-success" ng-click="vm.saveAndPrint()"
+                                    ng-disabled="vm.model.saleDetails.length==0">
+                                Save And Print
+                            </button>
+                            <button type="button" class="btn btn-inline btn-info" ng-click="vm.activate()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

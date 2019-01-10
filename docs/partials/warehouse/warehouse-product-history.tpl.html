@@ -1,0 +1,77 @@
+﻿<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border"><a class="glyphicon glyphicon-menu-left" ng-click="vm.back()"></a></h5>
+
+    {{vm.data}}
+
+    <div id="supplier-product-history-head">
+        <div class="row">
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-info">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col col-md-6">
+                                    <h3 class="panel-title">Warehouse Product History: 
+                                            <input type="text" ng-model="vm.searchText" placeholder="Search product" class="form-control"/></h3>
+                            </div>
+                            <div class="col col-md-6">
+                                    
+                                            <input type="checkbox" class="form-check-input" ng-model="vm.isProductActive" id="onlyDues" ng-change="vm.getWarehouseHistory()">
+                                            <label class="control-label" for="onlyDues">Actives Only</label>
+                                    
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <!-- Table -->
+                    <div class="table table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product Name</th>
+                                    <th>Starting</th>
+                                    <th>Purchase Quantity</th>
+                                    <th>Transferred In</th>
+                                    <th>Sale Quantity</th>
+                                    <th>Transferred Out</th>
+                                    <th>On Hand</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="p in vm.models | filter:vm.searchText">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{p.productDetail.name}}</td>
+                                    <td>{{p.startingInventory}}</td>
+                                    <td>{{p.purchased}}</td> 
+                                    <td>{{p.transferredIn}}</td>
+                                    <td>{{p.sold}}</td>
+                                    <td>{{p.transferredOut}}</td>
+                                    <td>{{p.onHand}}</td>
+                                </tr>                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-default btn-info"
+                ng-csv="vm.csvModels"
+                csv-header="vm.headers"
+                filename="data.csv"
+                field-separator=","
+                decimal-separator=".">
+            Export to CSV
+        </button>
+        <button ng-hide="false" class="btn btn-default btn-info" ng-click="vm.excelDownloadWithId('supplier-product-history-head')">Excel</button>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

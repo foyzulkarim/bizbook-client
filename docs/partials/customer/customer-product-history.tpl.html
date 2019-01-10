@@ -1,0 +1,91 @@
+﻿<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border"><a class="glyphicon glyphicon-menu-left" ng-click="vm.back()"></a></h5>
+    <div id="coustomer-history-head">
+     
+        <!--<div class="row">
+            <div class="col col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="panel panel-info">
+                    <div class="panel-body">
+                        <h3>Name: {{vm.response.customer.name}}</h3>
+                        <h4>Phone: {{vm.response.customer.phone}}</h4>
+                    </div>
+                    <div class="panel-footer">
+                        <h4>Due: {{vm.response.saleTotal - vm.response.paymentTotal}}</h4>
+                    </div>
+                </div>
+                <br />
+            </div>
+            <div class="col col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+            </div>
+        </div>-->
+        <div class="row">
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-info">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Product History:</h3>
+                    </div>
+                    <div class="text-lg-left">
+                        <input type="text" ng-model="vm.searchModel.$" ng-init="vm.searchText=''" />
+                    </div>
+                  <br />
+                    <!-- Table -->
+                    <div class="table table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product Name</th>
+                                    <th>Quantity</th>
+                                    <th>Avg Unit Price</th>
+                                    <th>Total</th>
+                                    <!--<th>Paid</th>
+                                    <th>Due</th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="p in vm.response.histories  | filter:vm.searchModel:strict">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{p.productName}}</td>
+                                    <td>{{p.quantity}}</td>
+                                    <td>{{p.unitPrice}}</td>
+                                    <td>{{p.total}}</td>
+                                    <!--<td>{{p.paid}}</td>
+                                    <td>{{p.due}}</td>-->
+                                </tr>
+                                <tr>
+                                    <td><h4>Total:</h4></td>
+                                    <td></td>
+                                    <td>{{vm.totalQuantity}}</td>
+                                    <td>{{vm.totalUnitPrice}}</td>
+                                    <td>{{vm.totalPrice}}</td>
+                                    <!--<td></td>
+                                    <td></td>-->
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-default btn-info"
+                ng-csv="vm.csvModels"
+                csv-header="vm.headers"
+                filename="data.csv"
+                field-separator=","
+                decimal-separator=".">
+            Export to CSV
+        </button>
+        <button ng-hide="false" class="btn btn-default btn-info" ng-click="vm.excelDownloadWithId('coustomer-history-head')">Excel</button>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

@@ -1,0 +1,278 @@
+﻿<div class="box-typical box-typical-padding" access-control>
+    <h5 class="m-t-lg with-border"><a class="glyphicon glyphicon-menu-left" ng-click="vm.back()"></a> Order: {{vm.model.orderNumber}}</h5>
+    <div class="row">
+        <div class="col col-sm-6">
+            <div class="form-horizontal biz-boxed">
+                <div class="form-group row">
+                    <label class="control-label col-sm-3">Order Date:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="name" ng-model="vm.model.orderDate | date" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3">Order Number:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="name" ng-model="vm.model.orderNumber" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3">Order Reference Number:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="OrderRefNumber" ng-model="vm.model.orderReferenceNumber" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label  col-sm-3">Customer Name:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="name" ng-model="vm.model.customerName" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Customer Phone:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="phone" ng-model="vm.model.customerPhone" readonly />
+
+                    </div>
+                </div>
+                <fieldset ng-show="vm.model.addressId && vm.model.addressId.length>0">
+                    <div class="form-group row">
+                        <label class="control-label col-sm-3 ">Customer Address:</label>
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control" name="phone" ng-model="vm.model.address.streetAddress" readonly></textarea>
+                        </div>
+                    </div>
+                    <!--<div class="form-group row">
+            <label class="control-label col-sm-3 ">Customer City:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="phone" ng-model="vm.model.address.city" readonly />
+            </div>
+        </div>-->
+                    <div class="form-group row">
+                        <label class="control-label col-sm-3 ">Customer Postcode:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="phone" ng-model="vm.model.address.postCode" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-sm-3">Customer Area</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="area" ng-model="vm.model.address.area" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-sm-3">Customer Thana</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="area" ng-model="vm.model.address.thana" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-sm-3">Customer District</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="area" ng-model="vm.model.address.district" readonly />
+                        </div>
+                    </div>
+
+                </fieldset>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Product:</label>
+
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="Discount" ng-model="vm.model.productAmount" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Other:</label>
+
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="Discount" ng-model="vm.model.otherAmount" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Total:</label>
+
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="Discount" ng-model="vm.model.totalAmount" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Discount:</label>
+
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="Discount" ng-model="vm.model.discountAmount" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Payable Total:</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="Total" ng-model="vm.model.payableTotalAmount" readonly />
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Paid:</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="Paid" ng-model="vm.model.paidAmount" ng-blur="vm.getReturn()" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Due:</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" name="Paid" ng-model="vm.model.dueAmount" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Customer Note:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="notes" ng-model="vm.model.customerNote" readonly="readonly" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3 ">Remarks:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="Remarks" ng-model="vm.model.remarks" placeholder="Please input meaningful note" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3">Order state:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="Next" ng-model="vm.model.currentState.displayText" readonly />
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-inline btn-info" ng-click="vm.nextState()" ng-if="canShow(vm.model.currentState.resource) && vm.showNextState">{{vm.model.currentState.commandText}}</button>
+                    </div>
+                </div>
+                <div class="form-group row" ng-if="canShow('div-assign-deliveryman')">
+                    <label class="control-label col-sm-3">Deliveryman:</label>
+                    <div class="col-sm-9">
+                        <div>
+                            <select type="text" class="form-control " name="Deliveryman" ng-model="vm.model.deliveryman" ng-init="vm.loadDeliverymans()"
+                                    ng-options="i as i.userName for i in vm.deliverymans" required="required" ng-change="vm.deliverymanChanged(vm.model.deliveryman)"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row" ng-if="canShow('div-assign-deliveryman')">
+                    <label class="control-label col-sm-3">Selected Deliveryman:</label>
+                    <div class="col-sm-9">
+                        <div ng-if="vm.model.deliverymanName">
+                            <input type="text" class="form-control" name="Next" ng-model="vm.model.deliverymanName" readonly />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-sm-3">Salesman:</label>
+                    <div class="col-sm-9">
+                        <div ng-if="vm.model.employeeInfoName">
+                            <input type="text" class="form-control" name="Next" ng-model="vm.model.employeeInfoName" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-sm-6">
+            <div class="form-horizontal biz-boxed">
+                <div class="panel-heading"><h5>Products</h5></div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Unit Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.model.saleDetails track by $index" ng-click="vm.editCart(p)" style="cursor: alias">
+                                <td>{{$index + 1}}</td>
+                                <td>{{p.productDetailName}}</td>
+                                <td>{{p.salePricePerUnit}}</td>
+                                <td>{{p.quantity}}</td>
+                                <td>{{p.total}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>{{vm.model.productAmount}}</strong></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-horizontal biz-boxed">
+                <h5>Payments</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Modified</th>
+                                <th>Trx Date</th>
+                                <th>Payment Method</th>
+                                <!--<th>TrxId</th>-->
+                                <th>Amount</th>
+                                <th>Created By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.model.transactions track by $index">
+                                <td>{{$index + 1}}</td>
+                                <td>{{p.created | date}}</td>
+                                <td>{{p.transactionDate | date}}</td>
+                                <td> {{p.transactionMedium}} ({{p.accountInfoTitle}})</td>
+                                <td ng-style="p.accountType=='Income' && {'background-color':'lightgreen'} || p.accountType=='Expense' && {'background-color':'lightpink'}">{{p.amount}}</td>
+                                <td>{{p.createdBy}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td> <strong>{{vm.model.paidAmount}}</strong></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-horizontal biz-boxed">
+                <div class="panel-heading"><h5>Installment Schedules</h5></div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Scheduled Amount</th>
+                                <th>Scheduled Date</th>
+                                <th>Paid Amount  </th>
+                                <th>Paid Date</th>
+                                <th>Transaction Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.model.installment.installmentDetails track by $index">
+                                <td>{{$index + 1}}</td>
+                                <td>{{p.scheduledAmount}}</td>
+                                <td>{{p.scheduledDate | date}}</td>
+                                <td>{{p.paidAmount}}</td>
+                                <td>{{p.remarks}}</td>
+                                <td><a  ui-sref="root.sale-installment-pay({id:vm.model.id})" class="btn btn-success">Pay</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

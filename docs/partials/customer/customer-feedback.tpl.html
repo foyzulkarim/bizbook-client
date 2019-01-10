@@ -1,0 +1,205 @@
+<div class="box-typical box-typical-padding">
+
+    <h5 class="m-t-lg with-border">New Customer Feedback </h5>
+    <div class="row">
+        <div class="col col-lg-12">
+            <div class="panel panel-info biz-boxed">
+                <div class="panel-heading" id="customer-info">
+                    <h3>Customer Information</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group ">
+                        <div class="row">
+                            <div class="col-sm-8" ng-init="vm.setFocusOnSearchBox()">
+                                <input id="txtCustomerSearch" type="text" class="form-control" name="phone" ng-model="vm.customerSearchRequest.keyword"
+                                    ng-model-options="{ debounce: 1000 }" ng-change="vm.loadCustomers()" placeholder="Enter your keyword" />
+                            </div>
+                            <div class="col col-sm-2">
+                                <button type="submit" class="btn btn-default pull-left" ng-click="vm.loadCustomers()"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+
+                            <div class="col col-sm-2">
+                                <button type="submit" class="btn btn-default pull-left" ng-click="vm.resetOrderCustomer()"><span
+                                        class="glyphicon glyphicon-remove"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <table id="table-edit" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Total Due</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="c in vm.customers track by $index" ng-class="{'selected':$index == vm.customer}"
+                                        ng-click="vm.selectCustomer(c)">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{c.name}}</td>
+                                        <td>{{c.phone}}</td>
+                                        <td>{{c.totalDue}}</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-heading" id="customer-info">
+                        <h3>Purchase History</h3>
+                    </div>
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <table id="table-edit" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Order Date</th>
+                                        <th>Order Number</th>
+                                        <th>Purchased</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.model.item1 track by $index" 
+                                     ng-class="{'selected':$index == vm.customerHistory}"ng-click="vm.selectSaleList(p)">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{p.date | date}}</td>
+                                        <td>{{p.orderNumber}}</td>
+                                        <td>
+                                            <span >{{p.totalAmount}}</span>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr ng-repeat="p in vm.response.histories track by $index" 
+                                     ng-class="{'selected':$index == vm.customerHistory}"ng-click="vm.selectSaleList(p)">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{p.date | date}}</td>
+                                        <td>
+                                            <span  ng-if="p.type=='Sale'" > Purchase</span>
+                                            <span ng-if="p.type=='Payment'"> Payment</span>
+                                        </td>
+                                        <td>
+                                            <a ng-if="p.type=='Sale'" ui-sref="root.saledetail({id:p.id})">{{p.invoiceNumber}}</a>
+                                            <a ng-if="p.type=='Payment'" ui-sref="root.transaction({id:p.id})">{{p.invoiceNumber}}</a>
+                                        </td>
+                                        <td>
+                                            <span ng-if="p.type=='Sale'">{{p.total}}</span>
+                                        </td>
+                                        <td style="cursor: pointer;">
+                                            <a ng-if="p.type=='Payment'" ui-sref="root.transaction({id:p.id})">{{p.total}}</a>
+                                        </td>
+                                        
+                                    </tr> -->
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <table id="table-edit" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Unit Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.response.item1 track by $index"  style="cursor: alias">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{p.productDetailName}}</td>
+                                        <td>{{p.salePricePerUnit}}</td>
+                                        <td>{{p.quantity}}</td>
+                                        
+                                        <td>{{p.total | number : 2}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group ">
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <label class="control-label ">Name:</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-sm-11">
+                                <input type="text" class="form-control" name="name" ng-model="vm.customer.name" ng-disabled="vm.customer.membershipCardNo.length>0" />
+
+                            </div>
+                            <div class="col col-sm-1"><button type="submit" class="btn btn-default pull-left" ng-click="vm.resetCustomer()"><span
+                                        class="glyphicon glyphicon-remove"></span></button></div>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label class="control-label ">Phone:</label>
+                        <input type="text" class="form-control" name="name" ng-model="vm.customer.phone" ng-disabled="vm.customer.membershipCardNo.length>0" />
+                    </div>
+                    <div class="form-group " ng-show="vm.customer.membershipCardNo.length>0">
+                        <label class="control-label ">Point:</label>
+                        <input type="text" class="form-control" name="name" ng-model="vm.customer.point" readonly />
+                    </div>
+                    <div class="form-group " ng-show="vm.customer.membershipCardNo.length>0">
+                        <label class="control-label ">Membership Card No:</label>
+                        <input type="text" class="form-control" name="address" ng-model="vm.customer.membershipCardNo" readonly />
+                    </div>
+                    <div class="form-group" ng-show="vm.customer.membershipCardNo.length>0">
+                        <label class="control-label ">Total Due:</label>
+                        <input type="text" class="form-control" name="address" ng-model="vm.customer.totalDue" readonly />
+                    </div> -->
+                    
+                </div>
+            </div>
+            <div class="panel panel-info biz-boxed">
+                <form name="customerFeedbackForm" ng-submit="customerFeedbackForm.$valid && vm.save()">
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">Order Number</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="orderNumber" placeholder="Enter Order Number" ng-model="vm.model.orderNumber">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">Feedback</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="feedback" placeholder="Enter Feedback" ng-model="vm.model.feedback">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">Feedback Type</label>
+                
+                        <div class="col-sm-10">
+                            <select type="text" class="form-control " name="saleDetailType" ng-model="p.feedbackType" ng-options="i as i for i in vm.feedbackTypes"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">Manager Comment</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="managerComment" placeholder="Enter Manager Comment" ng-model="vm.model.managerComment">
+                        </div>
+                    </div>
+                
+                
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label">&nbsp;</label>
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-inline btn-success" ng-if="!vm.isUpdateMode">Save</button>
+                            <button type="submit" class="btn btn-inline btn-success" ng-if="vm.isUpdateMode">Update</button>
+                            <a class="btn btn-inline btn-info" ui-sref="root.brands">Back</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+   
+</div>

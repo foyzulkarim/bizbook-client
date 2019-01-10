@@ -1,0 +1,131 @@
+﻿<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border"><a class="glyphicon glyphicon-menu-left" ng-click="vm.back()"></a> {{vm.productDetailViewModel.name}}</h5>
+ <div id="product-history-head">
+     <div class="row">
+         <div class="col-sm-12">
+             <h3>
+                 Name: {{vm.productDetailViewModel.name}}
+             </h3>
+             <h4>
+                 On Hand: {{vm.productDetailViewModel.onHand}} &nbsp;&nbsp;&nbsp;
+                 Purchased: {{vm.productDetailViewModel.purchased}} &nbsp;&nbsp;&nbsp;
+                 Sold:{{vm.productDetailViewModel.sold}}
+             </h4>
+             <br />
+         </div>
+         
+         <div class="row" style="margin-left: 15px">
+             <div class="col-sm-6">
+                 <div class="form-group">
+                     <label class="form-label">Warehouse</label>
+                     <select class="form-control" ng-model="vm.selectedWarehouseId" ng-options="p.id as p.text for p in vm.warehouses" ng-change="vm.selectWarehouse()"></select>
+                 </div>
+             </div>
+            <div class="col col-sm-3">
+                <div class="input-group">
+                    <label class="control-label">From Date:</label>
+                    <input type="date" class="form-control" name="fromdate" id="dtFromDate" ng-model="vm.startDate" ng-change="vm.loadProductHistory()" />
+                </div>
+                <!-- <div ng-include="'partials/common/report-header-fromDate.tpl.html'"></div> -->
+            </div>
+            <div class="col col-sm-3">
+                <div class="input-group">
+                    <label class="control-label">To Date:</label>
+                    <input type="date" class="form-control" name="todate" id="dtToDate" ng-model="vm.endDate" ng-change="vm.loadProductHistory()" />
+                </div>
+                <!-- <div ng-include="'partials/common/report-header-toDate.tpl.html'"></div> -->
+            </div>
+         </div>
+        
+     </div>
+     <div class="row">
+         <!-- Table -->
+         <div class="col-sm-12">
+             <h4>History:</h4>
+             <div class="table-responsive">
+                 <table class="table table-bordered table-hover" id="product-history">
+                     <thead>
+                         <tr>
+                             <th>#</th>
+                             <th>Name</th>
+                             <th>Date</th>
+                             <th>Type</th>
+                             <th>Pending</th>
+                             <th>Processing</th>
+                             <th>Done</th>
+                             <th>Purchased</th>
+                             <th>Price</th>
+                             <th>Total</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr ng-repeat="p in vm.models track by $index">
+                            <td>{{$index + 1}}</td>
+                            <td>
+                                 <a ng-if="p.type === 'Sale'" ui-sref="root.saledetail({id:p.saleId})">{{p.invoiceNumber}}</a>
+                                 <a ng-if="p.type === 'Purchase'" ui-sref="root.purchasedetail({id:p.purchaseId})">{{p.invoiceNumber}}</a>
+                                <a ng-if="p.type === 'StockIn'" ui-sref="root.stocktransferdetail({id:p.purchaseId})">{{p.invoiceNumber}}</a>
+                                <a ng-if="p.type === 'StockOut'" ui-sref="root.stocktransferdetail({id:p.purchaseId})">{{p.invoiceNumber}}</a>
+                            </td>
+                            <td>{{p.date | date}}</td>
+                            <td>{{p.type}}</td>
+                             
+                            <td>
+                                <span ng-if="p.type === 'Sale' && p.orderState==1">{{p.quantity}</span>
+                                <span ng-if="p.transferState === 'Pending' " >{{p.quantity}}</span>
+                            </td>
+                            <td>
+                                <span ng-if="p.type === 'Sale' && p.orderState>1 && p.orderState<5">{{p.quantity}}</span>
+                            </td>
+                            <td>
+                                <span ng-if="p.type === 'Sale' && p.orderState>4 && p.orderState<7">{{p.quantity}}</span> 
+                                <span ng-if="p.transferState === 'Approved' ">{{p.quantity}}</span>
+                            </td>
+                            <td>
+                                <span ng-if="p.type === 'Purchase'">{{p.quantity}}</span>
+                            </td>
+                             <td>{{p.unitPrice}}</td>
+                             <td>{{p.total}}</td>
+                         </tr>
+                        <tr>
+                            <td></td>
+                            <td>Total</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{vm.totalPendingQuantity}}</td>
+                            <td>{{vm.totalProcessingQuantity}}</td>
+                            <td>{{vm.totalDoneQuantity}}</td>
+                            <td>{{vm.totalPurchaseQuantity}}</td>
+                            <td>{{vm.totalUnitPrice}}</td>
+                            <td>{{vm.totalAmount}}</td>
+                        
+                        </tr>
+                     </tbody>
+                 </table>
+             </div>
+             <br />
+         </div>
+     </div>
+ </div>
+    <div class="row">
+        <div class="col col-sm-3">
+            <button class="btn btn-default btn-info"
+                    ng-csv="vm.csvModels"
+                    csv-header="vm.headers"
+                    filename="data.csv"
+                    field-separator=","
+                    decimal-separator=".">
+                Export to CSV
+            </button>
+            <button ng-hide="false" class="btn btn-default btn-info" ng-click="vm.excelDownloadWithId('product-history-head')">Excel</button>
+        </div>
+        <div class="col col-sm-9"></div>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

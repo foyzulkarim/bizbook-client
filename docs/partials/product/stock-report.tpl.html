@@ -1,0 +1,94 @@
+﻿<div class="row">
+
+    <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h3 class="panel-title">Stock List</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" ng-submit="vm.Search()">
+                    <div class="form-group">
+                        <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <input class="form-control input-field" type="date" placeholder="Start" ng-change="vm.UpdateDate()" ng-model="vm.SearchRequest['Start']" />
+                        </div>
+                        <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <input class="form-control input-field" type="date" placeholder="End" ng-change="vm.UpdateDate()" ng-model="vm.SearchRequest['End']" />
+                        </div>
+                        <div class="col col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <input class="form-control input-field" type="text" placeholder="Keyword Search" ng-model="vm.SearchRequest.Keyword" />
+                        </div>
+                        <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <button type="submit" class="btn btn-default pull-left"><span class="glyphicon glyphicon-search"></span></button>
+                            &nbsp;
+                            <button type="button" class="btn btn-default pull-left" ng-click="vm.Report()"><span class="glyphicon glyphicon-download-alt"></span></button>
+                        </div>
+                    </div>
+                </form>
+
+               
+            </div>
+
+            <!-- Table -->
+            <table class="table table-responsive table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product</th>
+                        <th>CurrentOnHand</th>                        
+                        <th>BookmarkStartingOnHand</th>
+                        <th>StartingOnHand</th>
+                        <th>StockIn</th>
+                        <th>StockOut</th>
+                        <th>EndOnHand</th>                   
+                        <th>CostTotal</th>       
+                    </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="p in vm.Models track by $index" style="cursor: alias">
+                    <td>{{$index + 1}}</td>
+                    <td>{{p.ProductName}}</td>
+                    <td>{{p.CurrentOnHand}}</td>
+                    <td>{{p.BookmarkStartingOnHand}}</td>
+                    <td>{{p.StartingOnHand}}</td>
+                    <td>{{p.StockIn}}</td>
+                    <td>{{p.StockOut}}</td>
+                    <td>{{p.EndOnHand}}</td>
+                   <td>{{p.CostTotal}}</td>                   
+                </tr>
+                <tr>
+                    <td>Total:</td>
+                    <td>#{{vm.Models.length}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{vm.Model.CostTotal}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="panel-footer">
+                <div class="page-nation">
+                    <ul class="pagination pagination-large">
+                        <li ng-class="{'disabled' : vm.SearchRequest.Page==1 }"><a ng-hide="vm.SearchRequest.Page==1" ng-click="vm.Goto(1)">First</a></li>
+                        <li ng-class="{'disabled' : vm.SearchRequest.Page==1 }"><a ng-hide="vm.SearchRequest.Page==1" ng-click="vm.Goto(vm.SearchRequest.Page-1)">< Previous</a></li>
+                        <li class="disabled"><a href="javascript:void(0)">Page # {{vm.SearchRequest.Page}} / {{vm.SearchRequest.TotalPage}}</a></li>
+                        <li><a ng-hide="vm.SearchRequest.Page == vm.SearchRequest.TotalPage" ng-click="vm.Goto(vm.SearchRequest.Page+1)"> Next ></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

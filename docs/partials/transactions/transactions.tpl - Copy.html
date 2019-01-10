@@ -1,0 +1,74 @@
+﻿<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border">Transactions List</h5>
+    <div class="form-horizontal">
+        <form ng-submit="vm.searchOrders()">
+            <div class="form-group row">
+                <div class="col col-sm-6">
+                    <div class="input-group">
+                        <input class="form-control input-field" type="text" placeholder="Keyword Search" ng-model="vm.searchRequest.keyword" />
+                        <span class="input-group-addon " id="keyword" style="cursor: pointer" ng-click="vm.search()"> <span class="glyphicon glyphicon-search"></span></span>
+                    </div>
+                </div>
+                <div class="col col-sm-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-field" uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" placeholder="Start" ng-model="vm.startDate" is-open="vm.startDatePopUp" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openStartDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col col-sm-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-field" uib-datepicker-popup="{{'dd-MMMM-yyyy'}}" placeholder="End" ng-model="vm.endDate" is-open="vm.endDatePopUp" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="vm.openEndDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="bootstrap-table">
+            <div class="fixed-table-container">
+                <div class="fixed-table-body">
+                    <table id="table-edit" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Account Type</th>
+                                <th>Amount</th>
+                                <th>Person</th>
+                                <th>Person Type</th>
+                                <th>Transaction Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.models track by $index" ng-click="vm.detail(p,$index)" style="cursor: alias">
+                                <td>{{$index + 1}}</td>
+                                <td>{{p.modified | date}}</td>
+                                <td>{{p.accountType}}</td>
+                                <td>{{p.amount | currency : ''}}</td>
+                                <td>{{p.contactPersonName}}</td>
+                                <td>{{p.transactionWith}}</td>
+                                <td>{{p.transactionType}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-include="vm.subUrlPath+'/partials/common/pager.html'">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

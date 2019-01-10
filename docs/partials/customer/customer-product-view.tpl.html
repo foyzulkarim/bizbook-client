@@ -1,0 +1,79 @@
+<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border"><a class="glyphicon glyphicon-menu-left" ng-click="vm.back()"></a>
+        {{vm.response.customer.name}}</h5>
+    <div id="coustomer-history-head">
+       
+        <div class="row">
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-info">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">
+                        <h3 class="panel-title">History:</h3>
+                    </div>
+                    <!-- Table -->
+                    <div class="table table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Order Number</th>
+                                    <th>
+                                        Product Name
+                                    </th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>
+                                        Total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="p in vm.response.histories track by $index">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{p.invoiceNumber}}</td>
+                                    <td>{{p.productName}}</td>
+                                    <td>
+                                       {{p.price}}
+                                    </td>
+                                    <td>
+                                       {{p.quantity}}
+                                    </td>
+                                    <td style="cursor: pointer;">
+                                        {{p.total}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Total:</h4>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>{{vm.totalUnitPrice}}</strong></td>
+                                    <td>
+                                        <strong>{{vm.totalQuantity}}</strong>
+                                    </td>
+                                    <td>
+                                        <strong>{{vm.totalPrice}}</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-default btn-info" ng-csv="vm.csvModels" csv-header="vm.headers" filename="data.csv"
+            field-separator="," decimal-separator=".">
+            Export to CSV
+        </button>
+        <button ng-hide="false" class="btn btn-default btn-info" ng-click="vm.excelDownloadWithId('coustomer-history-head')">Excel</button>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

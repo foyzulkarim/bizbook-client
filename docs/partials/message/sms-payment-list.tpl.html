@@ -1,0 +1,46 @@
+﻿
+<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border">Sms Payment List</h5>
+    <div class="form-horizontal">
+        <form ng-submit="vm.search()">
+            <div class="form-group row">
+                <div class="col col-sm-6">
+                    <div ng-include="'partials/common/search-box.html'"></div>
+                </div>
+                <div class="col col-sm-2">
+                    <!--<button type="button" class="btn btn-default-outline" ng-click="vm.report(vm.models[0]['shopId'])"><span class="glyphicon glyphicon-download-alt"></span></button>-->
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" id="list-history-head">
+        <div class="bootstrap-table">
+            <div class="fixed-table-container">
+                <div class="fixed-table-body">
+                    <table id="table-edit" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th width="1">
+                                    #
+                                </th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Text</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.models track by $index" ui-sref="root.smses({id:p.id})"
+                                style="cursor: pointer">
+                                <td><span class="tabledit-span tabledit-identifier">{{$index + 1}}</span></td>
+                                <td class="tabledit-view-mode"><span class="tabledit-span">{{p.modified | date}}</span></td>
+                                <td class="tabledit-view-mode"><span class="tabledit-span">{{p.amount}}</span></td>
+                                <td class="tabledit-view-mode"><span class="tabledit-span">{{p.text}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-include="'partials/common/pagination.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

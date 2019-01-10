@@ -1,0 +1,77 @@
+﻿<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border">Sales Due List</h5>
+    <div class="form-horizontal">
+        <div class="form-group row">
+            <div class="col col-sm-4">
+                <label class="control-label">Search Order</label>
+                <div ng-include="'partials/common/search-box.html'"></div>
+            </div>
+            <div class="col col-sm-2">
+                <div class="input-group">
+
+                </div>
+            </div>
+            <div class="col col-sm-7">&nbsp;</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="bootstrap-table">
+            <div class="fixed-table-container">
+                <div class="fixed-table-body">
+                    <div class="table-responsive">
+                        <table id="table-edit" class="table table-bordered table-hover ">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th ng-click="vm.toggleSort('Modified');vm.saveOrderByValue()">Date <span class="glyphicon glyphicon-sort"></span></th>
+                                    <th>Order No</th>
+                                    <th>State</th>
+                                    <th>Total (Due)</th>
+                                    <th>Customer Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="p in vm.models track by $index">
+                                    <td>{{$index + 1}}</td>
+                                    <td ng-style="vm.isOverDue(p) && {'color':'red', 'font-weight':'bold'}">{{p.modified | date}} <span ng-show="vm.isOverDue(p)">({{vm.toInt(vm.getDateDiff(p.created))}})</span></td>
+                                    <td>
+                                        <a style="cursor: pointer" ui-sref="root.saledetail({id:p.id})" href="javascript:void(0)">{{p.orderNumber}}</a>
+                                        <!--<a ui-sref="root.receipt({id:p.id})" style="cursor: pointer">Print</a>-->
+                                        <a ui-sref="root.salereturn({id:p.id})" style="cursor: pointer">Edit</a>
+                                        <a href="javascript:void(0)" ng-click="vm.showReceipt(p.id)">Receipt</a>
+                                    </td>
+                                    <td>{{p.currentState.displayText}}</td>
+                                    <td>{{p.totalAmount | currency : ''}} ({{p.dueAmount | currency : ''}})         <a ui-sref="root.sale-pay({id:p.id})" href="javascript:void(0)">pay</a></td>
+                                    <td ui-sref="root.customerhistory({id: p.customerId})" style="cursor: pointer">
+                                        <a href="javascript:void(0)" ui-sref="root.customerhistory({id: p.customerId})">{{p.customerName}} ({{p.customerPhone}})</a>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Total:</td>
+                                    <td>#{{vm.models.length}}</td>
+                                    <td></td>
+
+                                    <td></td>
+                                    <td>{{vm.total | currency : ''}} ({{vm.due | currency : ''}})</td>
+                                    <td></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div ng-include="vm.subUrlPath+'/partials/common/pagination.html'">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

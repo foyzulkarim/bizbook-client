@@ -1,0 +1,58 @@
+﻿
+<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border">Sms History</h5>
+    <div class="form-horizontal">
+        <form ng-submit="vm.search()">
+            <div class="form-group row">
+                <div class="col col-sm-4">
+                    <label class="control-label">Search Order</label>
+                    <div ng-include="'partials/common/search-box.html'"></div>
+                </div>
+                <div class="col col-sm-4">
+                    <div ng-include="'partials/common/report-header-fromDate.tpl.html'"></div>
+                </div>
+                <div class="col col-sm-4">
+                    <div ng-include="'partials/common/report-header-toDate.tpl.html'"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" id="sms-history-head">
+        <div class="bootstrap-table">
+            <div class="fixed-table-container">
+                <div class="fixed-table-body">
+                    <table id="table-edit" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th width="1">
+                                    #
+                                </th>
+
+                                <th ng-click="vm.toggleSort('Created');vm.saveOrderByValue()">
+                                    Created Date <span class="glyphicon glyphicon-sort"></span>
+                                </th>
+                                <th ng-click="vm.toggleSort('Modified');vm.saveOrderByValue()">
+                                    Modified  Date <span class="glyphicon glyphicon-sort"></span>
+                                </th>
+                                <th>Text</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="p in vm.models track by $index"
+                                style="cursor: pointer">
+                                <td><span class="tabledit-span tabledit-identifier">{{$index + 1}}</span></td>
+                                <td class="tabledit-view-mode"><span class="tabledit-span">{{p.created | date}}</span></td>
+                                <td class="tabledit-view-mode"><span class="tabledit-span">{{p.modified | date}}</span></td>
+                                <td class="tabledit-view-mode"><span class="tabledit-span">{{p.text}}</span></td>
+                                <td class="tabledit-view-mode"><span class="tabledit-span">{{p.amount}}</span></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div ng-include="'partials/common/pagination.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

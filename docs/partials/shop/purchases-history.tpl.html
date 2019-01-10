@@ -1,0 +1,52 @@
+﻿<div class="row">
+
+    <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h3 class="panel-title">Purchase History</h3>
+            </div>
+
+            <!-- Table -->
+            <table class="table table-responsive table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Identification Number</th>
+                        <th>Type</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in vm.models track by $index" ng-class="{'selected':$index == vm.selectedRow}" ng-click="vm.detail(p,$index)" style="cursor: pointer">
+                        <td>{{$index + 1}}</td>
+                        <td>{{p.identificationNumber}} <a ng-if="p.type=='Purchase'" ui-sref="root.purchasedetails({purchaseId:p.id})">Detail</a></td>
+                        <td>{{p.type}}</td>
+                        <td>{{p.total}}</td>
+                        <td>{{p.date | date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="panel-footer">
+                <div class="page-nation">
+                    <ul class="pagination pagination-large">
+                        <li ng-class="{'disabled' : vm.searchRequest.page==1 }"><a ng-hide="vm.searchRequest.page==1" ng-click="vm.goto(1)">First</a></li>
+                        <li ng-class="{'disabled' : vm.searchRequest.page==1 }"><a ng-hide="vm.searchRequest.page==1" ng-click="vm.goto(vm.searchRequest.page-1)">< Previous</a></li>
+                        <li class="disabled"><a href="javascript:void(0)">Page # {{vm.SearchRequest.Page}} / {{vm.searchRequest.totalPage}}</a></li>
+                        <li><a ng-hide="vm.searchRequest.page == vm.searchRequest.totalPage" ng-click="vm.goto(vm.searchRequest.page+1)"> Next ></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

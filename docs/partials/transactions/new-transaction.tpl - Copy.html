@@ -1,0 +1,119 @@
+﻿<div class="box-typical box-typical-padding">
+    <div class="row">
+        <div class="col col-sm-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title with-border">New Transaction</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" ng-submit="vm.save()">
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Account Type</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <select type="text" class="form-control " name="accountType" ng-model="vm.model.accountType" ng-options="i as i for i in vm.accountTypes" required="required"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Account Head</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <select type="text" class="form-control " name="accountType" ng-model="vm.model.accountHeadId" ng-options="i.id as i.text for i in vm.accountHeads" required="required"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction For</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <select type="text" class="form-control " name="TransactionName" ng-model="vm.model.transactionFor" ng-options="i as i for i in vm.transactionFors" required="required"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3">Transaction With</label>
+                            <div class="col col-sm-9">
+                                <select type="text" class="form-control " name="TransactionName" ng-model="vm.model.transactionWith" ng-options="i as i for i in vm.transactionWiths" ng-change="vm.loadParents()" required="required"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">{{vm.model.transactionWith}} List</label>
+                            <div class="col-sm-6">
+                                <select type="text" class="form-control " name="TransactionName" ng-model="vm.model.parentId" ng-options="i.id as i.text for i in vm.parents | filter: vm.parentFilter" ng-change="vm.loadOrders()" required="required"></select>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="parentphone" ng-model="vm.parentFilter" placeholder="Filter list" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Order Numbers:</label>
+                            <div class="col col-sm-9">
+                                <select type="text" class="form-control " name="TransactionName" ng-options="i as i.text for i in vm.orders " ng-model="vm.model.order" ng-change="vm.orderSelected()"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Selected Order:</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <input type="text" class="form-control" name="orderNumber" ng-model="vm.model.orderNumber" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Amount:</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <input type="number" class="form-control" name="amount" ng-model="vm.model.amount" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction type</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <select type="text" class="form-control " name="Transactiontype" ng-model="vm.model.transactionType" ng-options="i as i for i in vm.transactionTypes" required="required"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction Services:</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <select type="text" class="form-control " name="Transactiontype" ng-model="vm.model.transactionService" ng-options="i as i for i in vm.transactionServices" ></select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction Service:</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <input type="text" class="form-control" name="transactionService" ng-model="vm.model.transactionService" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Transaction Number:</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <input type="text" class="form-control" name="transactionNumber" ng-model="vm.model.transactionNumber" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Person Name:</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <input type="text" class="form-control" name="contactPersonName" ng-model="vm.model.contactPersonName" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Phone:</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <input type="text" class="form-control" name="contactPersonPhone" ng-model="vm.model.contactPersonPhone" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Remarks:</label>
+                            <div class="col col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                <input type="text" class="form-control" name="remarks" ng-model="vm.model.remarks" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-3">&nbsp;</label>
+                            <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                <button type="submit" class="btn btn-floating btn-info">Save</button>
+                                <button type="button" class="btn btn-floating btn-danger" ng-click="vm.activate()">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="row">
+            <form class="form-horizontal">
+                <div class="col-sm-2 col-md-2 col-lg-1 col-xs-2">
+                    <div class="form-group">
+                        <label>Role:</label>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-md-10 col-lg-11 col-xs-10">
+                    <div class="form-group">
+                        <!--<label class="control-label col col-xs-12 col-sm-3 col-md-3 col-lg-3">Role</label>-->
+                        <select type="text" class="form-control" id="roleId" name="roleId" ng-model="vm.selectedRoleId" ng-options="i.id as i.name for i in vm.roles" ng-change="vm.selectRole(vm.selectedRoleId)"></select>
+                    </div>
+                    <input type="text" ng-model="vm.searchModel.$" ng-init="vm.searchText=''" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <button type="button" ng-click="vm.updateResourcePermissionsForRole()" class="btn btn-default btn-lg">Update</button>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 5px;margin-bottom: 5px"></div>
+
+<!--<div class="row">
+    <table class="table table-responsive table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Allowed</th>
+            <th>Resources</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in vm.models">
+            <td>
+                <input style="width: 20px; height: 20px;" type="checkbox" id="IsActive" name="isActive" ng-model="item.isAllowed" ng-change="vm.selectResourcePermission(item)" ng-disabled="!vm.isRoleSelected">
+            </td>
+            <td>{{item.resource}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>-->
+
+<div class="row">
+    <div class="bootstrap-table">
+        <div class="fixed-table-container">
+            <div class="fixed-table-body">
+                <table id="table-edit" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <!--<th width="1">
+                            #
+                        </th>-->
+                        <th>Allowed</th>
+                        <th>Resources</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in vm.models | filter:vm.searchModel:strict">
+                        <td>
+                            <input style="width: 20px; height: 20px;" type="checkbox" id="IsActive" name="isActive" ng-model="item.isAllowed" ng-change="vm.selectResourcePermission(item)" ng-disabled="!vm.isRoleSelected">
+                        </td>
+                        <td>{{item.resource}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <!--<div ng-include="'partials/common/pagination.html'"></div>-->
+        </div>
+    </div>
+</div>

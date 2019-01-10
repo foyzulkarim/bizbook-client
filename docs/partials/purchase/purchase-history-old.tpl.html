@@ -1,0 +1,237 @@
+﻿
+<div class="row">
+
+    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h4 >Purchase History: <span class="text-danger">{{vm.requestTypeText}}</span></h4>
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <form ng-submit="vm.searchOrder()">
+                        <div class="row">
+                            <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <select class="form-control" ng-model="vm.model.state" ng-options="p.id as p.name for p in vm.purchaseStates" name="PurchaseState"  ng-change="vm.searchOrder()"></select>
+                            </div>
+                            <div class="col col-xs-3 col-sm-3 col-md-4 col-lg-4">
+                                <select class="form-control" ng-model="vm.requestType" ng-change="vm.searchOrder()">
+                                    <option value="All">All</option>
+                                    <option value="ToMe">orders to me</option>
+                                    <option value="ByMe">orders by me</option>
+                                </select>
+                            </div>
+                            <div class="col col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                                <input class="form-control input-field" type="text" placeholder="Search" ng-model="vm.searchRequest.keyword" />
+                            </div>
+                            <div class="col col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <button type="submit" class="btn btn-default pull-left"><span class="glyphicon glyphicon-search"></span></button>&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <!-- Table -->
+                <table class="table table-responsive table-bordered table-hover">
+                    <thead>
+                    <tr class="active">
+                        <th>#</th>
+                        <th>Memo</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                        <th>Creator</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="p in vm.models track by $index" ng-class="{'selected':$index == vm.selectedRow}"  ng-click="vm.showSelectedPurchaseData(p,$index)" style="cursor: alias">
+                        <td>{{$index + 1}}</td>
+                        <td>{{p.memo}}</td>
+                        <td>{{p.created |date}}</td>
+                        <td>{{p.total}}</td>
+                        <td>{{p.createdBy}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="panel-footer form">
+                    <div class="form-group">
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <h4>Memo: <span class="text-danger">{{vm.memo}}</span></h4>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a showtab="" href="#tab1History" data-toggle="tab" ng-click="vm.getSelectedTabData(0)">History</a></li>
+                    <li><a showtab="" href="#tab2OrderDetail" data-toggle="tab" ng-click="vm.getSelectedTabData(1)">Order Details</a></li>
+                    <li><a showtab="" href="#tab3State" data-toggle="tab" ng-click="vm.getSelectedTabData(2)">State</a></li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+
+                    <div class="tab-pane fade in active" id="tab1History">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                            </div>
+                            <div class="panel-body">
+                            </div>
+                            <table class="table table-responsive table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Date</th>
+                                        <th>Actor</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.orderHistory track by $index">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{p.created|date}}</td>
+                                        <td>{{p.shop.name}}</td>
+                                        <td>{{p.state}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane fade" id="tab2OrderDetail">
+                        <div class="panel panel-info">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                <!--h3 class="panel-title">Customers</h3>-->
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">                                 
+
+                                </div>
+                            </div>
+
+                            <!-- Table -->
+                            <table class="table table-responsive table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Order Quantity</th>
+                                        <th>Stock Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="p in vm.orderDetails track by $index">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{p.product.name}}</td>
+                                    <td>{{p.quantity}}</td>
+                                    <!--<td>{{vm.isStockDisplay === true?p.stockQuantity:0}}</td>-->
+                                    <td>{{p.stockQuantity}}</td>
+                                    <td>{{p.price}}</td>
+                                    <td>{{p.total}}</td>
+                                </tr>
+                                    <tr>
+                                        <td>Total:</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>{{vm.getTotal().total}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="tab3State">
+                        <div class="panel panel-info">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                <h3 class="panel-title">States</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col col-xs-12 col-sm-12 col-md-12 col-lg-12">Current State: <span class="text-danger">{{vm.currentState}}</span></label>                              
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col col-xs-12 col-sm-2 col-md-2 col-lg-2">Remarks: </label>
+                                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                                            <textarea class="form-control" name="Remarks" ng-model="vm.purchaseState.note"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+                                        <div class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <button ng-hide="vm.nextState == ''" type="button" class="btn btn-floating btn-info" ng-click="vm.updatePurchaseState(vm.nextState)" id="pregress">{{vm.nextState}}</button>
+                                            <button ng-hide="vm.nextState == ''" type="button" class="btn btn-floating btn-info" ng-click="vm.updatePurchaseState('Canceled')">Deny</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+
+
+
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Comments</h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" ng-submit="vm.saveComments()">
+                                    <div class="form-group">
+                                        <div class="col col-xs-9 col-sm-9 col-md-9 col-lg-9" ng-repeat="p in vm.comments track by $index">
+                                            {{p.shop.name}}: {{p.text}}
+                                            <hr />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <hr/>
+                                        <div class="col col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                                            <input class="form-control input-field" type="text" ng-model="vm.comment.text" required="required"/>
+                                        </div>
+                                        <div class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <button type="submit" ng-hide="vm.currentState == ''"class="btn btn-floating col col-md-10">Submit</button>
+                                        </div>
+
+                                        
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

@@ -1,0 +1,135 @@
+﻿<div class="row">
+    <div class="col col-xs-12 col-sm-5 col-md-5 col-lg-5">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Product</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" ng-submit="vm.Save()">
+                   <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Name :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input readonly="readonly" type="text" class="form-control" name="Name" ng-model="vm.Model.ProductName" required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">System OnHand :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input readonly="readonly" type="text" class="form-control " name="SystemOnHand" ng-model="vm.Model.SystemOnHand" required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Physical OnHand :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input type="number" class="form-control " name="PhysicalOnHand" ng-model="vm.Model.PhysicalOnHand" required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Quantity Diff :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input type="number" class="form-control" name="StartingInventory" ng-model="vm.Model.QuantityDiff" required="required"/>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Cost Price :</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input type="text" class="form-control" name="CostPrice" ng-model="vm.Model.CostPrice"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">Price Diff:</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <input type="number" class="form-control" name="PriceDiff" ng-model="vm.Model.PriceDiff" ng-value="vm.Model.CostPrice * vm.Model.QuantityDiff"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col col-xs-12 col-sm-4 col-md-4 col-lg-4">&nbsp;</label>
+                        <div class="col col-xs-12 col-sm-8 col-md-8 col-lg-8">
+                            <button ng-show="!vm.IsUpdateMode" type="submit" class="btn btn-floating btn-info">Save</button>
+                            <button ng-show="vm.IsUpdateMode" type="button" class="btn btn-floating btn-danger" ng-click="vm.Update()">Update</button>
+                            <button ng-show="vm.IsUpdateMode" type="button" class="btn btn-floating btn-danger" ng-click="vm.Activate()">Reset</button>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-xs-12 col-sm-7 col-md-7 col-lg-7">
+        <div class="panel panel-info">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h3 class="panel-title">Product List</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <form ng-submit="vm.Search()">
+                        <div class="col col-xs-9 col-sm-7 col-md-7 col-lg-7">
+                            <input class="form-control input-field" type="text" placeholder="Search"  ng-model="vm.SearchRequest.Keyword"/>
+                        </div>
+                        <div class="col col-xs-3 col-sm-2 col-md-2 col-lg-2">
+                            <button type="submit" class="btn btn-default pull-left"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </form>
+                  
+                    <!--<button type="submit" class="btn btn-info pull-right">Print</button>-->
+                </div>
+            </div>
+
+            <!-- Table -->
+            <table class="table table-responsive table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>                       
+                        <th>Name</th>
+                        <th>System OnHand</th>
+                        <th>Physical OnHand</th>
+                        <th>Quantity Diff.</th>
+                        <th>Cost Price</th>
+                        <th>Price Diff.</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in vm.Models track by $index"  ng-click="vm.Edit(p)" style="cursor: pointer">
+                        <td>{{$index + 1}}</td>                      
+                        <td>{{p.ProductName}}</td>
+                        <td>{{p.SystemOnHand}}</td>
+                        <td>{{p.PhysicalOnHand}}</td>
+                        <td>{{p.QuantityDiff}}</td>
+                        <td>{{p.CostPrice}}</td>
+                        <td>{{p.PriceDiff}}</td>                       
+                        <td>
+                            <a class="glyphicon glyphicon-edit" style="cursor: pointer;" ng-click="vm.Edit(p)"></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;                         
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="panel-footer">
+                <div class="page-nation">
+                    <ul class="pagination pagination-large">                       
+                        <li ng-class="{'disabled' : vm.SearchRequest.Page==1 }" ><a ng-hide="vm.SearchRequest.Page==1" ng-click="vm.Goto(1)">First</a></li>
+                        <li ng-class="{'disabled' : vm.SearchRequest.Page==1 }" ><a ng-hide="vm.SearchRequest.Page==1"  ng-click="vm.Goto(vm.SearchRequest.Page-1)">< Previous</a></li>
+                        <li class="disabled"><a href="javascript:void(0)">Page # {{vm.SearchRequest.Page}} / {{vm.SearchRequest.TotalPage}}</a></li>
+                        <li><a ng-hide="vm.SearchRequest.Page == vm.SearchRequest.TotalPage" ng-click="vm.Goto(vm.SearchRequest.Page+1)"> Next ></a></li>                                                                    
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>

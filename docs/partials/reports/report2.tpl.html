@@ -1,0 +1,35 @@
+﻿<div class="box-typical box-typical-padding">
+    <h5 class="m-t-lg with-border">{{vm.title}}</h5>
+    <div class="form-horizontal">
+        <form>
+            <div class="form-group row">
+                <div class="col col-sm-6" ng-hide="vm.hideStartDate">
+                    <div class="input-group">
+                        <input type="date" class="form-control input-field" placeholder="Start" ng-model="vm.startDate" />
+                    </div>
+                </div>
+                <div class="col col-sm-3" ng-hide="vm.hideEndDate">
+                    <div class="input-group">
+                        <input type="date" class="form-control input-field" ng-model="vm.endDate" />
+                    </div>
+                </div>
+                <div class="col col-sm-4" ng-hide="vm.hideDropdown">
+                    <select type="text" class="form-control" name="ProductPrice" ng-model="vm.selectedItem" required="required" ng-options="p as p.text for p in vm.items" ng-change="vm.dropdownChanged()"></select>
+                </div>
+                <div class="col col-sm-2">
+                    <button type="button" class="btn btn-default-outline" ng-click="vm.loadData()"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="bootstrap-table">
+            <div class="fixed-table-container">
+                <div class="fixed-table-body">
+                    <!--<div ui-grid="vm.gridOptions" ui-grid-selection ui-grid-exporter class="grid"></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
