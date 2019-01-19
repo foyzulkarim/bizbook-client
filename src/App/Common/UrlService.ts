@@ -62,8 +62,8 @@
 
             let host = document.location.host;
           
-            this.setServers2();
-            //this.setLocalhost(); 
+            //this.setServers2();
+            this.setLocalhost(); 
             //this.setLocalhostCore();
             //this.setServerCore();
             //this.setLocalIIS(identitySuffix,inventorySuffix);
